@@ -1,5 +1,6 @@
 package Repository;
 
+import Cards.BlackCard;
 import Cards.Card;
 import Cards.RegularCard;
 import Enums.Color;
@@ -13,7 +14,7 @@ public class CardDatabase {
     public static List<Card> getAllCards() {
         List<Card> allCards = new ArrayList<>();
         allCards.addAll(createRegularCards());
-
+        allCards.addAll(createBlackCards());
         return allCards;
     }
 
@@ -36,5 +37,13 @@ public class CardDatabase {
             }
         }
         return regularCards;
+    }
+
+    private static List<Card> createBlackCards() {
+        List<Card> blackCards = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            blackCards.add(new BlackCard(i));
+        }
+        return blackCards;
     }
 }

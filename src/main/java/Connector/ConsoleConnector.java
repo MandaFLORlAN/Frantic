@@ -23,19 +23,14 @@ public class ConsoleConnector implements Connector {
     public void startGame(List<Player> players, StatisticsHandler statistics) throws InterruptedException {
         this.players = players;
         this.statistics = statistics;
-        for (int i  = 0; i < players.size(); i++) {
+        for (int i = 0; i < players.size(); i++) {
             players.get(i).setPlayerId(i);
         }
         this.game = new Game(players.size(), this, FranticConstants.NUMBER_OF_START_CARDS);
-
-        for (int i = 0; i<100_000; i++) {
-            if (i%1000==0) System.out.println(i);
-            for (Player player: players) {
-                player.newRound();
-            }
-            this.game.startGame();
+        for (Player player : players) {
+            player.newRound();
         }
-        statistics.printStatistics();
+        this.game.startGame();
     }
 
     @Override
@@ -86,7 +81,7 @@ public class ConsoleConnector implements Connector {
     }
 
     private String playerOfId(int playerId) {
-        for (Player player: players){
+        for (Player player : players) {
             if (player.getPlayerId() == playerId) {
                 return player.getPlayerName();
             }
@@ -95,7 +90,7 @@ public class ConsoleConnector implements Connector {
     }
 
     private void tellAllPlayers(String message) {
-        for (Player player: players) {
+        for (Player player : players) {
             player.updateGameActions(message);
             statistics.addMove(message);
         }

@@ -16,7 +16,7 @@ public class Main {
         players.add(new Player("Player 0", connector));
         players.add(new Player("Player 1", connector));
         players.add(new Player("Player 2", connector));
-        players.add(new Player("Player 3", connector));
+        players.add(new HumanPlayer("Human 3", connector));
         connector.startGame(players, statisticsHandler);
     }
 }
