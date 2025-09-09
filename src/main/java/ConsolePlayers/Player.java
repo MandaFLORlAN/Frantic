@@ -2,10 +2,12 @@ package ConsolePlayers;
 
 import Cards.Card;
 import Connector.Connector;
+import Enums.FantasticOptions;
 import Game.GameState;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Player {
     protected int playerId;
@@ -48,6 +50,10 @@ public class Player {
             }
         }
         connector.wantsToPlay(this.playerId, null);
+    }
+
+    public FantasticOptions fantasticWish() {
+        return FantasticOptions.values()[new Random().nextInt(FantasticOptions.values().length)];
     }
 
     public String getPlayerName() {

@@ -1,7 +1,10 @@
 package Connector;
 
 import Cards.Card;
+import Cards.SpecialCard;
 import ConsolePlayers.Player;
+import Enums.Color;
+import Enums.FantasticOptions;
 import Game.*;
 import Repository.FranticConstants;
 import Statistics.StatisticsHandler;
@@ -70,9 +73,23 @@ public class ConsoleConnector implements Connector {
                 tellAllPlayers(playerOfId(playerId) + " draws a card");
             } else {
                 tellAllPlayers(playerOfId(playerId) + " played " + card);
+                if (card instanceof SpecialCard) {
+                    ((SpecialCard) card).executeSpecialFunction(players.get(playerId), this);
+                }
             }
         }
         return canPlay;
+    }
+
+    @Override
+    public void wishUpdate(Player player, Color color) {
+        //TOTO later for nomral special cards
+    }
+
+    @Override
+    public void wishUpdate(Player player, FantasticOptions fantasticOptions) {
+        game.updateWish(player, fantasticOptions);
+        tellAllPlayers("Wished for " + fantasticOptions.name());
     }
 
     @Override

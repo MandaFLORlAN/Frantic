@@ -2,6 +2,8 @@ package Connector;
 
 import Cards.Card;
 import ConsolePlayers.Player;
+import Enums.Color;
+import Enums.FantasticOptions;
 import Game.GameState;
 import Statistics.StatisticsHandler;
 
@@ -11,13 +13,15 @@ public interface Connector {
     public void startGame(List<Player> players, StatisticsHandler statistics) throws InterruptedException;
 
     //method for game
-    public boolean addCardToPlayer(int playerId, Card card);
-    public void itsTurn(int playerId);
-    public void winners(List<Integer> winnerIds);
-    public void updateGamestate(GameState gameState);
+    boolean addCardToPlayer(int playerId, Card card);
+    void itsTurn(int playerId);
+    void winners(List<Integer> winnerIds);
+    void updateGamestate(GameState gameState);
+    void wishUpdate(Player executor, Color color);
+    void wishUpdate(Player executor, FantasticOptions fantasticOptions);
 
     //method for players
-    public boolean wantsToPlay(int playerId, Card card);
-    public void updateGame();
+    boolean wantsToPlay(int playerId, Card card);
+    void updateGame();
 
 }

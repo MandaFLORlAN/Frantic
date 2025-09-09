@@ -1,7 +1,11 @@
 package Game;
 
 import Cards.Card;
+import Cards.Fantastic;
 import Connector.Connector;
+import ConsolePlayers.Player;
+import Enums.Color;
+import Enums.FantasticOptions;
 import Repository.CardDatabase;
 
 import java.util.ArrayList;
@@ -13,6 +17,7 @@ public class Game{
     private List<Card> drawingPile;
     private List<Card> pile;
     private Card lastPlayedCard;
+    private int lastPlayerId;
     private GameState gameState;
     private int numberOfPlayers;
     private Connector connector;
@@ -41,6 +46,7 @@ public class Game{
             }
         }
         this.lastPlayedCard = drawCard();
+        this.lastPlayerId = this.startPlayer;
         updateGamestate();
         gameLoop();
     }
@@ -101,6 +107,78 @@ public class Game{
         }
         this.lastPlayedCard = card;
         updateGamestate();
+        return true;
+    }
+
+    public void updateWish(Player player, FantasticOptions fantasticOptions) {
+        if(lastPlayerId!=player.getPlayerId()) return;
+        if (this.lastPlayedCard instanceof Fantastic) {
+            switch (fantasticOptions) {
+                case ONE:
+                    ((Fantastic) this.lastPlayedCard).setNumber(1);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 1");
+                    break;
+                case TWO:
+                    ((Fantastic) this.lastPlayedCard).setNumber(2);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 2");
+                    break;
+                case THREE:
+                    ((Fantastic) this.lastPlayedCard).setNumber(3);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 3");
+                    break;
+                case FOUR:
+                    ((Fantastic) this.lastPlayedCard).setNumber(4);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 4");
+                    break;
+                case FIVE:
+                    ((Fantastic) this.lastPlayedCard).setNumber(5);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 5");
+                    break;
+                case SIX:
+                    ((Fantastic) this.lastPlayedCard).setNumber(6);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 6");
+                    break;
+                case SEVEN:
+                    ((Fantastic) this.lastPlayedCard).setNumber(7);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 7");
+                    break;
+                case EIGHT:
+                    ((Fantastic) this.lastPlayedCard).setNumber(8);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 8");
+                    break;
+                case NINE:
+                    ((Fantastic) this.lastPlayedCard).setNumber(9);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 9");
+                    break;
+                case TEN:
+                    ((Fantastic) this.lastPlayedCard).setNumber(10);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 10");
+                    break;
+                case BLUE:
+                    ((Fantastic) this.lastPlayedCard).setColor(Color.BLUE);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: Blue");
+                    break;
+                case RED:
+                    ((Fantastic) this.lastPlayedCard).setColor(Color.RED);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: Red");
+                    break;
+                case GREEN:
+                    ((Fantastic) this.lastPlayedCard).setColor(Color.GREEN);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: Green");
+                    break;
+                case YELLOW:
+                    ((Fantastic) this.lastPlayedCard).setColor(Color.YELLOW);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: Yellow");
+                    break;
+                case PURPLE:
+                    ((Fantastic) this.lastPlayedCard).setColor(Color.PURPLE);
+                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: Purple");
+                    break;
+            }
+        }
+    }
+
+    public boolean updateWish(Color color) {
         return true;
     }
 

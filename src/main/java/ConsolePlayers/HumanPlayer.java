@@ -2,9 +2,11 @@ package ConsolePlayers;
 
 import Cards.Card;
 import Connector.Connector;
+import Enums.FantasticOptions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class HumanPlayer extends Player {
@@ -55,11 +57,24 @@ public class HumanPlayer extends Player {
         }
     }
 
-
     //View
     @Override
     public void updateGameActions(String message) {
         System.out.println(message);
+    }
+
+    @Override
+    public FantasticOptions fantasticWish() {
+        System.out.println("What fantastic option do you wish for.");
+        FantasticOptions[] options = FantasticOptions.values();
+        for (int i = 1; i <= options.length; i++) {
+            System.out.println(options[i-1].toString() + ": " + i);
+        }
+        int input = 0;
+        while (input == 0) {
+            input =getIntInput(options.length);
+        }
+        return options[input-1];
     }
 
     private void displayGamestate() {

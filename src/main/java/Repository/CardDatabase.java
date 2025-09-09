@@ -2,6 +2,7 @@ package Repository;
 
 import Cards.BlackCard;
 import Cards.Card;
+import Cards.Fantastic;
 import Cards.RegularCard;
 import Enums.Color;
 
@@ -15,6 +16,7 @@ public class CardDatabase {
         List<Card> allCards = new ArrayList<>();
         allCards.addAll(createRegularCards());
         allCards.addAll(createBlackCards());
+        allCards.addAll(createFantasticCards());
         return allCards;
     }
 
@@ -46,4 +48,13 @@ public class CardDatabase {
         }
         return blackCards;
     }
+
+    private static List<Card> createFantasticCards() {
+        List<Card> fantasticCards = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            fantasticCards.add(new Fantastic());
+        }
+        return fantasticCards;
+    }
+
 }
