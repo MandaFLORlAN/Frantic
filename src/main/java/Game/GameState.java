@@ -2,11 +2,14 @@ package Game;
 
 import Enums.Color;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GameState {
     private String lastCardName = "Black 1";
     private Color playableColor = null;
     private int playableNumber = 0;
-    private int[] cards = {};
+    private Map<String, Integer> cards = new HashMap<>();
 
     public GameState() {}
 
@@ -18,7 +21,7 @@ public class GameState {
         return playableNumber;
     }
 
-    public int[] getCards() {
+    public Map<String, Integer> getCards() {
         return cards;
     }
 
@@ -34,7 +37,7 @@ public class GameState {
         this.playableColor = playableColor;
     }
 
-    public void setCards(int[] cards) {
+    public void setCards(Map<String, Integer> cards) {
         this.cards = cards;
     }
 

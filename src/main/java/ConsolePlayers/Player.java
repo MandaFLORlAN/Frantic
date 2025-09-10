@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Player {
-    protected int playerId;
     protected String playerName;
     protected List<Card> cards = new ArrayList<>();
     protected Connector connector;
@@ -21,9 +20,6 @@ public class Player {
         this.connector = connector;
     }
 
-    public void setPlayerId(int playerId) {
-        this.playerId = playerId;
-    }
 
     public void updateGamestate(GameState gameState) {
         this.gameState = gameState;
@@ -40,28 +36,28 @@ public class Player {
     public void playMove() {
         for (Card card : cards) {
             if (card.isPlayable(this.gameState)) {
-                if (connector.wantsToPlay(this.playerId, card)) {
+                if (connector.wantsToPlay(this.playerName, card)) {
                     this.cards.remove(card);
                     return;
                 } else {
-                    connector.wantsToPlay(this.playerId, null);
+                    connector.wantsToPlay(this.playerName, null);
                     return;
                 }
             }
         }
-        connector.wantsToPlay(this.playerId, null);
+        connector.wantsToPlay(this.playerName, null);
     }
 
     public FantasticOptions fantasticWish() {
         return FantasticOptions.values()[new Random().nextInt(FantasticOptions.values().length)];
     }
 
-    public String getPlayerName() {
-        return playerName;
+    public Player getTarget(String card) {
+        return null;
     }
 
-    public int getPlayerId() {
-        return playerId;
+    public String getPlayerName() {
+        return playerName;
     }
 
     public void newRound() {

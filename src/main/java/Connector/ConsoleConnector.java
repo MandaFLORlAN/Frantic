@@ -10,11 +10,13 @@ import Repository.FranticConstants;
 import Statistics.StatisticsHandler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ConsoleConnector implements Connector {
     private Game game;
-    private List<Player> players;
+    private Map<String, Player> players;
     private StatisticsHandler statistics;
 
     public ConsoleConnector() {
@@ -24,12 +26,14 @@ public class ConsoleConnector implements Connector {
 
     @Override
     public void startGame(List<Player> players, StatisticsHandler statistics) throws InterruptedException {
-        this.players = players;
-        this.statistics = statistics;
-        for (int i = 0; i < players.size(); i++) {
-            players.get(i).setPlayerId(i);
+        List<String> names = new ArrayList<>();
+        this.players = new HashMap<>();
+        for(Player p: players){
+            this.players.put(p.getPlayerName(), p);
+            names.add(p.getPlayerName());
         }
-        this.game = new Game(players.size(), this, FranticConstants.NUMBER_OF_START_CARDS);
+        this.statistics = statistics;
+        this.game = new Game(names, this, FranticConstants.NUMBER_OF_START_CARDS);
         for (Player player : players) {
             player.newRound();
         }
@@ -37,44 +41,44 @@ public class ConsoleConnector implements Connector {
     }
 
     @Override
-    public boolean addCardToPlayer(int playerId, Card card) {
-        players.get(playerId).addCard(card);
+    public boolean addCardToPlayer(String playerName, Card card) {
+        this.players.get(playerName).addCard(card);
         return true;
     }
 
     @Override
-    public void itsTurn(int playerId) {
-        tellAllPlayers("its " + playerOfId(playerId) + "'s turn");
-        players.get(playerId).playMove();
+    public void itsTurn(String playerName) {
+        tellAllPlayers("its " + playerName + "'s turn");
+        this.players.get(playerName).playMove();
     }
 
     @Override
-    public void winners(List<Integer> winnerIds) {
+    public void winners(List<String> winnerNames) {
         List<Player> winners = new ArrayList<>();
-        for (Integer playerID : winnerIds) {
-            tellAllPlayers(players.get(playerID).getPlayerName() + " has won!");
-            winners.add(players.get(playerID));
+        for (String winnerName : winnerNames) {
+            tellAllPlayers(winnerName + " has won!");
+            winners.add(players.get(winnerName));
         }
         statistics.endGame(winners);
     }
 
     @Override
     public void updateGamestate(GameState gameState) {
-        for (Player player : players) {
+        for (Player player : players.values()) {
             player.updateGamestate(gameState);
         }
     }
 
     @Override
-    public boolean wantsToPlay(int playerId, Card card) {
-        boolean canPlay = this.game.canPlay(playerId, card);
+    public boolean wantsToPlay(String playerName, Card card) {
+        boolean canPlay = this.game.canPlay(playerName, card);
         if (canPlay) {
             if (card == null) {
-                tellAllPlayers(playerOfId(playerId) + " draws a card");
+                tellAllPlayers(playerName + " draws a card");
             } else {
-                tellAllPlayers(playerOfId(playerId) + " played " + card);
+                tellAllPlayers(playerName + " played " + card);
                 if (card instanceof SpecialCard) {
-                    ((SpecialCard) card).executeSpecialFunction(players.get(playerId), this);
+                    ((SpecialCard) card).executeSpecialFunction(players.get(playerName), this);
                 }
             }
         }
@@ -97,17 +101,8 @@ public class ConsoleConnector implements Connector {
         //TODO wenn schenkkarten usw
     }
 
-    private String playerOfId(int playerId) {
-        for (Player player : players) {
-            if (player.getPlayerId() == playerId) {
-                return player.getPlayerName();
-            }
-        }
-        return "Player: " + playerId;
-    }
-
     private void tellAllPlayers(String message) {
-        for (Player player : players) {
+        for (Player player : players.values()) {
             player.updateGameActions(message);
             statistics.addMove(message);
         }

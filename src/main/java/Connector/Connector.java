@@ -13,15 +13,15 @@ public interface Connector {
     public void startGame(List<Player> players, StatisticsHandler statistics) throws InterruptedException;
 
     //method for game
-    boolean addCardToPlayer(int playerId, Card card);
-    void itsTurn(int playerId);
-    void winners(List<Integer> winnerIds);
+    boolean addCardToPlayer(String playerName, Card card);
+    void itsTurn(String playerName);
+    void winners(List<String> winnerIds);
     void updateGamestate(GameState gameState);
     void wishUpdate(Player executor, Color color);
     void wishUpdate(Player executor, FantasticOptions fantasticOptions);
 
     //method for players
-    boolean wantsToPlay(int playerId, Card card);
+    boolean wantsToPlay(String playerName, Card card);
     void updateGame();
 
 }

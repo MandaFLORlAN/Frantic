@@ -30,9 +30,9 @@ public class HumanPlayer extends Player {
         System.out.println("witch card do you want to play? (" + playableCards.size() + " to draw)");
         int move = getIntInput(playableCards.size());
         if (move == playableCards.size()) {
-            connector.wantsToPlay(this.playerId, null);
+            connector.wantsToPlay(this.playerName, null);
         } else {
-            if (connector.wantsToPlay(this.playerId, playableCards.get(move))) {
+            if (connector.wantsToPlay(this.playerName, playableCards.get(move))) {
                 this.cards.remove(playableCards.get(move));
             }
         }
@@ -49,7 +49,7 @@ public class HumanPlayer extends Player {
                 System.out.println("Input must be a number. Please try again.");
                 continue;
             }
-            if (result > max ||  result < 0) {
+            if (result > max || result < 0) {
                 System.out.println("Number must be between 0 and " + max + ". Please try again.");
                 continue;
             }
@@ -68,21 +68,18 @@ public class HumanPlayer extends Player {
         System.out.println("What fantastic option do you wish for.");
         FantasticOptions[] options = FantasticOptions.values();
         for (int i = 1; i <= options.length; i++) {
-            System.out.println(options[i-1].toString() + ": " + i);
+            System.out.println(options[i - 1].toString() + ": " + i);
         }
         int input = 0;
         while (input == 0) {
-            input =getIntInput(options.length);
+            input = getIntInput(options.length);
         }
-        return options[input-1];
+        return options[input - 1];
     }
 
     private void displayGamestate() {
-        for (int i = 0; i < this.gameState.getCards().length; i++) {
-            if (i == playerId) {
-                System.out.print("(you)");
-            }
-            System.out.println("Player:" + i + ": " + this.gameState.getCards()[i]);
+        for (String playerName : this.gameState.getCards().keySet()) {
+            System.out.println(playerName + ": " + this.gameState.getCards().get(playerName));
         }
     }
 }

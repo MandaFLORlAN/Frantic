@@ -7,9 +7,7 @@ import Cards.RegularCard;
 import Enums.Color;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class CardDatabase {
     public static List<Card> getAllCards() {
@@ -55,6 +53,15 @@ public class CardDatabase {
             fantasticCards.add(new Fantastic());
         }
         return fantasticCards;
+    }
+
+    private static int ratio(String cardType) {
+        return switch (cardType) {
+            case "RegularCard" -> 2;
+            case "BlackCard" -> 1;
+            case "Fantastic" -> 12;
+            default -> 0;
+        };
     }
 
 }

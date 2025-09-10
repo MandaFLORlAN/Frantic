@@ -8,45 +8,49 @@ import Enums.Color;
 import Enums.FantasticOptions;
 import Repository.CardDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Game{
     private List<Card> drawingPile;
     private List<Card> pile;
     private Card lastPlayedCard;
-    private int lastPlayerId;
+    private String lastPlayerName;
     private GameState gameState;
     private int numberOfPlayers;
     private Connector connector;
     private int startCards;
     private int movesPlayed = 0;
     private boolean gameOver = false;
-    private List<List<Card>> players;
-    private int startPlayer = 0;
+    private Map<String, List<Card>> players;
+    private List<String> playerNames;
+    private int startOffset = 0;
 
-    public Game(int numberOfPlayers, Connector connector, int startCards) {
-        this.numberOfPlayers = numberOfPlayers;
+    public Game(List<String> names, Connector connector, int startCards) {
+        this.numberOfPlayers = names.size();
         this.connector = connector;
         this.startCards = startCards;
         this.drawingPile = CardDatabase.getShuffledCards();
         this.pile = new ArrayList<>();
         this.gameState = new GameState();
+        this.players = new HashMap<>();
+        this.playerNames = names;
+        for (String name: names) {
+            players.put(name, new ArrayList<>());
+        }
     }
 
     public void startGame() throws InterruptedException {
         resetGame();
         for (int i = 0; i < startCards; i++){
-            for (int p = 0; p < numberOfPlayers; p++){
+            for (String p: playerNames){
                 Card card = drawCard();
                 connector.addCardToPlayer(p, card);
                 this.players.get(p).add(card);
             }
         }
         this.lastPlayedCard = drawCard();
-        this.lastPlayerId = this.startPlayer;
+        this.lastPlayerName = "TODO";
         updateGamestate();
         gameLoop();
     }
@@ -54,18 +58,18 @@ public class Game{
     private void resetGame() {
         this.drawingPile = CardDatabase.getShuffledCards();
         this.pile = new ArrayList<>();
-        this.players = new ArrayList<>();
-        for (int i = 0; i < numberOfPlayers; i++){
-            players.add(new ArrayList<>());
+        for (String name: this.playerNames){
+            this.players.get(name).clear();
+            this.players.put(name, new ArrayList<>());
         }
         this.movesPlayed = 0;
-        this.startPlayer = new Random().nextInt(numberOfPlayers);
+        this.startOffset = new Random().nextInt(numberOfPlayers);
         this.gameOver = false;
     }
 
     private void gameLoop() throws InterruptedException {
         while (!gameOver) {
-            connector.itsTurn((movesPlayed + startPlayer) % numberOfPlayers );
+            connector.itsTurn(playerNames.get((movesPlayed + startOffset) % numberOfPlayers));
             movesPlayed++;
             /*TimeUnit.SECONDS.sleep(1);*/
             checkGameOver();
@@ -73,10 +77,10 @@ public class Game{
     }
 
     private void checkGameOver() {
-        List<Integer> winners = new ArrayList<>();
-        for (int i = 0; i < numberOfPlayers; i++){
-            if (players.get(i).isEmpty()){
-                winners.add(i);
+        List<String> winners = new ArrayList<>();
+        for (String playerName: players.keySet()){
+            if (players.get(playerName).isEmpty()){
+                winners.add(playerName);
             }
         }
         if(!winners.isEmpty()){
@@ -85,15 +89,15 @@ public class Game{
         }
     }
 
-    public boolean canPlay(int playerId, Card card) {
+    public boolean canPlay(String playerName, Card card) {
         if (card == null){
             Card newCard = drawCard();
-            connector.addCardToPlayer(playerId, newCard);
-            players.get(playerId).add(newCard);
+            connector.addCardToPlayer(playerName, newCard);
+            players.get(playerName).add(newCard);
             updateGamestate();
             return true;
         }
-        List<Card> cards = players.get(playerId);
+        List<Card> cards = players.get(playerName);
         boolean cardExists = false;
         for (Card c : cards){
             if (c.equals(card)){
@@ -106,12 +110,13 @@ public class Game{
             return false;
         }
         this.lastPlayedCard = card;
+        this.lastPlayerName = playerName;
         updateGamestate();
         return true;
     }
 
     public void updateWish(Player player, FantasticOptions fantasticOptions) {
-        if(lastPlayerId!=player.getPlayerId()) return;
+        if(lastPlayerName!=player.getPlayerName()) return;
         if (this.lastPlayedCard instanceof Fantastic) {
             switch (fantasticOptions) {
                 case ONE:
@@ -175,20 +180,21 @@ public class Game{
                     ((Fantastic) this.lastPlayedCard).setName("Fantastic: Purple");
                     break;
             }
+            updateGamestate();
         }
     }
 
-    public boolean updateWish(Color color) {
-        return true;
+    public void updateWish(Color color) {
+
     }
 
     private void updateGamestate() {
         this.gameState.setPlayableColor(this.lastPlayedCard.getColor());
         this.gameState.setPlayableNumber(this.lastPlayedCard.getNumber());
         this.gameState.setLastCardName(this.lastPlayedCard.getName());
-        this.gameState.setCards(new int[numberOfPlayers]);
-        for (int i = 0; i < numberOfPlayers; i++){
-            this.gameState.getCards()[i] = this.players.get(i).size();
+        this.gameState.setCards(new HashMap<>());
+        for (String playerName: this.playerNames) {
+            this.gameState.getCards().put(playerName, this.players.get(playerName).size());
         }
         connector.updateGamestate(this.gameState);
     }
