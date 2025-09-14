@@ -9,6 +9,8 @@ import Enums.Color;
 
 import java.util.*;
 
+import static Repository.FranticConfigs.ratio;
+
 public class CardDatabase {
     public static List<Card> getAllCards() {
         List<Card> allCards = new ArrayList<>();
@@ -57,15 +59,6 @@ public class CardDatabase {
             fantasticCards.add(new Fantastic());
         }
         return fantasticCards;
-    }
-
-    private static int ratio(String cardType) {
-        return switch (cardType) {
-            case "RegularCard" -> 2;
-            case "BlackCard" -> 1;
-            case "Fantastic" -> 12;
-            default -> 0;
-        };
     }
 
 }
