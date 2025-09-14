@@ -6,10 +6,9 @@ import Enums.FantasticOptions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
-public class HumanPlayer extends Player {
+public class HumanPlayer extends RandomBot {
     public HumanPlayer(String playerName, Connector connector) {
         super(playerName, connector);
     }
