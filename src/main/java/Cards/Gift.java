@@ -2,6 +2,7 @@ package Cards;
 
 import Connector.Connector;
 import ConsolePlayers.Player;
+import ConsolePlayers.RandomBot;
 import Enums.Color;
 
 public class Gift extends Card implements SpecialCard{

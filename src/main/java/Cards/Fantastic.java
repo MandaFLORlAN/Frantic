@@ -2,6 +2,7 @@ package Cards;
 
 import Connector.Connector;
 import ConsolePlayers.Player;
+import ConsolePlayers.RandomBot;
 import Enums.Color;
 import Enums.FantasticOptions;
 import Game.GameState;

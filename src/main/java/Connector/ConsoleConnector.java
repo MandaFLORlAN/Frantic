@@ -3,10 +3,11 @@ package Connector;
 import Cards.Card;
 import Cards.SpecialCard;
 import ConsolePlayers.Player;
+import ConsolePlayers.RandomBot;
 import Enums.Color;
 import Enums.FantasticOptions;
 import Game.*;
-import Repository.FranticConstants;
+import Repository.FranticConfigs;
 import Statistics.StatisticsHandler;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class ConsoleConnector implements Connector {
             names.add(p.getPlayerName());
         }
         this.statistics = statistics;
-        this.game = new Game(names, this, FranticConstants.NUMBER_OF_START_CARDS);
+        this.game = new Game(names, this, FranticConfigs.NUMBER_OF_START_CARDS);
         for (Player player : players) {
             player.newRound();
         }

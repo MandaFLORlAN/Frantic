@@ -9,7 +9,6 @@ import Enums.FantasticOptions;
 import Repository.CardDatabase;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 public class Game{
     private List<Card> drawingPile;
@@ -17,24 +16,17 @@ public class Game{
     private Card lastPlayedCard;
     private String lastPlayerName;
     private GameState gameState;
-    private int numberOfPlayers;
     private Connector connector;
     private int startCards;
     private int movesPlayed = 0;
     private boolean gameOver = false;
     private Map<String, List<Card>> players;
-    private List<String> playerNames;
     private int startOffset = 0;
 
     public Game(List<String> names, Connector connector, int startCards) {
-        this.numberOfPlayers = names.size();
         this.connector = connector;
         this.startCards = startCards;
-        this.drawingPile = CardDatabase.getShuffledCards();
-        this.pile = new ArrayList<>();
-        this.gameState = new GameState();
         this.players = new HashMap<>();
-        this.playerNames = names;
         for (String name: names) {
             players.put(name, new ArrayList<>());
         }
@@ -43,7 +35,7 @@ public class Game{
     public void startGame() throws InterruptedException {
         resetGame();
         for (int i = 0; i < startCards; i++){
-            for (String p: playerNames){
+            for (String p: players.keySet()){
                 Card card = drawCard();
                 connector.addCardToPlayer(p, card);
                 this.players.get(p).add(card);
@@ -58,18 +50,18 @@ public class Game{
     private void resetGame() {
         this.drawingPile = CardDatabase.getShuffledCards();
         this.pile = new ArrayList<>();
-        for (String name: this.playerNames){
+        for (String name: players.keySet()){
             this.players.get(name).clear();
             this.players.put(name, new ArrayList<>());
         }
         this.movesPlayed = 0;
-        this.startOffset = new Random().nextInt(numberOfPlayers);
+        this.startOffset = new Random().nextInt(players.size());
         this.gameOver = false;
     }
 
     private void gameLoop() throws InterruptedException {
         while (!gameOver) {
-            connector.itsTurn(playerNames.get((movesPlayed + startOffset) % numberOfPlayers));
+            connector.itsTurn(players.keySet().stream().toList().get((movesPlayed + startOffset) % players.size()));
             movesPlayed++;
             /*TimeUnit.SECONDS.sleep(1);*/
             checkGameOver();
@@ -116,7 +108,7 @@ public class Game{
     }
 
     public void updateWish(Player player, FantasticOptions fantasticOptions) {
-        if(lastPlayerName!=player.getPlayerName()) return;
+        if(!Objects.equals(lastPlayerName, player.getPlayerName())) return;
         if (this.lastPlayedCard instanceof Fantastic) {
             switch (fantasticOptions) {
                 case ONE:
@@ -193,7 +185,7 @@ public class Game{
         this.gameState.setPlayableNumber(this.lastPlayedCard.getNumber());
         this.gameState.setLastCardName(this.lastPlayedCard.getName());
         this.gameState.setCards(new HashMap<>());
-        for (String playerName: this.playerNames) {
+        for (String playerName: this.players.keySet()) {
             this.gameState.getCards().put(playerName, this.players.get(playerName).size());
         }
         connector.updateGamestate(this.gameState);

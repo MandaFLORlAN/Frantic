@@ -12,7 +12,9 @@ public class RegularCard extends Card {
     }
     @Override
     public boolean isPlayable(GameState gs) {
-        return gs.getPlayableColor() == this.getColor() || gs.getPlayableNumber() == this.getNumber();
+        if (gs.getPlayableNumber() == this.number) return true;
+        if (gs.getPlayableColor() == this.color) return true;
+        return false;
     }
 
 }
