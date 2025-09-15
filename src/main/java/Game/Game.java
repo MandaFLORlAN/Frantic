@@ -26,6 +26,7 @@ public class Game{
     public Game(List<String> names, Connector connector, int startCards) {
         this.connector = connector;
         this.startCards = startCards;
+        this.gameState = new GameState();
         this.players = new HashMap<>();
         for (String name: names) {
             players.put(name, new ArrayList<>());
@@ -50,6 +51,7 @@ public class Game{
     private void resetGame() {
         this.drawingPile = CardDatabase.getShuffledCards();
         this.pile = new ArrayList<>();
+        this.gameState = new GameState();
         for (String name: players.keySet()){
             this.players.get(name).clear();
             this.players.put(name, new ArrayList<>());
