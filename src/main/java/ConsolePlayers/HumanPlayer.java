@@ -1,12 +1,13 @@
 package ConsolePlayers;
 
+import Cards.BlackCard;
 import Cards.Card;
+import Cards.SpecialCard;
 import Connector.Connector;
+import Enums.Color;
 import Enums.FantasticOptions;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class HumanPlayer extends RandomBot {
     public HumanPlayer(String playerName, Connector connector) {
@@ -66,19 +67,92 @@ public class HumanPlayer extends RandomBot {
     public FantasticOptions fantasticWish() {
         System.out.println("What fantastic option do you wish for.");
         FantasticOptions[] options = FantasticOptions.values();
-        for (int i = 1; i <= options.length; i++) {
-            System.out.println(options[i - 1].toString() + ": " + i);
+        for (int i = 0; i < options.length; i++) {
+            System.out.println(options[i].toString() + ": " + i);
         }
         int input = 0;
         while (input == 0) {
             input = getIntInput(options.length);
         }
-        return options[input - 1];
+        return options[input];
     }
 
     private void displayGamestate() {
+        sortCardsLikeMe();
         for (String playerName : this.gameState.getCards().keySet()) {
             System.out.println(playerName + ": " + this.gameState.getCards().get(playerName));
         }
+        System.out.println("Last Played: " + this.gameState.getLastCardName());
+    }
+
+    private void sortCardsLikeMe() {
+        List<Card> sortedCards = new ArrayList<>();
+
+        List<Card> blackCards = new ArrayList<>();
+        List<Card> specialCards = new ArrayList<>();
+        List<Card> regularCards = new ArrayList<>();
+
+        for (Card card : this.cards) {
+           if (card instanceof BlackCard) {
+               blackCards.add(card);
+           }
+           if (card instanceof SpecialCard) {
+               specialCards.add(card);
+           }
+        }
+        for(Card card: blackCards) {
+            this.cards.remove(card);
+        }
+        for(Card card: specialCards) {
+            this.cards.remove(card);
+        }
+        blackCards = sortByNumber(blackCards);
+        specialCards = sortByColor(specialCards);
+        regularCards = sortByColor(this.cards);
+
+        sortedCards.addAll(blackCards);
+        sortedCards.addAll(regularCards);
+        sortedCards.addAll(specialCards);
+        this.cards = sortedCards;
+    }
+
+    private List<Card> sortByNumber(List<Card> cardsToSort) {
+        List<Card> sortedCards = new ArrayList<>();
+        int currentSelector = 1;
+        while (!cardsToSort.isEmpty()) {
+            List<Card> newFoundCards = new ArrayList<>();
+            for (Card card: cardsToSort) {
+                if (card.getNumber()==currentSelector) {
+                    sortedCards.add(card);
+                    newFoundCards.add(card);
+                }
+            }
+            for(Card card :newFoundCards) {
+                cardsToSort.remove(card);
+            }
+            currentSelector++;
+            if (currentSelector > 10) {
+                sortedCards.addAll(cardsToSort);
+                break;
+            }
+        }
+        return sortedCards;
+    }
+
+    private List<Card> sortByColor(List<Card> cardsToSort) {
+        List<Card> sortedCards = new ArrayList<>();
+        for (Color color : Color.values()) {
+            List<Card> cardsOfColor = new ArrayList<>();
+            for (Card card : cardsToSort) {
+                if (card.getColor() == color) {
+                    cardsOfColor.add(card);
+                }
+            }
+            cardsToSort.removeAll(cardsOfColor);
+            cardsOfColor = sortByNumber(cardsOfColor);
+            sortedCards.addAll(cardsOfColor);
+        }
+        sortedCards.addAll(cardsToSort);
+        return sortedCards;
     }
 }
