@@ -1,16 +1,19 @@
 package ConsolePlayers;
 
-import Cards.Card;
 import Enums.FantasticOptions;
-import Game.GameState;
 
 public interface Player {
-    void updateGamestate(GameState gameState);
+    //basic Gameloop
+    void updateGamestate(String gameState);
     void updateGameActions(String Message);
-    void addCard(Card card);
+    void addCard(String cardName);
     void playMove();
-    FantasticOptions fantasticWish();
-    Player getTarget(String card);
+    void newRound();
     String getPlayerName();
-    public void newRound();
+
+    //for special Cards
+    String fantasticWish();
+    String wishColor();
+    String getTarget(String message);
+
 }

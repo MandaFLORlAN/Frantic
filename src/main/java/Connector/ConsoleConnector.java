@@ -43,7 +43,7 @@ public class ConsoleConnector implements Connector {
 
     @Override
     public boolean addCardToPlayer(String playerName, Card card) {
-        this.players.get(playerName).addCard(card);
+        this.players.get(playerName).addCard(card.getName());
         return true;
     }
 
@@ -66,12 +66,25 @@ public class ConsoleConnector implements Connector {
     @Override
     public void updateGamestate(GameState gameState) {
         for (Player player : players.values()) {
-            player.updateGamestate(gameState);
+            player.updateGamestate(gameState.toString());
         }
     }
 
     @Override
-    public boolean wantsToPlay(String playerName, Card card) {
+    public boolean wantsToGiveAway(String playerName, String cardName) {
+        //TODO später
+        return false;
+    }
+
+    @Override
+    public Color getPlayerColorWish(String playerName) {
+        //TODO später
+        return null;
+    }
+
+    @Override
+    public boolean wantsToPlay(String playerName, String cardName) {
+        Card card = Card.fromString(cardName);
         boolean canPlay = this.game.canPlay(playerName, card);
         if (canPlay) {
             if (card == null) {
@@ -79,7 +92,7 @@ public class ConsoleConnector implements Connector {
             } else {
                 tellAllPlayers(playerName + " played " + card);
                 if (card instanceof SpecialCard) {
-                    ((SpecialCard) card).executeSpecialFunction(players.get(playerName), this);
+                    ((SpecialCard) card).executeSpecialFunction(playerName, this);
                 }
             }
         }
@@ -87,19 +100,31 @@ public class ConsoleConnector implements Connector {
     }
 
     @Override
-    public void wishUpdate(Player player, Color color) {
-        //TOTO later for nomral special cards
+    public void wishUpdate(String executorName, Color color) {
+        //TOTO later for normal special cards
     }
 
     @Override
-    public void wishUpdate(Player player, FantasticOptions fantasticOptions) {
-        game.updateWish(player, fantasticOptions);
+    public FantasticOptions getPlayerFantasticWish(String playerName) {
+        return FantasticOptions.valueOf(this.players.get(playerName).fantasticWish());
+    }
+
+    @Override
+    public void wishUpdate(String executorName, FantasticOptions fantasticOptions) {
+        game.updateWish(this.players.get(executorName), fantasticOptions);
         tellAllPlayers("Wished for " + fantasticOptions.name());
     }
 
     @Override
-    public void updateGame() {
-        //TODO wenn schenkkarten usw
+    public Player getPlayerTarget(String executorName, String message) {
+        //TODO später
+        return null;
+    }
+
+    @Override
+    public Card getCardToGiveAway(String playerName) {
+        //TODO später
+        return null;
     }
 
     private void tellAllPlayers(String message) {

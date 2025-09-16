@@ -4,5 +4,5 @@ import Connector.Connector;
 import ConsolePlayers.Player;
 
 public interface SpecialCard {
-    void executeSpecialFunction(Player executor, Connector connector);
+    void executeSpecialFunction(String executorName, Connector connector);
 }

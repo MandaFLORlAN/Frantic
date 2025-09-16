@@ -32,7 +32,7 @@ public class HumanPlayer extends RandomBot {
         if (move == playableCards.size()) {
             connector.wantsToPlay(this.playerName, null);
         } else {
-            if (connector.wantsToPlay(this.playerName, playableCards.get(move))) {
+            if (connector.wantsToPlay(this.playerName, playableCards.get(move).toString())) {
                 this.cards.remove(playableCards.get(move));
             }
         }
@@ -64,17 +64,17 @@ public class HumanPlayer extends RandomBot {
     }
 
     @Override
-    public FantasticOptions fantasticWish() {
+    public String fantasticWish() {
         System.out.println("What fantastic option do you wish for.");
         FantasticOptions[] options = FantasticOptions.values();
         for (int i = 0; i < options.length; i++) {
             System.out.println(options[i].toString() + ": " + i);
         }
-        int input = 0;
-        while (input == 0) {
+        int input = -1;
+        while (input == -1) {
             input = getIntInput(options.length);
         }
-        return options[input];
+        return options[input].toString();
     }
 
     private void displayGamestate() {
