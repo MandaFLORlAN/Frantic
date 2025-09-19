@@ -1,8 +1,7 @@
 package CardsTest;
 
-import Cards.BlackCard;
-import Cards.Card;
-import Cards.Fantastic;
+import Cards.InterfacesGroundclass.Card;
+import Cards.Wishcards.Fantastic;
 import Game.GameState;
 import TestHelper.TestCaseProvider;
 import org.junit.jupiter.api.Test;
