@@ -87,7 +87,7 @@ public class ConsoleConnector implements Connector {
     public void executeSpecialFunction(String playerName, String cardName) {
         Card card = Card.fromString(cardName);
         if (card instanceof SpecialCard) {
-            ((SpecialCard) card).executeSpecialFunction(playerName, this);
+            ((SpecialCard) card).executeSpecialFunction(playerName, this, game.getGameState());
         }
     }
 
@@ -115,7 +115,7 @@ public class ConsoleConnector implements Connector {
     @Override
     public List<Card> getCardToGiveAway(String playerName, int numberOfCards) {
         List<String> cardNamesToGiveAway = players.get(playerName).getCardsToGiveAway(numberOfCards);
-        List<Card> cardsToGiveAway =  new ArrayList<>();
+        List<Card> cardsToGiveAway = new ArrayList<>();
         for (String cardName : cardNamesToGiveAway) {
             cardsToGiveAway.add(Card.fromString(cardName));
         }

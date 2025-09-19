@@ -1,6 +1,6 @@
 package Connector;
 
-import Cards.Card;
+import Cards.InterfacesGroundclass.Card;
 import ConsolePlayers.Player;
 import Game.Game;
 import Repository.FranticConfigs;
@@ -21,7 +21,7 @@ public class SimmulationConnector extends ConsoleConnector {
             names.add(p.getPlayerName());
         }
         this.statistics = statistics;
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10000; i++) {
             if (i%100==0) System.out.println(i);
             this.game = new Game(names, this, FranticConfigs.NUMBER_OF_START_CARDS);
             for (Player player : players) {
@@ -42,5 +42,11 @@ public class SimmulationConnector extends ConsoleConnector {
             endcards.put(player.getPlayerName(), player.getCards());
         }
         statistics.endGame(winners, endcards);
+    }
+
+    @Override
+    public boolean wantsToPlay(String playerName, String cardName) {
+        this.statistics.addMove();
+        return super.wantsToPlay(playerName, cardName);
     }
 }

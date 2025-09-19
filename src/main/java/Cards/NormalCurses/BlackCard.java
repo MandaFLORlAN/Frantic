@@ -1,5 +1,6 @@
-package Cards;
+package Cards.NormalCurses;
 
+import Cards.InterfacesGroundclass.Card;
 import Game.GameState;
 
 public class BlackCard extends Card {

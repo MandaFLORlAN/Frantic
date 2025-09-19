@@ -1,9 +1,11 @@
-package Cards;
+package Cards.InterfacesGroundclass;
 
 import Enums.Color;
 import Game.GameState;
 import Repository.CardDatabase;
+
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Card {
     protected String name;
@@ -39,8 +41,6 @@ public abstract class Card {
             if (card.getName().equals(cardName)) {
                 return card;
             }
-        }
-        System.out.println("Card not found");
             if (card instanceof WishCard) {
                 String subname = cardName.split(": ")[0];
                 boolean ram = Objects.equals(card.getName(), subname);
