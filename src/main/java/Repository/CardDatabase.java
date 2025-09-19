@@ -1,9 +1,6 @@
 package Repository;
 
-import Cards.BlackCard;
-import Cards.Card;
-import Cards.Fantastic;
-import Cards.RegularCard;
+import Cards.*;
 import Enums.Color;
 
 
@@ -17,6 +14,7 @@ public class CardDatabase {
         allCards.addAll(createRegularCards());
         allCards.addAll(createBlackCards());
         allCards.addAll(createFantasticCards());
+        allCards.addAll(createColoredSpecialCards());
         return allCards;
     }
 
@@ -61,4 +59,13 @@ public class CardDatabase {
         return fantasticCards;
     }
 
+    public static List<Card> createColoredSpecialCards() {
+        List<Card> coloredSpecialCards = new ArrayList<>();
+        for (Color color: Color.values()) {
+            for (int i = 0; i<= ratio("Gift"); i++) {
+                coloredSpecialCards.add(new Gift(color));
+            }
+        }
+        return coloredSpecialCards;
+    }
 }

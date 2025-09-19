@@ -37,11 +37,26 @@ public class RandomBot implements Player{
     }
 
     @Override
+    public void addCard(String cardName, String message) {
+        this.addCard(cardName);
+    }
+
+    @Override
+    public void removeCard(String cardName) {
+        if (this.cards.contains(Card.fromString(cardName))) {
+            this.cards.remove(Card.fromString(cardName));
+        } else {
+            System.out.println("Card not found");
+        }
+    }
+
+    @Override
     public void playMove() {
         for (Card card : cards) {
             if (card.isPlayable(this.gameState)) {
                 if (connector.wantsToPlay(this.playerName, card.toString())) {
                     this.cards.remove(card);
+                    connector.executeSpecialFunction(this.playerName, card.toString());
                     return;
                 } else {
                     connector.wantsToPlay(this.playerName, null);
@@ -50,6 +65,7 @@ public class RandomBot implements Player{
             }
         }
         connector.wantsToPlay(this.playerName, null);
+
     }
 
 
@@ -70,8 +86,23 @@ public class RandomBot implements Player{
 
     @Override
     public String getTarget(String message) {
-        //TODO später
-        return "";
+        return new ArrayList<>(
+                this.gameState.getCards().keySet()).get(
+                new Random().nextInt(
+                this.gameState.getCards().size()));
+    }
+
+    @Override
+    public List<String> getCardsToGiveAway(int numberOfCards) {
+        List<String> cardsToGiveAway = new ArrayList<>();
+        for (int i = 0; i <  numberOfCards; i++) {
+            cardsToGiveAway.add(this.cards.remove(new Random().nextInt(this.cards.size())).toString());
+        }
+        //cards will be taken in the transfer card method, they are remooved to not be picked twice
+        for (String card : cardsToGiveAway) {
+            this.cards.add(Card.fromString(card));
+        }
+        return cardsToGiveAway;
     }
 
     @Override

@@ -71,12 +71,6 @@ public class ConsoleConnector implements Connector {
     }
 
     @Override
-    public boolean wantsToGiveAway(String playerName, String cardName) {
-        //TODO später
-        return false;
-    }
-
-    @Override
     public Color getPlayerColorWish(String playerName) {
         //TODO später
         return null;
@@ -91,12 +85,17 @@ public class ConsoleConnector implements Connector {
                 tellAllPlayers(playerName + " draws a card");
             } else {
                 tellAllPlayers(playerName + " played " + card);
-                if (card instanceof SpecialCard) {
-                    ((SpecialCard) card).executeSpecialFunction(playerName, this);
-                }
             }
         }
         return canPlay;
+    }
+
+    @Override
+    public void executeSpecialFunction(String playerName, String cardName) {
+        Card card = Card.fromString(cardName);
+        if (card instanceof SpecialCard) {
+            ((SpecialCard) card).executeSpecialFunction(playerName, this);
+        }
     }
 
     @Override
@@ -116,15 +115,33 @@ public class ConsoleConnector implements Connector {
     }
 
     @Override
-    public Player getPlayerTarget(String executorName, String message) {
-        //TODO später
-        return null;
+    public String getPlayerTarget(String executorName, String message) {
+        return players.get(executorName).getTarget(message);
     }
 
     @Override
-    public Card getCardToGiveAway(String playerName) {
+    public List<Card> getCardToGiveAway(String playerName, int numberOfCards) {
+        List<String> cardNamesToGiveAway = players.get(playerName).getCardsToGiveAway(numberOfCards);
+        List<Card> cardsToGiveAway =  new ArrayList<>();
+        for (String cardName : cardNamesToGiveAway) {
+            cardsToGiveAway.add(Card.fromString(cardName));
+        }
+        return cardsToGiveAway;
+    }
+
+    @Override
+    public List<Card> drawRandomCardFromPlayer(String playerName, int numberOfCards) {
         //TODO später
-        return null;
+        return List.of();
+    }
+
+    @Override
+    public void transferCardFromPlayerToPlayer(List<Card> cards, String giverName, String recieverName) {
+        for (Card card : cards) {
+            this.players.get(giverName).removeCard(card.getName());
+            this.players.get(recieverName).addCard(card.getName(), "You got " + card.getName() + " from " + giverName);
+        }
+        tellAllPlayers(giverName + " transferred " + cards.size() + " cards to " + recieverName);
     }
 
     private void tellAllPlayers(String message) {

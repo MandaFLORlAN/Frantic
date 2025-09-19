@@ -21,14 +21,14 @@ public interface Connector {
 
     //Methods used by Player
     boolean wantsToPlay(String playerName, String cardName);
-    boolean wantsToGiveAway(String playerName, String cardName);
-
+    void executeSpecialFunction(String playerName, String cardName);
     //Methods used by Cards
     Color getPlayerColorWish(String playerName);
     void wishUpdate(String executorName, Color color);
     FantasticOptions getPlayerFantasticWish(String playerName);
     void wishUpdate(String executorName, FantasticOptions fantasticOptions);
-    Player getPlayerTarget(String executorName, String message);
-    Card getCardToGiveAway(String playerName);
-
+    String getPlayerTarget(String executorName, String message);
+    List<Card> getCardToGiveAway(String playerName, int numberOfCards);
+    List<Card> drawRandomCardFromPlayer(String playerName, int numberOfCards);
+    void transferCardFromPlayerToPlayer(List<Card> cards, String giverName, String recieverName);
 }

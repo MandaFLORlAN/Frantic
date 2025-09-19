@@ -32,8 +32,10 @@ public class HumanPlayer extends RandomBot {
         if (move == playableCards.size()) {
             connector.wantsToPlay(this.playerName, null);
         } else {
-            if (connector.wantsToPlay(this.playerName, playableCards.get(move).toString())) {
-                this.cards.remove(playableCards.get(move));
+            Card card = playableCards.get(move);
+            if (connector.wantsToPlay(this.playerName, card.toString())) {
+                this.cards.remove(card);
+                connector.executeSpecialFunction(this.playerName, card.toString());
             }
         }
     }
@@ -57,10 +59,64 @@ public class HumanPlayer extends RandomBot {
         }
     }
 
+    @Override
+    public List<String> getCardsToGiveAway(int numberOfCards) {
+        if (numberOfCards > this.cards.size()) {
+            numberOfCards = this.cards.size();
+        }
+        List<String> cardsToGiveAway = new ArrayList<>();
+        List<Integer> indexesToGive = new ArrayList<>();
+        for (int i = 0; i < this.cards.size(); i++) {
+            System.out.println(cards.get(i).toString() + ": " + i);
+        }
+        if (numberOfCards == 1) {
+            System.out.println("What card do you want to give away?");
+        } else {
+            System.out.println("What card's do you want to give away? (" + numberOfCards + ")");
+        }
+        while (indexesToGive.size() < numberOfCards) {
+            Integer input = getIntInput(this.cards.size());
+            if (indexesToGive.contains(input)) {
+                System.out.println("Already chosen that card, give another");
+            } else {
+                indexesToGive.add(input);
+            }
+        }
+        for (Integer index : indexesToGive) {
+            cardsToGiveAway.add(cards.get(index).toString());
+        }
+        for (String card : cardsToGiveAway) {
+            this.cards.remove(Card.fromString(card));
+        }
+        return cardsToGiveAway;
+    }
+
+    @Override
+    public String getTarget(String message) {
+        List<String> players = new ArrayList<>(this.gameState.getCards().keySet());
+        for (String player: players) {
+            if (player.equals(this.playerName)) {
+                players.remove(player);
+            }
+        }
+        for (int i = 0; i < players.size(); i++) {
+            System.out.println(players.get(i) + ": " + i);
+        }
+        System.out.println("Who do you want to target with " + message);
+        return players.get(getIntInput(players.size()));
+    }
+
+
     //View
     @Override
     public void updateGameActions(String message) {
         System.out.println(message);
+    }
+
+    @Override
+    public void addCard(String cardName, String message) {
+        System.out.println(message);
+        super.addCard(cardName);
     }
 
     @Override
@@ -93,17 +149,17 @@ public class HumanPlayer extends RandomBot {
         List<Card> regularCards = new ArrayList<>();
 
         for (Card card : this.cards) {
-           if (card instanceof BlackCard) {
-               blackCards.add(card);
-           }
-           if (card instanceof SpecialCard) {
-               specialCards.add(card);
-           }
+            if (card instanceof BlackCard) {
+                blackCards.add(card);
+            }
+            if (card instanceof SpecialCard) {
+                specialCards.add(card);
+            }
         }
-        for(Card card: blackCards) {
+        for (Card card : blackCards) {
             this.cards.remove(card);
         }
-        for(Card card: specialCards) {
+        for (Card card : specialCards) {
             this.cards.remove(card);
         }
         blackCards = sortByNumber(blackCards);
@@ -121,13 +177,13 @@ public class HumanPlayer extends RandomBot {
         int currentSelector = 1;
         while (!cardsToSort.isEmpty()) {
             List<Card> newFoundCards = new ArrayList<>();
-            for (Card card: cardsToSort) {
-                if (card.getNumber()==currentSelector) {
+            for (Card card : cardsToSort) {
+                if (card.getNumber() == currentSelector) {
                     sortedCards.add(card);
                     newFoundCards.add(card);
                 }
             }
-            for(Card card :newFoundCards) {
+            for (Card card : newFoundCards) {
                 cardsToSort.remove(card);
             }
             currentSelector++;

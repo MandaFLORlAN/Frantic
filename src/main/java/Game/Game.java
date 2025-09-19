@@ -182,6 +182,11 @@ public class Game{
 
     }
 
+    public void transferCardFromTo(Card card, String giverName, String recieverName) {
+        this.players.get(giverName).remove(card);
+        this.players.get(recieverName).add(card);
+    }
+
     private void updateGamestate() {
         this.gameState.setPlayableColor(this.lastPlayedCard.getColor());
         this.gameState.setPlayableNumber(this.lastPlayedCard.getNumber());
