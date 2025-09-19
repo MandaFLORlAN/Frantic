@@ -1,5 +1,6 @@
 package Cards.Wishcards;
 
+import Cards.InterfacesGroundclass.BasicWishcard;
 import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.SpecialCard;
 import Cards.InterfacesGroundclass.WishCard;
@@ -25,10 +26,6 @@ public class Fantastic extends Card implements SpecialCard, WishCard {
         return true;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setNumber(int number) {
         this.number = number;
     }
@@ -37,4 +34,8 @@ public class Fantastic extends Card implements SpecialCard, WishCard {
         this.color = color;
     }
 
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
 }

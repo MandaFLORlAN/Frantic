@@ -80,6 +80,11 @@ public class RandomBot implements Player{
     }
 
     @Override
+    public boolean wantToUseEffect() {
+        return true;
+    }
+
+    @Override
     public String fantasticWish() {
         return FantasticOptions.values()[new Random().nextInt(FantasticOptions.values().length)].toString();
     }

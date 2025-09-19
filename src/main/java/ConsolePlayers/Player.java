@@ -16,6 +16,7 @@ public interface Player {
     String getPlayerName();
     List<Card> getCards();
     //for special Cards
+    boolean wantToUseEffect();
     String fantasticWish();
     String wishColor();
     List<String> getTargets(String message, int numberOfTargets);

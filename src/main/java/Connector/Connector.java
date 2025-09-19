@@ -30,4 +30,5 @@ public interface Connector {
     List<Card> drawRandomCardFromPlayer(String playerName, int numberOfCards);
     void makePlayerDraw(String playerName, String message, int numberOfCards);
     void transferCardFromPlayerToPlayer(List<Card> cards, String giverName, String recieverName);
+    boolean checkIfPlayerWantEffect(String playerName);
 }

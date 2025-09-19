@@ -65,8 +65,7 @@ public class ConsoleConnector implements Connector {
 
     @Override
     public Color getPlayerColorWish(String playerName) {
-        //TODO später
-        return null;
+        return Color.valueOf(this.players.get(playerName).wishColor());
     }
 
     @Override
@@ -93,7 +92,8 @@ public class ConsoleConnector implements Connector {
 
     @Override
     public void wishUpdate(String executorName, Color color) {
-        //TOTO later for normal special cards
+        game.updateWish(this.players.get(executorName), color);
+        tellAllPlayers("Wished for " + color.name());
     }
 
     @Override
@@ -150,6 +150,11 @@ public class ConsoleConnector implements Connector {
             this.game.transferCardFromTo(card, giverName, recieverName);
         }
         tellAllPlayers(giverName + " transferred " + cards.size() + " cards to " + recieverName);
+    }
+
+    @Override
+    public boolean checkIfPlayerWantEffect(String playerName) {
+        return players.get(playerName).wantToUseEffect();
     }
 
     private void tellAllPlayers(String message) {

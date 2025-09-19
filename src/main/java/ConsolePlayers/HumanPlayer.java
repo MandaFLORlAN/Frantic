@@ -7,6 +7,7 @@ import Connector.Connector;
 import Enums.Color;
 import Enums.FantasticOptions;
 
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class HumanPlayer extends RandomBot {
@@ -105,6 +106,13 @@ public class HumanPlayer extends RandomBot {
     }
 
 
+    @Override
+    public boolean wantToUseEffect() {
+        System.out.println("Do you want to use the effect(0=yes,1=no)?");
+        int input = getIntInput(1);
+        return input == 0;
+    }
+
     //View
     @Override
     public void updateGameActions(String message) {
@@ -124,10 +132,18 @@ public class HumanPlayer extends RandomBot {
         for (int i = 0; i < options.length; i++) {
             System.out.println(options[i].toString() + ": " + i);
         }
-        int input = -1;
-        while (input == -1) {
-            input = getIntInput(options.length);
+        int input = getIntInput(options.length);
+        return options[input].toString();
+    }
+
+    @Override
+    public String wishColor() {
+        System.out.println("What color do you wish for.");
+        Color[] options = Color.values();
+        for (int i = 0; i < options.length; i++) {
+            System.out.println(options[i].toString() + ": " + i);
         }
+        int input = getIntInput(options.length);
         return options[input].toString();
     }
 
