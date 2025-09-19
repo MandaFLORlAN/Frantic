@@ -1,6 +1,6 @@
 package Statistics;
 
-import Cards.Card;
+import Cards.InterfacesGroundclass.Card;
 import ConsolePlayers.Player;
 
 import java.util.ArrayList;
@@ -17,6 +17,10 @@ public class StatisticsHandler {
     public StatisticsHandler() {
         this.games = new ArrayList<>();
         this.currentGameMoves = 0;
+    }
+
+    public void addMove() {
+        this.currentGameMoves++;
     }
 
     public void endGame(List<Player> winners, Map<String,List<Card>> remainingCards ) {

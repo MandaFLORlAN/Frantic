@@ -1,7 +1,7 @@
 package Game;
 
-import Cards.Card;
-import Cards.Fantastic;
+import Cards.InterfacesGroundclass.Card;
+import Cards.Wishcards.Fantastic;
 import Connector.Connector;
 import ConsolePlayers.Player;
 import Enums.Color;
@@ -10,7 +10,7 @@ import Repository.CardDatabase;
 
 import java.util.*;
 
-public class Game{
+public class Game {
     private List<Card> drawingPile;
     private List<Card> pile;
     private Card lastPlayedCard;
@@ -28,15 +28,15 @@ public class Game{
         this.startCards = startCards;
         this.gameState = new GameState();
         this.players = new HashMap<>();
-        for (String name: names) {
+        for (String name : names) {
             players.put(name, new ArrayList<>());
         }
     }
 
     public void startGame() throws InterruptedException {
         resetGame();
-        for (int i = 0; i < startCards; i++){
-            for (String p: players.keySet()){
+        for (int i = 0; i < startCards; i++) {
+            for (String p : players.keySet()) {
                 Card card = drawCard();
                 connector.addCardToPlayer(p, card);
                 this.players.get(p).add(card);
@@ -52,7 +52,7 @@ public class Game{
         this.drawingPile = CardDatabase.getShuffledCards();
         this.pile = new ArrayList<>();
         this.gameState = new GameState();
-        for (String name: players.keySet()){
+        for (String name : players.keySet()) {
             this.players.get(name).clear();
             this.players.put(name, new ArrayList<>());
         }
@@ -72,19 +72,19 @@ public class Game{
 
     private void checkGameOver() {
         List<String> winners = new ArrayList<>();
-        for (String playerName: players.keySet()){
-            if (players.get(playerName).isEmpty()){
+        for (String playerName : players.keySet()) {
+            if (players.get(playerName).isEmpty()) {
                 winners.add(playerName);
             }
         }
-        if(!winners.isEmpty()){
+        if (!winners.isEmpty()) {
             this.gameOver = true;
             connector.winners(winners);
         }
     }
 
     public boolean canPlay(String playerName, Card card) {
-        if (card == null){
+        if (card == null) {
             Card newCard = drawCard();
             connector.addCardToPlayer(playerName, newCard);
             players.get(playerName).add(newCard);
@@ -93,14 +93,14 @@ public class Game{
         }
         List<Card> cards = players.get(playerName);
         boolean cardExists = false;
-        for (Card c : cards){
-            if (c.equals(card)){
+        for (Card c : cards) {
+            if (c.equals(card)) {
                 cardExists = true;
                 cards.remove(c);
                 break;
             }
         }
-        if (!cardExists){
+        if (!cardExists) {
             return false;
         }
         this.lastPlayedCard = card;
@@ -110,68 +110,68 @@ public class Game{
     }
 
     public void updateWish(Player player, FantasticOptions fantasticOptions) {
-        if(!Objects.equals(lastPlayerName, player.getPlayerName())) return;
+        if (!Objects.equals(lastPlayerName, player.getPlayerName())) return;
         if (this.lastPlayedCard instanceof Fantastic) {
             switch (fantasticOptions) {
                 case ONE:
                     ((Fantastic) this.lastPlayedCard).setNumber(1);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 1");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 1");
                     break;
                 case TWO:
                     ((Fantastic) this.lastPlayedCard).setNumber(2);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 2");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 2");
                     break;
                 case THREE:
                     ((Fantastic) this.lastPlayedCard).setNumber(3);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 3");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 3");
                     break;
                 case FOUR:
                     ((Fantastic) this.lastPlayedCard).setNumber(4);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 4");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 4");
                     break;
                 case FIVE:
                     ((Fantastic) this.lastPlayedCard).setNumber(5);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 5");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 5");
                     break;
                 case SIX:
                     ((Fantastic) this.lastPlayedCard).setNumber(6);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 6");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 6");
                     break;
                 case SEVEN:
                     ((Fantastic) this.lastPlayedCard).setNumber(7);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 7");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 7");
                     break;
                 case EIGHT:
                     ((Fantastic) this.lastPlayedCard).setNumber(8);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 8");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 8");
                     break;
                 case NINE:
                     ((Fantastic) this.lastPlayedCard).setNumber(9);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 9");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 9");
                     break;
                 case TEN:
                     ((Fantastic) this.lastPlayedCard).setNumber(10);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: 10");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 10");
                     break;
                 case BLUE:
                     ((Fantastic) this.lastPlayedCard).setColor(Color.BLUE);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: Blue");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Blue");
                     break;
                 case RED:
                     ((Fantastic) this.lastPlayedCard).setColor(Color.RED);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: Red");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Red");
                     break;
                 case GREEN:
                     ((Fantastic) this.lastPlayedCard).setColor(Color.GREEN);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: Green");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Green");
                     break;
                 case YELLOW:
                     ((Fantastic) this.lastPlayedCard).setColor(Color.YELLOW);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: Yellow");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Yellow");
                     break;
                 case PURPLE:
                     ((Fantastic) this.lastPlayedCard).setColor(Color.PURPLE);
-                    ((Fantastic) this.lastPlayedCard).setName("Fantastic: Purple");
+                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Purple");
                     break;
             }
             updateGamestate();
@@ -192,16 +192,24 @@ public class Game{
         this.gameState.setPlayableNumber(this.lastPlayedCard.getNumber());
         this.gameState.setLastCardName(this.lastPlayedCard.getName());
         this.gameState.setCards(new HashMap<>());
-        for (String playerName: this.players.keySet()) {
+        for (String playerName : this.players.keySet()) {
             this.gameState.getCards().put(playerName, this.players.get(playerName).size());
         }
         connector.updateGamestate(this.gameState);
     }
 
     public Card drawCard() {
-        if (!drawingPile.isEmpty()){
+        if (!drawingPile.isEmpty()) {
             drawingPile = CardDatabase.getShuffledCards();
         }
         return drawingPile.removeFirst();
+    }
+
+    public void addCardToPlayer(String playerName, Card card) {
+        this.players.get(playerName).add(card);
+    }
+
+    public GameState getGameState() {
+        return gameState;
     }
 }

@@ -1,6 +1,6 @@
 package ConsolePlayers;
 
-import Cards.Card;
+import Cards.InterfacesGroundclass.Card;
 import Connector.Connector;
 import Enums.Color;
 import Enums.FantasticOptions;

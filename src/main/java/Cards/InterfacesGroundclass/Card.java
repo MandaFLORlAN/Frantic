@@ -34,11 +34,6 @@ public abstract class Card {
 
     public static Card fromString(String cardName) {
         if (cardName == null) return null;
-        if (cardName.startsWith("Fantastic")) {
-            Fantastic fantastic = new Fantastic();
-            fantastic.setName(cardName);
-            return fantastic;
-        }
         List<Card> allCards = CardDatabase.getAllCards();
         for (Card card : allCards) {
             if (card.getName().equals(cardName)) {
@@ -46,6 +41,13 @@ public abstract class Card {
             }
         }
         System.out.println("Card not found");
+            if (card instanceof WishCard) {
+                String subname = cardName.split(": ")[0];
+                boolean ram = Objects.equals(card.getName(), subname);
+                if (ram) return card;
+            }
+        }
+        System.out.println("Card not found for:" + cardName);
         return allCards.getFirst();
     }
 
@@ -54,6 +56,9 @@ public abstract class Card {
         if (obj == null) return false;
         if (obj instanceof Card) {
             Card card = (Card) obj;
+            if (card instanceof WishCard) {
+                return card.getName().split(": ")[0].equals(this.name.split(": ")[0]);
+            }
             return card.getName().equals(this.name);
         }
         return false;

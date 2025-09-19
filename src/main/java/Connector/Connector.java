@@ -1,12 +1,10 @@
 package Connector;
 
-import Cards.Card;
+import Cards.InterfacesGroundclass.Card;
 import ConsolePlayers.Player;
-import ConsolePlayers.RandomBot;
 import Enums.Color;
 import Enums.FantasticOptions;
 import Game.GameState;
-import Statistics.StatisticsHandler;
 
 import java.util.List;
 
@@ -22,7 +20,7 @@ public interface Connector {
     //Methods used by Player
     boolean wantsToPlay(String playerName, String cardName);
     void executeSpecialFunction(String playerName, String cardName);
-    //Methods used by Cards
+    //Methods used by SpecialCards
     Color getPlayerColorWish(String playerName);
     void wishUpdate(String executorName, Color color);
     FantasticOptions getPlayerFantasticWish(String playerName);
@@ -30,5 +28,6 @@ public interface Connector {
     List<String> getPlayerTargets(String executorName, String message, int numberOfTargets);
     List<Card> getCardToGiveAway(String playerName, int numberOfCards);
     List<Card> drawRandomCardFromPlayer(String playerName, int numberOfCards);
+    void makePlayerDraw(String playerName, String message, int numberOfCards);
     void transferCardFromPlayerToPlayer(List<Card> cards, String giverName, String recieverName);
 }

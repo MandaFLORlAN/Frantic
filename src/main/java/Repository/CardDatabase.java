@@ -1,6 +1,11 @@
 package Repository;
 
-import Cards.*;
+import Cards.ColloredSpecial.Gift;
+import Cards.InterfacesGroundclass.Card;
+import Cards.NormalCurses.BlackCard;
+import Cards.NormalCurses.RegularCard;
+import Cards.Wishcards.Fantastic;
+import Cards.Wishcards.FantasticFour;
 import Enums.Color;
 
 
@@ -55,6 +60,9 @@ public class CardDatabase {
         List<Card> fantasticCards = new ArrayList<>();
         for (int r = 0; r < ratio("Fantastic"); r++) {
             fantasticCards.add(new Fantastic());
+        }
+        for (int r = 0; r < ratio("FantasticFour"); r++) {
+            fantasticCards.add(new FantasticFour());
         }
         return fantasticCards;
     }

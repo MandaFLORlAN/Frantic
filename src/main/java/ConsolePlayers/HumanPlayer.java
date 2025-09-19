@@ -1,8 +1,8 @@
 package ConsolePlayers;
 
-import Cards.BlackCard;
-import Cards.Card;
-import Cards.SpecialCard;
+import Cards.NormalCurses.BlackCard;
+import Cards.InterfacesGroundclass.Card;
+import Cards.InterfacesGroundclass.SpecialCard;
 import Connector.Connector;
 import Enums.Color;
 import Enums.FantasticOptions;
@@ -85,28 +85,24 @@ public class HumanPlayer extends RandomBot {
         for (Integer index : indexesToGive) {
             cardsToGiveAway.add(cards.get(index).toString());
         }
-        for (String card : cardsToGiveAway) {
-            this.cards.remove(Card.fromString(card));
-        }
         return cardsToGiveAway;
     }
 
-/*TODO
     @Override
-    public String getTarget(String message) {
+    public List<String> getTargets(String message, int numberOfTargets) {
         List<String> players = new ArrayList<>(this.gameState.getCards().keySet());
-        for (String player: players) {
-            if (player.equals(this.playerName)) {
-                players.remove(player);
-            }
-        }
+        List<String> targets = new ArrayList<>();
+        players.remove(this.playerName);
         for (int i = 0; i < players.size(); i++) {
             System.out.println(players.get(i) + ": " + i);
         }
-        System.out.println("Who do you want to target with " + message);
-        return players.get(getIntInput(players.size()));
+        System.out.println("Who would you like to attack with " + message + "?");
+        while (targets.size() < numberOfTargets) {
+            int input = getIntInput(players.size());
+            targets.add(players.get(input));
+        }
+        return targets;
     }
-*/
 
 
     //View

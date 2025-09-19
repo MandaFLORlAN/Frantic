@@ -1,14 +1,12 @@
 package Connector;
 
-import Cards.Card;
-import Cards.SpecialCard;
+import Cards.InterfacesGroundclass.Card;
+import Cards.InterfacesGroundclass.SpecialCard;
 import ConsolePlayers.Player;
-import ConsolePlayers.RandomBot;
 import Enums.Color;
 import Enums.FantasticOptions;
 import Game.*;
 import Repository.FranticConfigs;
-import Statistics.StatisticsHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +26,7 @@ public class ConsoleConnector implements Connector {
     public void startGame(List<Player> players) throws InterruptedException {
         List<String> names = new ArrayList<>();
         this.players = new HashMap<>();
-        for(Player p: players){
+        for (Player p : players) {
             this.players.put(p.getPlayerName(), p);
             names.add(p.getPlayerName());
         }
@@ -128,6 +126,20 @@ public class ConsoleConnector implements Connector {
     public List<Card> drawRandomCardFromPlayer(String playerName, int numberOfCards) {
         //TODO später
         return List.of();
+    }
+
+    @Override
+    public void makePlayerDraw(String playerName, String message, int numberOfCards) {
+        Player player = players.get(playerName);
+        for (int i = 0; i < numberOfCards; i++) {
+            Card card = this.game.drawCard();
+            if (i == 0) {
+                player.addCard(card.getName(), "You had to draw " + numberOfCards + " due to " + message);
+            } else {
+                player.addCard(card.getName());
+            }
+            this.game.addCardToPlayer(playerName, card);
+        }
     }
 
     @Override

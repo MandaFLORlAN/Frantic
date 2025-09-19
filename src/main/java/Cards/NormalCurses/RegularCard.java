@@ -1,5 +1,6 @@
-package Cards;
+package Cards.NormalCurses;
 
+import Cards.InterfacesGroundclass.Card;
 import Enums.Color;
 import Game.GameState;
 
