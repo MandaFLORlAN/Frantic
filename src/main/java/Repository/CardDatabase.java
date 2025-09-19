@@ -4,6 +4,7 @@ import Cards.ColloredSpecial.Gift;
 import Cards.InterfacesGroundclass.Card;
 import Cards.NormalCurses.BlackCard;
 import Cards.NormalCurses.RegularCard;
+import Cards.Wishcards.Equality;
 import Cards.Wishcards.Fantastic;
 import Cards.Wishcards.FantasticFour;
 import Enums.Color;
@@ -19,6 +20,7 @@ public class CardDatabase {
         allCards.addAll(createRegularCards());
         allCards.addAll(createBlackCards());
         allCards.addAll(createFantasticCards());
+        allCards.addAll(createColorefullSpecialCards());
         allCards.addAll(createColoredSpecialCards());
         return allCards;
     }
@@ -65,6 +67,14 @@ public class CardDatabase {
             fantasticCards.add(new FantasticFour());
         }
         return fantasticCards;
+    }
+
+    public static List<Card> createColorefullSpecialCards() {
+        List<Card> coloredSpecialCards = new ArrayList<>();
+        for (int r = 0; r < ratio("Equality"); r++) {
+            coloredSpecialCards.add(new Equality());
+        }
+        return coloredSpecialCards;
     }
 
     public static List<Card> createColoredSpecialCards() {

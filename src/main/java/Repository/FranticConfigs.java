@@ -9,6 +9,7 @@ public class FranticConfigs {
             case "BlackCard" -> 1;
             case "Fantastic" -> 12;
             case "FantasticFour" -> 6;
+            case "Equality" -> 4;
             case "Gift" -> 2;
             default -> 0;
         };

@@ -7,7 +7,6 @@ import Connector.Connector;
 import Enums.Color;
 import Enums.FantasticOptions;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class HumanPlayer extends RandomBot {

@@ -1,6 +1,5 @@
 package Cards.Wishcards;
 
-import Cards.InterfacesGroundclass.BasicWishcard;
 import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.SpecialCard;
 import Cards.InterfacesGroundclass.WishCard;
