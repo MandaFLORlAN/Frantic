@@ -16,9 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ConsoleConnector implements Connector {
-    private Game game;
-    private Map<String, Player> players;
-    private StatisticsHandler statistics;
+    protected Game game;
+    protected Map<String, Player> players;
 
     public ConsoleConnector() {
         super();
@@ -26,14 +25,13 @@ public class ConsoleConnector implements Connector {
 
 
     @Override
-    public void startGame(List<Player> players, StatisticsHandler statistics) throws InterruptedException {
+    public void startGame(List<Player> players) throws InterruptedException {
         List<String> names = new ArrayList<>();
         this.players = new HashMap<>();
         for(Player p: players){
             this.players.put(p.getPlayerName(), p);
             names.add(p.getPlayerName());
         }
-        this.statistics = statistics;
         this.game = new Game(names, this, FranticConfigs.NUMBER_OF_START_CARDS);
         for (Player player : players) {
             player.newRound();
@@ -55,12 +53,9 @@ public class ConsoleConnector implements Connector {
 
     @Override
     public void winners(List<String> winnerNames) {
-        List<Player> winners = new ArrayList<>();
         for (String winnerName : winnerNames) {
             tellAllPlayers(winnerName + " has won!");
-            winners.add(players.get(winnerName));
         }
-        statistics.endGame(winners);
     }
 
     @Override
@@ -115,8 +110,8 @@ public class ConsoleConnector implements Connector {
     }
 
     @Override
-    public String getPlayerTarget(String executorName, String message) {
-        return players.get(executorName).getTarget(message);
+    public List<String> getPlayerTargets(String executorName, String message, int numberOfTargets) {
+        return players.get(executorName).getTargets(message, numberOfTargets);
     }
 
     @Override
@@ -140,6 +135,7 @@ public class ConsoleConnector implements Connector {
         for (Card card : cards) {
             this.players.get(giverName).removeCard(card.getName());
             this.players.get(recieverName).addCard(card.getName(), "You got " + card.getName() + " from " + giverName);
+            this.game.transferCardFromTo(card, giverName, recieverName);
         }
         tellAllPlayers(giverName + " transferred " + cards.size() + " cards to " + recieverName);
     }
@@ -147,7 +143,6 @@ public class ConsoleConnector implements Connector {
     private void tellAllPlayers(String message) {
         for (Player player : players.values()) {
             player.updateGameActions(message);
-            statistics.addMove(message);
         }
     }
 }

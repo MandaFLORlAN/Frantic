@@ -13,7 +13,7 @@ public class Gift extends Card implements SpecialCard{
 
     @Override
     public void executeSpecialFunction(String executorName, Connector connector) {
-        String target = connector.getPlayerTarget(executorName, "Gift");
+        String target = connector.getPlayerTargets(executorName, "Gift", 1).getFirst();
         List<Card> cardsToGive = connector.getCardToGiveAway(executorName, 2);
         connector.transferCardFromPlayerToPlayer(cardsToGive, executorName, target);
     }

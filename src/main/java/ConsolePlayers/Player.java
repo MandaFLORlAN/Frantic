@@ -1,5 +1,7 @@
 package ConsolePlayers;
 
+import Cards.Card;
+
 import java.util.List;
 
 public interface Player {
@@ -12,10 +14,10 @@ public interface Player {
     void playMove();
     void newRound();
     String getPlayerName();
-
+    List<Card> getCards();
     //for special Cards
     String fantasticWish();
     String wishColor();
-    String getTarget(String message);
+    List<String> getTargets(String message, int numberOfTargets);
     List<String> getCardsToGiveAway(int numberOfCards);
 }

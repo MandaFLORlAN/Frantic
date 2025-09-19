@@ -11,7 +11,7 @@ import Statistics.StatisticsHandler;
 import java.util.List;
 
 public interface Connector {
-    void startGame(List<Player> players, StatisticsHandler statistics) throws InterruptedException;
+    void startGame(List<Player> players) throws InterruptedException;
 
     //Methods used by Game
     boolean addCardToPlayer(String playerName, Card card);
@@ -27,7 +27,7 @@ public interface Connector {
     void wishUpdate(String executorName, Color color);
     FantasticOptions getPlayerFantasticWish(String playerName);
     void wishUpdate(String executorName, FantasticOptions fantasticOptions);
-    String getPlayerTarget(String executorName, String message);
+    List<String> getPlayerTargets(String executorName, String message, int numberOfTargets);
     List<Card> getCardToGiveAway(String playerName, int numberOfCards);
     List<Card> drawRandomCardFromPlayer(String playerName, int numberOfCards);
     void transferCardFromPlayerToPlayer(List<Card> cards, String giverName, String recieverName);

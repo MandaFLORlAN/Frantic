@@ -91,6 +91,7 @@ public class HumanPlayer extends RandomBot {
         return cardsToGiveAway;
     }
 
+/*TODO
     @Override
     public String getTarget(String message) {
         List<String> players = new ArrayList<>(this.gameState.getCards().keySet());
@@ -105,6 +106,7 @@ public class HumanPlayer extends RandomBot {
         System.out.println("Who do you want to target with " + message);
         return players.get(getIntInput(players.size()));
     }
+*/
 
 
     //View

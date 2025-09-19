@@ -75,6 +75,11 @@ public class RandomBot implements Player{
     }
 
     @Override
+    public List<Card> getCards() {
+        return this.cards;
+    }
+
+    @Override
     public String fantasticWish() {
         return FantasticOptions.values()[new Random().nextInt(FantasticOptions.values().length)].toString();
     }
@@ -85,16 +90,20 @@ public class RandomBot implements Player{
     }
 
     @Override
-    public String getTarget(String message) {
-        return new ArrayList<>(
-                this.gameState.getCards().keySet()).get(
-                new Random().nextInt(
-                this.gameState.getCards().size()));
+    public List<String> getTargets(String message, int numberOfTargets) {
+        List<String> targets = new ArrayList<>();
+        List<String> players = new ArrayList<>(this.gameState.getCards().keySet());
+        Random r = new Random();
+        for (int i = 0; i< numberOfTargets; i++) {
+            targets.add(players.get(r.nextInt(players.size())));
+        }
+        return targets;
     }
 
     @Override
     public List<String> getCardsToGiveAway(int numberOfCards) {
         List<String> cardsToGiveAway = new ArrayList<>();
+        if (this.cards.size()<numberOfCards) numberOfCards = this.cards.size();
         for (int i = 0; i <  numberOfCards; i++) {
             cardsToGiveAway.add(this.cards.remove(new Random().nextInt(this.cards.size())).toString());
         }

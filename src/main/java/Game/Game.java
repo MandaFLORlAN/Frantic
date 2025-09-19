@@ -198,7 +198,7 @@ public class Game{
         connector.updateGamestate(this.gameState);
     }
 
-    private Card drawCard() {
+    public Card drawCard() {
         if (!drawingPile.isEmpty()){
             drawingPile = CardDatabase.getShuffledCards();
         }

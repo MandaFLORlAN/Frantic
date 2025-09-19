@@ -1,5 +1,6 @@
 package Statistics;
 
+import Cards.Card;
 import ConsolePlayers.Player;
 
 import java.util.ArrayList;
@@ -10,19 +11,22 @@ import java.util.Map;
 public class StatisticsHandler {
     private List<GameEndStats> games;
     private int currentGameMoves;
+    private Map<String, Integer> cardsRemaining;
+    private int maxEndCards = 0;
 
     public StatisticsHandler() {
         this.games = new ArrayList<>();
         this.currentGameMoves = 0;
     }
 
-    public void addMove(String move) {
-        currentGameMoves++;
-    }
-
-    public void endGame(List<Player> winners) {
+    public void endGame(List<Player> winners, Map<String,List<Card>> remainingCards ) {
         GameEndStats endStats = new GameEndStats(winners, this.currentGameMoves, null);
         this.currentGameMoves = 0;
+        for(List<Card> cards : remainingCards.values()){
+            if (cards.size() > maxEndCards) {
+                maxEndCards = cards.size();
+            }
+        }
         this.games.add(endStats);
     }
 
@@ -43,5 +47,6 @@ public class StatisticsHandler {
             System.out.println(winner + ": " + players.get(winner));
         }
         System.out.println("average moves:" + allMoves/this.games.size());
+        System.out.println("max end hand:" + this.maxEndCards);
     }
 }
