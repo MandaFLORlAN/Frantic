@@ -1,5 +1,6 @@
 package Repository;
 
+import Cards.ColloredSpecial.Exchange;
 import Cards.ColloredSpecial.Gift;
 import Cards.InterfacesGroundclass.Card;
 import Cards.NormalCurses.BlackCard;
@@ -82,6 +83,9 @@ public class CardDatabase {
         for (Color color: Color.values()) {
             for (int i = 0; i<= ratio("Gift"); i++) {
                 coloredSpecialCards.add(new Gift(color));
+            }
+            for (int i = 0; i<= ratio("Exchange"); i++) {
+                coloredSpecialCards.add(new Exchange(color));
             }
         }
         return coloredSpecialCards;

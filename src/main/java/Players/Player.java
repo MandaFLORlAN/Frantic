@@ -21,4 +21,5 @@ public interface Player {
     String wishColor();
     List<String> getTargets(String message, int numberOfTargets);
     List<String> getCardsToGiveAway(int numberOfCards);
+    String drawRandomCard();
 }

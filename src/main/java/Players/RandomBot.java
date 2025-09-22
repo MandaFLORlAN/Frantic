@@ -120,6 +120,11 @@ public class RandomBot implements Player{
     }
 
     @Override
+    public String drawRandomCard() {
+        return this.cards.get(new Random().nextInt(this.cards.size())).toString();
+    }
+
+    @Override
     public void newRound() {
         this.cards.clear();
     }

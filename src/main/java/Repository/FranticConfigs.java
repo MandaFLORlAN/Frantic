@@ -11,6 +11,7 @@ public class FranticConfigs {
             case "FantasticFour" -> 6;
             case "Equality" -> 4;
             case "Gift" -> 2;
+            case "Exchange" -> 1;
             default -> 0;
         };
     }

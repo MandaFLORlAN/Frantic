@@ -124,8 +124,14 @@ public class ConsoleConnector implements Connector {
 
     @Override
     public List<Card> drawRandomCardFromPlayer(String playerName, int numberOfCards) {
-        //TODO später
-        return List.of();
+        List<Card> cardsToDraw = new ArrayList<>();
+        Player player = players.get(playerName);
+        for (int i = 0; i < numberOfCards; i++) {
+            String cardName = player.drawRandomCard();
+            cardsToDraw.add(Card.fromString(cardName));
+            player.updateGameActions(cardName + " was drawn from you");
+        }
+        return cardsToDraw;
     }
 
     @Override
