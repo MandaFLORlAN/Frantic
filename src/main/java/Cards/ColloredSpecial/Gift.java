@@ -8,7 +8,7 @@ import Game.GameState;
 
 import java.util.List;
 
-public class Gift extends Card implements SpecialCard {
+public class Gift extends BaseColoredSpecial {
     public Gift(Color color) {
         super("Gift: " + color.name(), 7, color);
     }
@@ -20,8 +20,4 @@ public class Gift extends Card implements SpecialCard {
         connector.transferCardFromPlayerToPlayer(cardsToGive, executorName, target);
     }
 
-    @Override
-    public boolean isPlayable(GameState gs) {
-        return gs.getPlayableColor() == this.color || gs.getLastCardName().startsWith("Gift:");
-    }
 }
