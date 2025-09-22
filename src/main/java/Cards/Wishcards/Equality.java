@@ -13,9 +13,11 @@ public class Equality extends BasicWishcard implements SpecialCard {
 
     @Override
     public void executeSpecialFunction(String executorName, Connector connector, GameState gs) {
-        String target = connector.getPlayerTargets(executorName, "Equality", 1).getFirst();
-        int cardDiff = gs.getCards().get(executorName) - gs.getCards().get(target);
-        if (cardDiff > 0) connector.makePlayerDraw(target, "Equality from " + executorName, cardDiff);
+        if (super.wantExecute(executorName, connector)) {
+            String target = connector.getPlayerTargets(executorName, "Equality", 1).getFirst();
+            int cardDiff = gs.getCards().get(executorName) - gs.getCards().get(target);
+            if (cardDiff > 0) connector.makePlayerDraw(target, "Equality from " + executorName, cardDiff);
+        }
         super.ExecuteWish(executorName, connector);
     }
 

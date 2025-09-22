@@ -4,7 +4,7 @@ import Connector.Connector;
 import Enums.Color;
 import Game.GameState;
 
-public class BasicWishcard extends Card implements WishCard{
+public abstract class BasicWishcard extends Card implements WishCard{
     public BasicWishcard(String name, int number, Color color) {
         super(name, number, color);
     }
@@ -12,6 +12,10 @@ public class BasicWishcard extends Card implements WishCard{
     protected void ExecuteWish(String executorName, Connector connector) {
         Color color = connector.getPlayerColorWish(executorName);
         connector.wishUpdate(executorName, color);
+    }
+
+    protected boolean wantExecute(String executorName, Connector connector) {
+        return connector.checkIfPlayerWantEffect(executorName);
     }
 
     @Override
