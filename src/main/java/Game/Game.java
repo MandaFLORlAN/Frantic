@@ -1,5 +1,6 @@
 package Game;
 
+import Cards.ColloredSpecial.SecondChance;
 import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.WishCard;
 import Cards.Wishcards.Fantastic;
@@ -98,6 +99,9 @@ public class Game {
             if (c.equals(card)) {
                 cardExists = true;
                 cards.remove(c);
+                if (card instanceof SecondChance) {
+                    this.startOffset--;
+                }
                 break;
             }
         }
