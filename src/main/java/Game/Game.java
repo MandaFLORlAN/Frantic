@@ -184,23 +184,23 @@ public class Game {
         if (this.lastPlayedCard instanceof WishCard) {
             switch (color) {
                 case BLUE:
-                    ((Fantastic) this.lastPlayedCard).setColor(Color.BLUE);
+                    ((WishCard) this.lastPlayedCard).setColor(Color.BLUE);
                     ((WishCard) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Blue");
                     break;
                 case RED:
-                    ((Fantastic) this.lastPlayedCard).setColor(Color.RED);
+                    ((WishCard) this.lastPlayedCard).setColor(Color.RED);
                     ((WishCard) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Red");
                     break;
                 case GREEN:
-                    ((Fantastic) this.lastPlayedCard).setColor(Color.GREEN);
+                    ((WishCard) this.lastPlayedCard).setColor(Color.GREEN);
                     ((WishCard) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Green");
                     break;
                 case YELLOW:
-                    ((Fantastic) this.lastPlayedCard).setColor(Color.YELLOW);
+                    ((WishCard) this.lastPlayedCard).setColor(Color.YELLOW);
                     ((WishCard) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Yellow");
                     break;
                 case PURPLE:
-                    ((Fantastic) this.lastPlayedCard).setColor(Color.PURPLE);
+                    ((WishCard) this.lastPlayedCard).setColor(Color.PURPLE);
                     ((WishCard) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Purple");
                     break;
             }

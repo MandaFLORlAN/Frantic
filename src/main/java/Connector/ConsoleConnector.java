@@ -64,11 +64,6 @@ public class ConsoleConnector implements Connector {
     }
 
     @Override
-    public Color getPlayerColorWish(String playerName) {
-        return Color.valueOf(this.players.get(playerName).wishColor());
-    }
-
-    @Override
     public boolean wantsToPlay(String playerName, String cardName) {
         Card card = Card.fromString(cardName);
         boolean canPlay = this.game.canPlay(playerName, card);
@@ -88,6 +83,11 @@ public class ConsoleConnector implements Connector {
         if (card instanceof SpecialCard) {
             ((SpecialCard) card).executeSpecialFunction(playerName, this, game.getGameState());
         }
+    }
+
+    @Override
+    public Color getPlayerColorWish(String playerName) {
+        return Color.valueOf(this.players.get(playerName).wishColor());
     }
 
     @Override
