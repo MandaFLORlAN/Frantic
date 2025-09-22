@@ -1,7 +1,7 @@
 package Connector;
 
 import Cards.InterfacesGroundclass.Card;
-import ConsolePlayers.Player;
+import Players.Player;
 import Game.Game;
 import Repository.FranticConfigs;
 import Statistics.StatisticsHandler;

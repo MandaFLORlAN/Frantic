@@ -1,6 +1,6 @@
 package Statistics;
 
-import ConsolePlayers.Player;
+import Players.Player;
 
 import java.util.List;
 

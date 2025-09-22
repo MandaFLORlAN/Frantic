@@ -2,7 +2,7 @@ package Connector;
 
 import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.SpecialCard;
-import ConsolePlayers.Player;
+import Players.Player;
 import Enums.Color;
 import Enums.FantasticOptions;
 import Game.*;

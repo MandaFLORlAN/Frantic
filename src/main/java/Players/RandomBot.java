@@ -1,4 +1,4 @@
-package ConsolePlayers;
+package Players;
 
 import Cards.InterfacesGroundclass.Card;
 import Connector.Connector;

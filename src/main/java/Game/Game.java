@@ -4,7 +4,7 @@ import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.WishCard;
 import Cards.Wishcards.Fantastic;
 import Connector.Connector;
-import ConsolePlayers.Player;
+import Players.Player;
 import Enums.Color;
 import Enums.FantasticOptions;
 import Repository.CardDatabase;

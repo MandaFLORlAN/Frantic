@@ -1,9 +1,8 @@
 package Game;
 
-import Connector.Connector;
 import Connector.SimmulationConnector;
-import ConsolePlayers.Player;
-import ConsolePlayers.RandomBot;
+import Players.Player;
+import Players.RandomBot;
 import Statistics.StatisticsHandler;
 
 import java.util.ArrayList;

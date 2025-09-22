@@ -1,7 +1,7 @@
 package Statistics;
 
 import Cards.InterfacesGroundclass.Card;
-import ConsolePlayers.Player;
+import Players.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;

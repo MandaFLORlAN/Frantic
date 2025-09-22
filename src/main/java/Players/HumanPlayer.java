@@ -1,4 +1,4 @@
-package ConsolePlayers;
+package Players;
 
 import Cards.NormalCurses.BlackCard;
 import Cards.InterfacesGroundclass.Card;

@@ -1,9 +1,9 @@
 package Game;
 
 import Connector.*;
-import ConsolePlayers.HumanPlayer;
-import ConsolePlayers.Player;
-import ConsolePlayers.RandomBot;
+import Players.HumanPlayer;
+import Players.Player;
+import Players.RandomBot;
 
 
 import java.util.ArrayList;
