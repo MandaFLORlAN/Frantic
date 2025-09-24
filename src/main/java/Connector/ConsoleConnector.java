@@ -2,6 +2,7 @@ package Connector;
 
 import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.SpecialCard;
+import Events.Event;
 import Players.Player;
 import Enums.Color;
 import Enums.FantasticOptions;
@@ -166,6 +167,16 @@ public class ConsoleConnector implements Connector {
     @Override
     public void addPlayerToSkip(String playerName) {
         this.game.addPlayerToSkip(playerName);
+    }
+
+    @Override
+    public void triggerEvent(String executor) {
+        game.getNextEvent().executeEvent(this, executor);
+    }
+
+    @Override
+    public List<String> getAllPlayerNames() {
+        return this.players.keySet().stream().toList();
     }
 
     @Override

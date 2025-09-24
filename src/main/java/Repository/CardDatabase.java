@@ -11,6 +11,8 @@ import Cards.Wishcards.Equality;
 import Cards.Wishcards.Fantastic;
 import Cards.Wishcards.FantasticFour;
 import Enums.Color;
+import Events.Event;
+import Events.SurpriseParty;
 
 
 import java.util.*;
@@ -28,6 +30,12 @@ public class CardDatabase {
         return allCards;
     }
 
+    public static List<Event> getAllEvents() {
+        List<Event> allEvents = new ArrayList<>();
+        allEvents.add(new SurpriseParty());
+        return allEvents;
+    }
+
     public static List<Card> getShuffledCards() {
         List<Card> shuffledCards = new ArrayList<>();
         List<Card> allCards = getAllCards();
@@ -37,6 +45,17 @@ public class CardDatabase {
         }
         shuffledCards.add(allCards.getFirst());
         return shuffledCards;
+    }
+
+    public static List<Event> getShuffledEvents() {
+        List<Event> shuffledEvents = new ArrayList<>();
+        List<Event> allEvents = getAllEvents();
+        Random rand = new Random();
+        while (allEvents.size() > 1) {
+            shuffledEvents.add(allEvents.remove(rand.nextInt(allEvents.size() - 1)));
+        }
+        shuffledEvents.add(allEvents.getFirst());
+        return shuffledEvents;
     }
 
     public static List<Card> createRegularCards() {

@@ -5,6 +5,7 @@ import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.WishCard;
 import Cards.Wishcards.Fantastic;
 import Connector.Connector;
+import Events.Event;
 import Players.Player;
 import Enums.Color;
 import Enums.FantasticOptions;
@@ -118,6 +119,7 @@ public class Game {
             return false;
         }
         this.lastPlayedCard = card;
+        this.pile.add(card);
         this.lastPlayerName = playerName;
         updateGamestate();
         return true;
@@ -254,5 +256,9 @@ public class Game {
 
     public GameState getGameState() {
         return gameState;
+    }
+
+    public Event getNextEvent() {
+        return null;
     }
 }

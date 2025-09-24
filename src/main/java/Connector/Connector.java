@@ -32,4 +32,7 @@ public interface Connector {
     void transferCardFromPlayerToPlayer(List<Card> cards, String giverName, String recieverName);
     boolean checkIfPlayerWantEffect(String playerName);
     void addPlayerToSkip(String playerName);
+    void triggerEvent(String executor);
+    //Methods for Events
+    List<String> getAllPlayerNames();
 }
