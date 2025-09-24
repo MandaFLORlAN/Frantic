@@ -3,7 +3,7 @@ package CardsTest;
 import Cards.InterfacesGroundclass.Card;
 import Cards.Wishcards.Fantastic;
 import Cards.Wishcards.FantasticFour;
-import Cards.NormalCurses.RegularCard;
+import Cards.NormalAndCurses.RegularCard;
 import Enums.Color;
 import org.junit.jupiter.api.Test;
 

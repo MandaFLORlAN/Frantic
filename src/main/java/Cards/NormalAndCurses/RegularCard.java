@@ -1,4 +1,4 @@
-package Cards.NormalCurses;
+package Cards.NormalAndCurses;
 
 import Cards.InterfacesGroundclass.Card;
 import Enums.Color;

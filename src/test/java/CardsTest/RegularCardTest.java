@@ -1,7 +1,7 @@
 package CardsTest;
 
 import Cards.InterfacesGroundclass.Card;
-import Cards.NormalCurses.RegularCard;
+import Cards.NormalAndCurses.RegularCard;
 import Enums.Color;
 import TestHelper.TestCaseProvider;
 import Game.GameState;

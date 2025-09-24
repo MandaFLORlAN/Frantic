@@ -1,6 +1,6 @@
 package CardsTest;
 
-import Cards.NormalCurses.BlackCard;
+import Cards.NormalAndCurses.BlackCard;
 import Cards.InterfacesGroundclass.Card;
 import Game.GameState;
 import TestHelper.TestCaseProvider;

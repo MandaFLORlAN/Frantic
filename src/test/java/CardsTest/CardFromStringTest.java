@@ -2,7 +2,7 @@ package CardsTest;
 
 import Cards.ColloredSpecial.Gift;
 import Cards.InterfacesGroundclass.Card;
-import Cards.NormalCurses.RegularCard;
+import Cards.NormalAndCurses.RegularCard;
 import Cards.Wishcards.Fantastic;
 import Cards.Wishcards.FantasticFour;
 import Enums.Color;
