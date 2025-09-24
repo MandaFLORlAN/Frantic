@@ -163,7 +163,13 @@ public class ConsoleConnector implements Connector {
         return players.get(playerName).wantToUseEffect();
     }
 
-    private void tellAllPlayers(String message) {
+    @Override
+    public void addPlayerToSkip(String playerName) {
+        this.game.addPlayerToSkip(playerName);
+    }
+
+    @Override
+    public void tellAllPlayers(String message) {
         for (Player player : players.values()) {
             player.updateGameActions(message);
         }

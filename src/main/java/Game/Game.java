@@ -24,6 +24,7 @@ public class Game {
     private boolean gameOver = false;
     private Map<String, List<Card>> players;
     private int startOffset = 0;
+    private List<String> playersToSkip = new ArrayList<>();
 
     public Game(List<String> names, Connector connector, int startCards) {
         this.connector = connector;
@@ -54,6 +55,7 @@ public class Game {
         this.drawingPile = CardDatabase.getShuffledCards();
         this.pile = new ArrayList<>();
         this.gameState = new GameState();
+        this.playersToSkip = new ArrayList<>();
         for (String name : players.keySet()) {
             this.players.get(name).clear();
             this.players.put(name, new ArrayList<>());
@@ -65,10 +67,17 @@ public class Game {
 
     private void gameLoop() throws InterruptedException {
         while (!gameOver) {
-            connector.itsTurn(players.keySet().stream().toList().get((movesPlayed + startOffset) % players.size()));
-            movesPlayed++;
-            /*TimeUnit.SECONDS.sleep(1);*/
-            checkGameOver();
+            String nextPlayer = players.keySet().stream().toList().get((movesPlayed + startOffset) % players.size());
+            if (playersToSkip.contains(nextPlayer)) {
+                playersToSkip.remove(nextPlayer);
+                connector.tellAllPlayers(nextPlayer + " has been skiped");
+                startOffset++;
+            } else {
+                connector.itsTurn(nextPlayer);
+                movesPlayed++;
+                /*TimeUnit.SECONDS.sleep(1);*/
+                checkGameOver();
+            }
         }
     }
 
@@ -237,6 +246,10 @@ public class Game {
 
     public void addCardToPlayer(String playerName, Card card) {
         this.players.get(playerName).add(card);
+    }
+
+    public void addPlayerToSkip(String playerName) {
+        this.playersToSkip.add(playerName);
     }
 
     public GameState getGameState() {

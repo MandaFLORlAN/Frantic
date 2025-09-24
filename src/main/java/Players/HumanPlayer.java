@@ -1,6 +1,6 @@
 package Players;
 
-import Cards.NormalCurses.BlackCard;
+import Cards.NormalAndCurses.BlackCard;
 import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.SpecialCard;
 import Connector.Connector;

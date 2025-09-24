@@ -3,9 +3,10 @@ package Repository;
 import Cards.ColloredSpecial.Exchange;
 import Cards.ColloredSpecial.Gift;
 import Cards.ColloredSpecial.SecondChance;
+import Cards.ColloredSpecial.Skip;
 import Cards.InterfacesGroundclass.Card;
-import Cards.NormalCurses.BlackCard;
-import Cards.NormalCurses.RegularCard;
+import Cards.NormalAndCurses.BlackCard;
+import Cards.NormalAndCurses.RegularCard;
 import Cards.Wishcards.Equality;
 import Cards.Wishcards.Fantastic;
 import Cards.Wishcards.FantasticFour;
@@ -87,8 +88,12 @@ public class CardDatabase {
             }
             for (int i = 0; i<= ratio("Exchange"); i++) {
                 coloredSpecialCards.add(new Exchange(color));
-            }for (int i = 0; i<= ratio("SecondChance"); i++) {
+            }
+            for (int i = 0; i<= ratio("SecondChance"); i++) {
                 coloredSpecialCards.add(new SecondChance(color));
+            }
+            for (int i = 0; i<= ratio("Skip"); i++) {
+                coloredSpecialCards.add(new Skip(color));
             }
         }
         return coloredSpecialCards;

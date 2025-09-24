@@ -13,6 +13,7 @@ public class FranticConfigs {
             case "Gift" -> 2;
             case "Exchange" -> 1;
             case "SecondChance" -> 2;
+            case "Skip" -> 2;
             default -> 0;
         };
     }

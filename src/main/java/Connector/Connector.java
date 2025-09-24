@@ -16,7 +16,7 @@ public interface Connector {
     void itsTurn(String playerName);
     void winners(List<String> winnerNames);
     void updateGamestate(GameState gameState);
-
+    void tellAllPlayers(String message);
     //Methods used by Player
     boolean wantsToPlay(String playerName, String cardName);
     void executeSpecialFunction(String playerName, String cardName);
@@ -31,4 +31,5 @@ public interface Connector {
     void makePlayerDraw(String playerName, String message, int numberOfCards);
     void transferCardFromPlayerToPlayer(List<Card> cards, String giverName, String recieverName);
     boolean checkIfPlayerWantEffect(String playerName);
+    void addPlayerToSkip(String playerName);
 }
