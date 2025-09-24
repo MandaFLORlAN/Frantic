@@ -2,6 +2,7 @@ package Repository;
 
 import Cards.ColloredSpecial.Exchange;
 import Cards.ColloredSpecial.Gift;
+import Cards.ColloredSpecial.SecondChance;
 import Cards.InterfacesGroundclass.Card;
 import Cards.NormalCurses.BlackCard;
 import Cards.NormalCurses.RegularCard;
@@ -86,6 +87,8 @@ public class CardDatabase {
             }
             for (int i = 0; i<= ratio("Exchange"); i++) {
                 coloredSpecialCards.add(new Exchange(color));
+            }for (int i = 0; i<= ratio("SecondChance"); i++) {
+                coloredSpecialCards.add(new SecondChance(color));
             }
         }
         return coloredSpecialCards;
