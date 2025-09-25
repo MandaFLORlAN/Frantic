@@ -14,6 +14,7 @@ public class FranticConfigs {
             case "Exchange" -> 1;
             case "SecondChance" -> 2;
             case "Skip" -> 2;
+            case "TROUBLEMAKER" -> 2;
             default -> 0;
         };
     }

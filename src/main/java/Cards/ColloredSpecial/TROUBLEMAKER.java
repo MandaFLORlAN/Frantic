@@ -11,6 +11,6 @@ public class TROUBLEMAKER extends BaseColoredSpecial{
 
     @Override
     public void executeSpecialFunction(String executorName, Connector connector, GameState gs) {
-
+        connector.triggerEvent(executorName);
     }
 }

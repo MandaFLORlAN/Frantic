@@ -171,7 +171,9 @@ public class ConsoleConnector implements Connector {
 
     @Override
     public void triggerEvent(String executor) {
-        game.getNextEvent().executeEvent(this, executor);
+        Event event = game.getNextEvent();
+        tellAllPlayers("Event triggered: " + event);
+       event.executeEvent(this, executor);
     }
 
     @Override

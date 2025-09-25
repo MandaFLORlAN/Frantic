@@ -1,9 +1,6 @@
 package Repository;
 
-import Cards.ColloredSpecial.Exchange;
-import Cards.ColloredSpecial.Gift;
-import Cards.ColloredSpecial.SecondChance;
-import Cards.ColloredSpecial.Skip;
+import Cards.ColloredSpecial.*;
 import Cards.InterfacesGroundclass.Card;
 import Cards.NormalAndCurses.BlackCard;
 import Cards.NormalAndCurses.RegularCard;
@@ -32,6 +29,12 @@ public class CardDatabase {
 
     public static List<Event> getAllEvents() {
         List<Event> allEvents = new ArrayList<>();
+        allEvents.add(new SurpriseParty());
+        allEvents.add(new SurpriseParty());
+        allEvents.add(new SurpriseParty());
+        allEvents.add(new SurpriseParty());
+        allEvents.add(new SurpriseParty());
+        allEvents.add(new SurpriseParty());
         allEvents.add(new SurpriseParty());
         return allEvents;
     }
@@ -113,6 +116,9 @@ public class CardDatabase {
             }
             for (int i = 0; i<= ratio("Skip"); i++) {
                 coloredSpecialCards.add(new Skip(color));
+            }
+            for (int i = 0; i<= ratio("TROUBLEMAKER"); i++) {
+                coloredSpecialCards.add(new TROUBLEMAKER(color));
             }
         }
         return coloredSpecialCards;

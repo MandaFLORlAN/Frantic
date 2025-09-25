@@ -14,8 +14,10 @@ import Repository.CardDatabase;
 import java.util.*;
 
 public class Game {
-    private List<Card> drawingPile;
-    private List<Card> pile;
+    private List<Card> unusedCards;
+    private List<Event> unusedEvents;
+    private List<Card> playedCards;
+    private List<Event> playedEvents;
     private Card lastPlayedCard;
     private String lastPlayerName;
     private GameState gameState;
@@ -53,8 +55,10 @@ public class Game {
     }
 
     private void resetGame() {
-        this.drawingPile = CardDatabase.getShuffledCards();
-        this.pile = new ArrayList<>();
+        this.unusedCards = CardDatabase.getShuffledCards();
+        this.unusedEvents = CardDatabase.getShuffledEvents();
+        this.playedCards = new ArrayList<>();
+        this.playedEvents = new ArrayList<>();
         this.gameState = new GameState();
         this.playersToSkip = new ArrayList<>();
         for (String name : players.keySet()) {
@@ -119,7 +123,7 @@ public class Game {
             return false;
         }
         this.lastPlayedCard = card;
-        this.pile.add(card);
+        this.playedCards.add(card);
         this.lastPlayerName = playerName;
         updateGamestate();
         return true;
@@ -240,10 +244,10 @@ public class Game {
     }
 
     public Card drawCard() {
-        if (!drawingPile.isEmpty()) {
-            drawingPile = CardDatabase.getShuffledCards();
+        if (!unusedCards.isEmpty()) {
+            unusedCards = CardDatabase.getShuffledCards();
         }
-        return drawingPile.removeFirst();
+        return unusedCards.removeFirst();
     }
 
     public void addCardToPlayer(String playerName, Card card) {
@@ -259,6 +263,9 @@ public class Game {
     }
 
     public Event getNextEvent() {
-        return null;
+        Event nextEvent = this.unusedEvents.removeFirst();
+        this.playedEvents.add(nextEvent);
+        return nextEvent;
+
     }
 }

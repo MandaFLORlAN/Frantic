@@ -5,7 +5,7 @@ import Connector.Connector;
 
 import java.util.List;
 
-public class SurpriseParty implements Event {
+public class SurpriseParty extends BaseEvent {
     @Override
     public void executeEvent(Connector connector, String executor) {
         List<String> players = connector.getAllPlayerNames();
