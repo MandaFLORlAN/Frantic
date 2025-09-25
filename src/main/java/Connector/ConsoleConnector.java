@@ -152,12 +152,12 @@ public class ConsoleConnector implements Connector {
 
     @Override
     public void transferCardFromPlayerToPlayer(List<Card> cards, String giverName, String recieverName) {
+        tellAllPlayers(giverName + " transferred " + cards.size() + " cards to " + recieverName);
         for (Card card : cards) {
             this.players.get(giverName).removeCard(card.getName());
             this.players.get(recieverName).addCard(card.getName(), "You got " + card.getName() + " from " + giverName);
             this.game.transferCardFromTo(card, giverName, recieverName);
         }
-        tellAllPlayers(giverName + " transferred " + cards.size() + " cards to " + recieverName);
     }
 
     @Override
@@ -174,7 +174,7 @@ public class ConsoleConnector implements Connector {
     public void triggerEvent(String executor) {
         Event event = game.getNextEvent();
         tellAllPlayers("Event triggered: " + event);
-       event.executeEvent(this, executor);
+       event.executeEvent(this, executor, this.game.getGameState());
     }
 
     @Override

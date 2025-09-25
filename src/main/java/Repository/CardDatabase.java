@@ -9,6 +9,7 @@ import Cards.Wishcards.Equality;
 import Cards.Wishcards.Fantastic;
 import Cards.Wishcards.FantasticFour;
 import Enums.Color;
+import Events.Charity;
 import Events.Event;
 import Events.SurpriseParty;
 
@@ -31,12 +32,7 @@ public class CardDatabase {
     public static List<Event> getAllEvents() {
         List<Event> allEvents = new ArrayList<>();
         allEvents.add(new SurpriseParty());
-        allEvents.add(new SurpriseParty());
-        allEvents.add(new SurpriseParty());
-        allEvents.add(new SurpriseParty());
-        allEvents.add(new SurpriseParty());
-        allEvents.add(new SurpriseParty());
-        allEvents.add(new SurpriseParty());
+        allEvents.add(new Charity());
         return allEvents;
     }
 

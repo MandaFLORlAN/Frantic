@@ -6,7 +6,7 @@ import Game.GameState;
 
 public class TROUBLEMAKER extends BaseColoredSpecial{
     public TROUBLEMAKER(Color color) {
-        super("TROUBLEMAKER:" + color, 0, color);
+        super("TROUBLEMAKER: " + color, 0, color);
     }
 
     @Override

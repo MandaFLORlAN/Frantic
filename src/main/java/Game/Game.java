@@ -263,6 +263,7 @@ public class Game {
     }
 
     public Event getNextEvent() {
+        if (unusedEvents.isEmpty()) unusedEvents = CardDatabase.getShuffledEvents();
         Event nextEvent = this.unusedEvents.removeFirst();
         this.playedEvents.add(nextEvent);
         return nextEvent;
