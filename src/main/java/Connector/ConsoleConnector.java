@@ -2,6 +2,7 @@ package Connector;
 
 import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.SpecialCard;
+import Cards.Wishcards.Counterattack;
 import Events.Event;
 import Players.Player;
 import Enums.Color;
@@ -174,6 +175,16 @@ public class ConsoleConnector implements Connector {
         Event event = game.getNextEvent();
         tellAllPlayers("Event triggered: " + event);
        event.executeEvent(this, executor);
+    }
+
+    @Override
+    public boolean wantToBlock(String player, String attackCard) {
+        boolean wantsToBlock = players.get(player).wantToBlock(attackCard);
+        if (wantsToBlock) {
+            this.game.cardThrownIn(player, new Counterattack());
+            tellAllPlayers(attackCard + " was blocked by " + player);
+        }
+        return wantsToBlock;
     }
 
     @Override

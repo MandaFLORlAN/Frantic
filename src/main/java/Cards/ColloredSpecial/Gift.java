@@ -15,7 +15,8 @@ public class Gift extends BaseColoredSpecial {
 
     @Override
     public void executeSpecialFunction(String executorName, Connector connector, GameState gs) {
-        String target = connector.getPlayerTargets(executorName, "Gift", 1).getFirst();
+        String target = super.getTarget(executorName, "Gift", connector, this, gs);
+        if (target == null) return;
         List<Card> cardsToGive = connector.getCardToGiveAway(executorName, 2);
         connector.transferCardFromPlayerToPlayer(cardsToGive, executorName, target);
     }

@@ -1,13 +1,12 @@
 package Cards.ColloredSpecial;
 
-import Cards.InterfacesGroundclass.Card;
+import Cards.InterfacesGroundclass.BasicAttackCard;
 import Cards.InterfacesGroundclass.SpecialCard;
-import Connector.Connector;
 import Enums.Color;
 import Game.GameState;
 
 
-public abstract class BaseColoredSpecial extends Card implements SpecialCard {
+public abstract class BaseColoredSpecial extends BasicAttackCard implements SpecialCard {
     public BaseColoredSpecial(String name, int number, Color color) {
         super(name, number, color);
     }

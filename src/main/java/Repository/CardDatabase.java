@@ -4,6 +4,7 @@ import Cards.ColloredSpecial.*;
 import Cards.InterfacesGroundclass.Card;
 import Cards.NormalAndCurses.BlackCard;
 import Cards.NormalAndCurses.RegularCard;
+import Cards.Wishcards.Counterattack;
 import Cards.Wishcards.Equality;
 import Cards.Wishcards.Fantastic;
 import Cards.Wishcards.FantasticFour;
@@ -98,6 +99,9 @@ public class CardDatabase {
         List<Card> coloredSpecialCards = new ArrayList<>();
         for (int r = 0; r < ratio("Equality"); r++) {
             coloredSpecialCards.add(new Equality());
+        }
+        for (int r = 0; r < ratio("Counterattack"); r++) {
+            coloredSpecialCards.add(new Counterattack());
         }
         return coloredSpecialCards;
     }

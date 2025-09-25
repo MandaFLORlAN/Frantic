@@ -15,7 +15,8 @@ public class FantasticFour extends Fantastic {
 
     @Override
     public void executeSpecialFunction(String executorName, Connector connector, GameState gs) {
-        List<String> targets = connector.getPlayerTargets(executorName, "Fantastic four", 4);
+        List<String> targets = super.getTargets(executorName, "FantasticFour", connector, this, gs, 4);
+        if (targets == null) return;
         Map<String, Integer> attackMap = new HashMap<>();
         for (String target : targets) {
             if (attackMap.containsKey(target)) {

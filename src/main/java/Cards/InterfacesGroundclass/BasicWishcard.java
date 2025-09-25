@@ -4,7 +4,7 @@ import Connector.Connector;
 import Enums.Color;
 import Game.GameState;
 
-public abstract class BasicWishcard extends Card implements WishCard{
+public abstract class BasicWishcard extends BasicAttackCard implements WishCard{
     public BasicWishcard(String name, int number, Color color) {
         super(name, number, color);
     }

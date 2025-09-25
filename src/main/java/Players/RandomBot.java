@@ -1,13 +1,16 @@
 package Players;
 
 import Cards.InterfacesGroundclass.Card;
+import Cards.Wishcards.Counterattack;
 import Connector.Connector;
 import Enums.Color;
 import Enums.FantasticOptions;
 import Game.GameState;
+import org.w3c.dom.css.Counter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class RandomBot implements Player{
@@ -100,7 +103,9 @@ public class RandomBot implements Player{
         List<String> players = new ArrayList<>(this.gameState.getCards().keySet());
         Random r = new Random();
         for (int i = 0; i< numberOfTargets; i++) {
-            targets.add(players.get(r.nextInt(players.size())));
+            String target = players.get(r.nextInt(players.size()));
+            if (Objects.equals(target, this.playerName)) i--;
+            else targets.add(target);
         }
         return targets;
     }
@@ -122,6 +127,16 @@ public class RandomBot implements Player{
     @Override
     public String drawRandomCard() {
         return this.cards.get(new Random().nextInt(this.cards.size())).toString();
+    }
+
+    @Override
+    public boolean wantToBlock(String attackCard) {
+        if (this.cards.contains(new Counterattack())) {
+            this.cards.remove(new Counterattack());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

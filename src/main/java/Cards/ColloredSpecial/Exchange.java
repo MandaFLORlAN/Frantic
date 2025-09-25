@@ -14,7 +14,8 @@ public class Exchange extends BaseColoredSpecial {
 
     @Override
     public void executeSpecialFunction(String executorName, Connector connector, GameState gs) {
-        String target = connector.getPlayerTargets(executorName, "Exchange",1).getFirst();
+        String target = super.getTarget(executorName, "Exchange", connector, this, gs);
+        if (target == null) return;
         List<Card> cardsToDraw = connector.drawRandomCardFromPlayer(target, 2);
         List<Card> cardsToGive = connector.getCardToGiveAway(executorName, 2);
         connector.transferCardFromPlayerToPlayer(cardsToDraw, target, executorName);

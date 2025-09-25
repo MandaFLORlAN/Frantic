@@ -1,5 +1,6 @@
 package Cards.Wishcards;
 
+import Cards.InterfacesGroundclass.BasicWishcard;
 import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.SpecialCard;
 import Cards.InterfacesGroundclass.WishCard;
@@ -8,7 +9,7 @@ import Enums.Color;
 import Enums.FantasticOptions;
 import Game.GameState;
 
-public class Fantastic extends Card implements SpecialCard, WishCard {
+public class Fantastic extends BasicWishcard implements SpecialCard {
 
     public Fantastic() {
         super("Fantastic", 0, null);
@@ -20,21 +21,8 @@ public class Fantastic extends Card implements SpecialCard, WishCard {
         connector.wishUpdate(executorName, wish);
     }
 
-    @Override
-    public boolean isPlayable(GameState gs) {
-        return true;
-    }
-
     public void setNumber(int number) {
         this.number = number;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
 }

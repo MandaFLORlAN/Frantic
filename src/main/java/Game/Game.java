@@ -268,4 +268,9 @@ public class Game {
         return nextEvent;
 
     }
+
+    public void cardThrownIn(String playerName, Card card) {
+        this.players.get(playerName).remove(card);
+        this.playedCards.add(card);
+    }
 }

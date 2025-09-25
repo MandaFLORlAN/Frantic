@@ -33,6 +33,7 @@ public interface Connector {
     boolean checkIfPlayerWantEffect(String playerName);
     void addPlayerToSkip(String playerName);
     void triggerEvent(String executor);
+    boolean wantToBlock(String player, String attackCard);
     //Methods for Events
     List<String> getAllPlayerNames();
 }

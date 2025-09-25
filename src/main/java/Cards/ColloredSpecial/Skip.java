@@ -12,7 +12,8 @@ public class Skip extends BaseColoredSpecial{
 
     @Override
     public void executeSpecialFunction(String executorName, Connector connector, GameState gs) {
-        String target = connector.getPlayerTargets(executorName, "Skip", 1).getFirst();
+        String target = super.getTarget(executorName, "Skip", connector, this, gs);
+        if (target == null) return;
         connector.addPlayerToSkip(target);
     }
 }

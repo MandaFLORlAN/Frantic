@@ -22,4 +22,5 @@ public interface Player {
     List<String> getTargets(String message, int numberOfTargets);
     List<String> getCardsToGiveAway(int numberOfCards);
     String drawRandomCard();
+    boolean wantToBlock(String attackCard);
 }
