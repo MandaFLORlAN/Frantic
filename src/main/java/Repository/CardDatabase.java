@@ -5,10 +5,7 @@ import Cards.InterfacesGroundclass.Card;
 import Cards.NormalAndCurses.BlackCard;
 import Cards.NormalAndCurses.FuckYou;
 import Cards.NormalAndCurses.RegularCard;
-import Cards.Wishcards.Counterattack;
-import Cards.Wishcards.Equality;
-import Cards.Wishcards.Fantastic;
-import Cards.Wishcards.FantasticFour;
+import Cards.Wishcards.*;
 import Enums.Color;
 import Events.Charity;
 import Events.Event;
@@ -100,6 +97,9 @@ public class CardDatabase {
         }
         for (int r = 0; r < ratio("Counterattack"); r++) {
             coloredSpecialCards.add(new Counterattack());
+        }
+        for (int r = 0; r < ratio("NiceTry"); r++) {
+            coloredSpecialCards.add(new NiceTry());
         }
         return coloredSpecialCards;
     }

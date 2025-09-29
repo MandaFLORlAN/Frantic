@@ -5,7 +5,7 @@ import Cards.InterfacesGroundclass.SpecialCard;
 import Connector.Connector;
 import Game.GameState;
 
-public class Equality extends BasicWishcard implements SpecialCard {
+public class Equality extends BasicWishcard {
 
     public Equality() {
         super("Equality", 0, null);

@@ -9,7 +9,7 @@ import Enums.Color;
 import Enums.FantasticOptions;
 import Game.GameState;
 
-public class Fantastic extends BasicWishcard implements SpecialCard {
+public class Fantastic extends BasicWishcard {
 
     public Fantastic() {
         super("Fantastic", 0, null);

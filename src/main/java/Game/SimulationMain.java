@@ -16,7 +16,7 @@ public class SimulationMain {
         players.add(new RandomBot("Player 0", connector));
         players.add(new RandomBot("Player 1", connector));
         players.add(new RandomBot("Player 2", connector));
-        players.add(new RandomBot("Human 3", connector));
+        players.add(new RandomBot("Player 3", connector));
         connector.startStatisticGame(players, statisticsHandler);
         statisticsHandler.printStatistics();
     }

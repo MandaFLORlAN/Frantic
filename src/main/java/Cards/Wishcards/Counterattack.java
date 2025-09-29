@@ -5,7 +5,7 @@ import Cards.InterfacesGroundclass.SpecialCard;
 import Connector.Connector;
 import Game.GameState;
 
-public class Counterattack extends BasicWishcard implements SpecialCard {
+public class Counterattack extends BasicWishcard {
 
     public Counterattack() {
         super("Counterattack", 0, null);
