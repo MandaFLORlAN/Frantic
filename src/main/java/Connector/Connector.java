@@ -34,6 +34,7 @@ public interface Connector {
     void addPlayerToSkip(String playerName);
     void triggerEvent(String executor);
     boolean wantToBlock(String player, String attackCard);
+    void niceTry(List<String> alemostWinners, String executor);
     //Methods for Events
     List<String> getAllPlayerNames();
 }

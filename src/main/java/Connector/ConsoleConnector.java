@@ -3,6 +3,7 @@ package Connector;
 import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.SpecialCard;
 import Cards.Wishcards.Counterattack;
+import Cards.Wishcards.NiceTry;
 import Events.Event;
 import Players.Player;
 import Enums.Color;
@@ -192,6 +193,17 @@ public class ConsoleConnector implements Connector {
             tellAllPlayers(attackCard + " was blocked by " + player);
         }
         return wantsToBlock;
+    }
+
+    @Override
+    public void niceTry(List<String> alemostWinners, String executor) {
+        this.players.get(executor).removeCard("Nice Try");
+        this.game.cardThrownIn(executor, new NiceTry());
+        new NiceTry().executeSpecialFunction(executor, this, this.game.getGameState());
+        for (String alemostWinner : alemostWinners) {
+            makePlayerDraw(alemostWinner, "Nice Try", 3);
+        }
+        tellAllPlayers(executor + " played Nice Try!");
     }
 
     @Override

@@ -7,6 +7,7 @@ import Cards.InterfacesGroundclass.WishCard;
 import Cards.NormalAndCurses.BasicCurse;
 import Cards.NormalAndCurses.FuckYou;
 import Cards.Wishcards.Fantastic;
+import Cards.Wishcards.NiceTry;
 import Connector.Connector;
 import Events.Event;
 import Players.Player;
@@ -22,7 +23,6 @@ public class Game {
     private List<Card> playedCards;
     private List<Event> playedEvents;
     private Card lastPlayedCard;
-    private String lastPlayerName;
     private GameState gameState;
     private Connector connector;
     private int startCards;
@@ -47,7 +47,6 @@ public class Game {
             resetGame();
             this.lastPlayedCard = drawCard();
         }
-        System.out.println(this.lastPlayedCard);
         for (int i = 0; i < startCards; i++) {
             for (String p : players.keySet()) {
                 Card card = drawCard();
@@ -55,7 +54,6 @@ public class Game {
                 this.players.get(p).add(card);
             }
         }
-        this.lastPlayerName = "TODO";
         updateGamestate();
         gameLoop();
     }
@@ -100,6 +98,12 @@ public class Game {
             }
         }
         if (!winners.isEmpty()) {
+            for (String player: players.keySet()) {
+                if (players.get(player).contains(new NiceTry())) {
+                    connector.niceTry(winners, player);
+                    return;
+                }
+            }
             this.gameOver = true;
             connector.winners(winners);
         }
@@ -134,22 +138,20 @@ public class Game {
         else {
             addCardOnPile(card);
         }
-        this.lastPlayedCard = card;
-        this.playedCards.add(card);
-        this.lastPlayerName = playerName;
-        updateGamestate();
         return true;
     }
 
     private void addCardOnPile(Card card) {
         this.lastPlayedCard = card;
         this.playedCards.add(card);
+        updateGamestate();
     }
 
     public void addCardBelowTopCard(Card card) {
         Card ram = this.playedCards.removeLast();
         this.playedCards.add(card);
         this.playedCards.add(ram);
+        updateGamestate();
     }
 
     public void updateWish(FantasticOptions fantasticOptions) {
