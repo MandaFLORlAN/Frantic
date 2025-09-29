@@ -130,8 +130,15 @@ public class ConsoleConnector implements Connector {
         Player player = players.get(playerName);
         for (int i = 0; i < numberOfCards; i++) {
             String cardName = player.drawRandomCard();
+            if (cardName == null) {
+                break;
+            }
+            player.getCards().remove(Card.fromString(cardName));
             cardsToDraw.add(Card.fromString(cardName));
             player.updateGameActions(cardName + " was drawn from you");
+        }
+        for(Card card : cardsToDraw) {
+            player.getCards().add(card);
         }
         return cardsToDraw;
     }

@@ -49,7 +49,7 @@ public class RandomBot implements Player{
         if (this.cards.contains(Card.fromString(cardName))) {
             this.cards.remove(Card.fromString(cardName));
         } else {
-            System.out.println("Card not found");
+            System.out.println("Card not found: " + cardName);
         }
     }
 
@@ -126,6 +126,9 @@ public class RandomBot implements Player{
 
     @Override
     public String drawRandomCard() {
+        if (this.cards.isEmpty()) {
+            return null;
+        }
         return this.cards.get(new Random().nextInt(this.cards.size())).toString();
     }
 
