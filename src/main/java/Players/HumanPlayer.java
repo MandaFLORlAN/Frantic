@@ -165,7 +165,7 @@ public class HumanPlayer extends RandomBot {
             if (card instanceof BlackCard) {
                 blackCards.add(card);
             }
-            if (card instanceof SpecialCard) {
+            if (card instanceof SpecialCard && !(card instanceof  BlackCard)) {
                 specialCards.add(card);
             }
         }
