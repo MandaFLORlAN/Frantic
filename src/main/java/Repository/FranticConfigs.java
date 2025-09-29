@@ -1,5 +1,9 @@
 package Repository;
 
+import Cards.InterfacesGroundclass.Card;
+
+import java.util.List;
+
 public class FranticConfigs {
     public static int NUMBER_OF_START_CARDS = 9;
 
@@ -16,7 +20,7 @@ public class FranticConfigs {
             case "Skip" -> 2;
             case "TROUBLEMAKER" -> 2;
             case "Counterattack" -> 5;
-            case "FuckYou" -> 30;
+            case "FuckYou" -> 1;
             default -> 0;
         };
     }

@@ -4,7 +4,7 @@ import Cards.InterfacesGroundclass.Card;
 import Game.GameState;
 
 
-public class FuckYou extends Card {
+public class FuckYou extends BasicCurse {
     public FuckYou() {
         super("Fuck You", 0, null);
     }

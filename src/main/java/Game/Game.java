@@ -1,8 +1,10 @@
 package Game;
 
 import Cards.ColloredSpecial.SecondChance;
+import Cards.InterfacesGroundclass.BasicWishcard;
 import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.WishCard;
+import Cards.NormalAndCurses.BasicCurse;
 import Cards.NormalAndCurses.FuckYou;
 import Cards.Wishcards.Fantastic;
 import Connector.Connector;
@@ -41,7 +43,11 @@ public class Game {
     }
 
     public void startGame() throws InterruptedException {
-        resetGame();
+        while (this.lastPlayedCard == null || this.lastPlayedCard instanceof BasicCurse || this.lastPlayedCard instanceof BasicWishcard) {
+            resetGame();
+            this.lastPlayedCard = drawCard();
+        }
+        System.out.println(this.lastPlayedCard);
         for (int i = 0; i < startCards; i++) {
             for (String p : players.keySet()) {
                 Card card = drawCard();
@@ -49,7 +55,6 @@ public class Game {
                 this.players.get(p).add(card);
             }
         }
-        this.lastPlayedCard = drawCard();
         this.lastPlayerName = "TODO";
         updateGamestate();
         gameLoop();
