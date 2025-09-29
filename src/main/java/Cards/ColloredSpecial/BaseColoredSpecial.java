@@ -12,7 +12,7 @@ public abstract class BaseColoredSpecial extends BasicAttackCard implements Spec
     }
 
     @Override
-    public boolean isPlayable(GameState gs) {
+    public boolean isPlayable(GameState gs, String executor) {
         return gs.getPlayableColor() == this.color || gs.getLastCardName().split(": ")[0].equals(this.name.split(": ")[0]);
     }
 }

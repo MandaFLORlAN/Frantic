@@ -11,7 +11,7 @@ public class BlackCard extends Card implements SpecialCard {
     }
 
     @Override
-    public boolean isPlayable(GameState gs) {
+    public boolean isPlayable(GameState gs, String executor) {
         return gs.getPlayableNumber() == this.getNumber();
     }
 

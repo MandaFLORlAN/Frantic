@@ -29,7 +29,7 @@ public abstract class BasicWishcard extends BasicAttackCard implements WishCard{
     }
 
     @Override
-    public boolean isPlayable(GameState gs) {
+    public boolean isPlayable(GameState gs, String executor) {
         return true;
     }
 }

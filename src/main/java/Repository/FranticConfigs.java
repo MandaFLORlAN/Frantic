@@ -16,6 +16,7 @@ public class FranticConfigs {
             case "Skip" -> 2;
             case "TROUBLEMAKER" -> 2;
             case "Counterattack" -> 5;
+            case "FuckYou" -> 30;
             default -> 0;
         };
     }

@@ -3,6 +3,7 @@ package Repository;
 import Cards.ColloredSpecial.*;
 import Cards.InterfacesGroundclass.Card;
 import Cards.NormalAndCurses.BlackCard;
+import Cards.NormalAndCurses.FuckYou;
 import Cards.NormalAndCurses.RegularCard;
 import Cards.Wishcards.Counterattack;
 import Cards.Wishcards.Equality;
@@ -26,6 +27,7 @@ public class CardDatabase {
         allCards.addAll(createFantasticCards());
         allCards.addAll(createColorefullSpecialCards());
         allCards.addAll(createColoredSpecialCards());
+        allCards.addAll(createCurses());
         return allCards;
     }
 
@@ -105,22 +107,30 @@ public class CardDatabase {
     public static List<Card> createColoredSpecialCards() {
         List<Card> coloredSpecialCards = new ArrayList<>();
         for (Color color: Color.values()) {
-            for (int i = 0; i<= ratio("Gift"); i++) {
+            for (int i = 0; i< ratio("Gift"); i++) {
                 coloredSpecialCards.add(new Gift(color));
             }
-            for (int i = 0; i<= ratio("Exchange"); i++) {
+            for (int i = 0; i< ratio("Exchange"); i++) {
                 coloredSpecialCards.add(new Exchange(color));
             }
-            for (int i = 0; i<= ratio("SecondChance"); i++) {
+            for (int i = 0; i< ratio("SecondChance"); i++) {
                 coloredSpecialCards.add(new SecondChance(color));
             }
-            for (int i = 0; i<= ratio("Skip"); i++) {
+            for (int i = 0; i< ratio("Skip"); i++) {
                 coloredSpecialCards.add(new Skip(color));
             }
-            for (int i = 0; i<= ratio("TROUBLEMAKER"); i++) {
+            for (int i = 0; i< ratio("TROUBLEMAKER"); i++) {
                 coloredSpecialCards.add(new TROUBLEMAKER(color));
             }
         }
         return coloredSpecialCards;
+    }
+
+    public static List<Card> createCurses() {
+        List<Card> curses = new ArrayList<>();
+        for (int r = 0; r < ratio("FuckYou"); r++) {
+            curses.add(new FuckYou());
+        }
+        return curses;
     }
 }

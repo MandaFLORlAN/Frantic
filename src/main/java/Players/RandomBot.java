@@ -56,7 +56,7 @@ public class RandomBot implements Player{
     @Override
     public void playMove() {
         for (Card card : cards) {
-            if (card.isPlayable(this.gameState)) {
+            if (card.isPlayable(this.gameState, this.playerName)) {
                 if (connector.wantsToPlay(this.playerName, card.toString())) {
                     this.cards.remove(card);
                     connector.executeSpecialFunction(this.playerName, card.toString());

@@ -18,7 +18,7 @@ public abstract class Card {
         this.color = color;
     }
 
-    public boolean isPlayable(GameState gs) {
+    public boolean isPlayable(GameState gs, String executor) {
         return false;
     }
 

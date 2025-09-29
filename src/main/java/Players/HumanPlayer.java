@@ -21,7 +21,7 @@ public class HumanPlayer extends RandomBot {
         System.out.println("Your cards are:");
         for (Card card : this.cards) {
             String cardLine = card.getName();
-            if (card.isPlayable(this.gameState)) {
+            if (card.isPlayable(this.gameState, this.playerName)) {
                 cardLine += ":" + playableCards.size();
                 playableCards.add(card);
             }

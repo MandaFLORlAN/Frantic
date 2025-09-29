@@ -12,7 +12,7 @@ public class SecondChance extends Card {
     }
 
     @Override
-    public boolean isPlayable(GameState gs) {
+    public boolean isPlayable(GameState gs, String executor) {
         return gs.getPlayableColor() == this.color || gs.getLastCardName().startsWith("2nd Chance: ");
     }
 }

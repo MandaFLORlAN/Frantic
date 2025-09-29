@@ -3,6 +3,7 @@ package Game;
 import Cards.ColloredSpecial.SecondChance;
 import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.WishCard;
+import Cards.NormalAndCurses.FuckYou;
 import Cards.Wishcards.Fantastic;
 import Connector.Connector;
 import Events.Event;
@@ -122,11 +123,28 @@ public class Game {
         if (!cardExists) {
             return false;
         }
+        if (card instanceof FuckYou) {
+            addCardBelowTopCard(card);
+        }
+        else {
+            addCardOnPile(card);
+        }
         this.lastPlayedCard = card;
         this.playedCards.add(card);
         this.lastPlayerName = playerName;
         updateGamestate();
         return true;
+    }
+
+    private void addCardOnPile(Card card) {
+        this.lastPlayedCard = card;
+        this.playedCards.add(card);
+    }
+
+    public void addCardBelowTopCard(Card card) {
+        Card ram = this.playedCards.removeLast();
+        this.playedCards.add(card);
+        this.playedCards.add(ram);
     }
 
     public void updateWish(Player player, FantasticOptions fantasticOptions) {
