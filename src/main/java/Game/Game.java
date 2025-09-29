@@ -147,8 +147,7 @@ public class Game {
         this.playedCards.add(ram);
     }
 
-    public void updateWish(Player player, FantasticOptions fantasticOptions) {
-        if (!Objects.equals(lastPlayerName, player.getPlayerName())) return;
+    public void updateWish(FantasticOptions fantasticOptions) {
         if (this.lastPlayedCard instanceof Fantastic) {
             switch (fantasticOptions) {
                 case ONE:
@@ -216,8 +215,7 @@ public class Game {
         }
     }
 
-    public void updateWish(Player player, Color color) {
-        if (!Objects.equals(lastPlayerName, player.getPlayerName())) return;
+    public void updateWish(Color color) {
         if (this.lastPlayedCard instanceof WishCard) {
             switch (color) {
                 case BLUE:

@@ -94,7 +94,7 @@ public class ConsoleConnector implements Connector {
 
     @Override
     public void wishUpdate(String executorName, Color color) {
-        game.updateWish(this.players.get(executorName), color);
+        game.updateWish(color);
         tellAllPlayers("Wished for " + color.name());
     }
 
@@ -105,7 +105,7 @@ public class ConsoleConnector implements Connector {
 
     @Override
     public void wishUpdate(String executorName, FantasticOptions fantasticOptions) {
-        game.updateWish(this.players.get(executorName), fantasticOptions);
+        game.updateWish(fantasticOptions);
         tellAllPlayers("Wished for " + fantasticOptions.name());
     }
 
