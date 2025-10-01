@@ -28,6 +28,18 @@ public class CardDatabase {
         return allCards;
     }
 
+    public static List<Card> getAllCardsOnce() {
+        List<Card> allCards = getAllCards();
+        List<Card> allCardsOnce = new ArrayList<>();
+        for (Card card : allCards) {
+            if (!allCardsOnce.contains(card)) {
+                allCardsOnce.add(card);
+            }
+        }
+        return allCardsOnce;
+    }
+    public static int UNIQUE_CARDS = 91;
+
     public static List<Event> getAllEvents() {
         List<Event> allEvents = new ArrayList<>();
         allEvents.add(new SurpriseParty());

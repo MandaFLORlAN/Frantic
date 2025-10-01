@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Gift extends BaseColoredSpecial {
     public Gift(Color color) {
-        super("Gift: " + color.name(), 7, color);
+        super("Gift: " + color.name(), 0, color);
     }
 
     @Override

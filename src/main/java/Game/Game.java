@@ -37,6 +37,9 @@ public class Game {
         this.startCards = startCards;
         this.gameState = new GameState();
         this.players = new HashMap<>();
+        this.playedCards = new ArrayList<>();
+        this.playedEvents = new ArrayList<>();
+        this.playersToSkip = new ArrayList<>();
         for (String name : names) {
             players.put(name, new ArrayList<>());
         }
@@ -296,5 +299,13 @@ public class Game {
     public void cardThrownIn(String playerName, Card card) {
         this.players.get(playerName).remove(card);
         this.playedCards.add(card);
+    }
+
+    public int getStartOffset() {
+        return startOffset;
+    }
+
+    public List<String> getPlayersToSkip() {
+        return playersToSkip;
     }
 }

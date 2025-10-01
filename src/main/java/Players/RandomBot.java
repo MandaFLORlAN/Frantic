@@ -68,9 +68,7 @@ public class RandomBot implements Player{
             }
         }
         connector.wantsToPlay(this.playerName, null);
-
     }
-
 
     @Override
     public String getPlayerName() {

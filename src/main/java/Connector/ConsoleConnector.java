@@ -21,9 +21,7 @@ public class ConsoleConnector implements Connector {
     protected Map<String, Player> players;
 
     public ConsoleConnector() {
-        super();
     }
-
 
     @Override
     public void startGame(List<Player> players) throws InterruptedException {
@@ -138,7 +136,7 @@ public class ConsoleConnector implements Connector {
             cardsToDraw.add(Card.fromString(cardName));
             player.updateGameActions(cardName + " was drawn from you");
         }
-        for(Card card : cardsToDraw) {
+        for (Card card : cardsToDraw) {
             player.getCards().add(card);
         }
         return cardsToDraw;
@@ -182,7 +180,7 @@ public class ConsoleConnector implements Connector {
     public void triggerEvent(String executor) {
         Event event = game.getNextEvent();
         tellAllPlayers("Event triggered: " + event);
-       event.executeEvent(this, executor, this.game.getGameState());
+        event.executeEvent(this, executor, this.game.getGameState());
     }
 
     @Override
@@ -217,4 +215,5 @@ public class ConsoleConnector implements Connector {
             player.updateGameActions(message);
         }
     }
+
 }
