@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class FantesticTest {
+public class FantasticTest {
     GameState redFive = TestCaseProvider.getRedFive();
     GameState greenEight = TestCaseProvider.getGreenEight();
     GameState nullCase = TestCaseProvider.getNull();
@@ -26,9 +26,9 @@ public class FantesticTest {
     @Test
     void testIsPlayable () {
         Card testCard = new Fantastic();
-        assertTrue(testCard.isPlayable(redFive));
-        assertTrue(testCard.isPlayable(greenEight));
-        assertTrue(testCard.isPlayable(nullCase));
-        assertTrue(testCard.isPlayable(zeroCase));
+        assertTrue(testCard.isPlayable(redFive,"Dummy"));
+        assertTrue(testCard.isPlayable(greenEight,"Dummy"));
+        assertTrue(testCard.isPlayable(nullCase,"Dummy"));
+        assertTrue(testCard.isPlayable(zeroCase,"Dummy"));
     }
 }

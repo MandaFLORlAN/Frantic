@@ -26,10 +26,10 @@ public class BlackCardTest {
     @Test
     void testIsPlayable() {
         Card testCard = new BlackCard(8);
-        assertFalse(testCard.isPlayable(redFive));
-        assertFalse(testCard.isPlayable(nullCase));
-        assertFalse(testCard.isPlayable(zeroCase));
-        assertTrue(testCard.isPlayable(greenEight));
+        assertFalse(testCard.isPlayable(redFive,"dummy"));
+        assertFalse(testCard.isPlayable(nullCase,"dummy"));
+        assertFalse(testCard.isPlayable(zeroCase,"dummy"));
+        assertTrue(testCard.isPlayable(greenEight,"dummy"));
     }
 
 }

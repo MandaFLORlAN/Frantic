@@ -32,12 +32,12 @@ public class RegularCardTest {
     void testIsPlayable() {
         Card testCard = new RegularCard(8, Color.BLUE);
         Card testCard2 = new RegularCard(6, GREEN);
-        assertFalse(testCard.isPlayable(redFive));
-        assertFalse(testCard2.isPlayable(redFive));
-        assertFalse(testCard.isPlayable(nullCase));
-        assertTrue(testCard2.isPlayable(nullCase));
-        assertFalse(testCard.isPlayable(zeroCase));
-        assertFalse(testCard2.isPlayable(zeroCase));
+        assertFalse(testCard.isPlayable(redFive,"Dummy"));
+        assertFalse(testCard2.isPlayable(redFive,"Dummy"));
+        assertFalse(testCard.isPlayable(nullCase,"Dummy"));
+        assertTrue(testCard2.isPlayable(nullCase,"Dummy"));
+        assertFalse(testCard.isPlayable(zeroCase,"Dummy"));
+        assertFalse(testCard2.isPlayable(zeroCase,"Dummy"));
     }
 
 }
