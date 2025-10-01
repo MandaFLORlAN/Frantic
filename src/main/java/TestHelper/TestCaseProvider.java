@@ -1,9 +1,22 @@
 package TestHelper;
 
+import Cards.ColloredSpecial.TROUBLEMAKER;
+import Cards.InterfacesGroundclass.Card;
+import Cards.NormalAndCurses.BlackCard;
+import Cards.NormalAndCurses.RegularCard;
+import Cards.Wishcards.Counterattack;
+import Cards.Wishcards.Fantastic;
+import Connector.TestConnector;
 import Enums.Color;
+import Game.Game;
 import Game.GameState;
+import Players.Player;
+import Players.TestHelpingBot;
+import Repository.CardDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TestCaseProvider {
@@ -51,4 +64,51 @@ public class TestCaseProvider {
         return gameState;
     }
 
+    public static TestConnector getTestGame() {
+        TestConnector connector = new TestConnector();
+
+        Player threeCards = new TestHelpingBot("threeCards", connector);
+        Player hasAll = new TestHelpingBot("hasAll", connector);
+        Player fiveCards = new TestHelpingBot("fiveCards", connector);
+
+        List<String> playerNames = new ArrayList<>();
+        playerNames.add(threeCards.getPlayerName());
+        playerNames.add(hasAll.getPlayerName());
+        playerNames.add(fiveCards.getPlayerName());
+
+        Game game = new Game(playerNames, connector, 0);
+        Map<String, Player> players = new HashMap<>();
+        players.put("threeCards", threeCards);
+        players.put("hasAll", hasAll);
+        players.put("fiveCards", fiveCards);
+        connector.setState(game, players);
+
+        List<Card> allCardsOnce = CardDatabase.getAllCardsOnce();
+        for (Card card : allCardsOnce) {
+            connector.addCardToPlayer("hasAll", card);
+            game.addCardToPlayer("hasAll", card);
+        }
+        connector.addCardToPlayer("threeCards", new RegularCard(7, Color.RED));
+        game.addCardToPlayer("threeCards", new RegularCard(7, Color.RED));
+        connector.addCardToPlayer("threeCards", new TROUBLEMAKER(Color.BLUE));
+        game.addCardToPlayer("threeCards", new TROUBLEMAKER(Color.BLUE));
+        connector.addCardToPlayer("threeCards", new BlackCard(2));
+        game.addCardToPlayer("threeCards", new BlackCard(2));
+
+        connector.addCardToPlayer("fiveCards",new RegularCard(2,Color.GREEN));
+        connector.addCardToPlayer("fiveCards",new Counterattack());
+        connector.addCardToPlayer("fiveCards",new Fantastic());
+        connector.addCardToPlayer("fiveCards",new RegularCard(7, Color.BLUE));
+        connector.addCardToPlayer("fiveCards",new RegularCard(5, Color.PURPLE));
+
+        game.getGameState().setLastCardName("RED: 5");
+        game.getGameState().setPlayableColor(Color.RED);
+        game.getGameState().setPlayableNumber(5);
+        Map<String, Integer> cards = new HashMap<>();
+        cards.put("threeCards", 3);
+        cards.put("hasAll", CardDatabase.UNIQUE_CARDS);
+        cards.put("fiveCards", 5);
+        connector.updateGamestate(game.getGameState());
+        return connector;
+    }
 }
