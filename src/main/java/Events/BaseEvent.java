@@ -24,6 +24,21 @@ public abstract class BaseEvent implements Event{
         return maxPlayers;
     }
 
+    protected List<String> playersWithLeastCards(GameState gameState) {
+        List<String> maxPlayers = new ArrayList<>();
+        int currentMin = Integer.MAX_VALUE;
+        for (String player: gameState.getCards().keySet()) {
+            if (gameState.getCards().get(player) < currentMin) {
+                currentMin = gameState.getCards().get(player);
+                maxPlayers.clear();
+                maxPlayers.add(player);
+            } else if (gameState.getCards().get(player) == currentMin) {
+                maxPlayers.add(player);
+            }
+        }
+        return maxPlayers;
+    }
+
     @Override
     public String toString() {
         return this.getClass().getSimpleName();
