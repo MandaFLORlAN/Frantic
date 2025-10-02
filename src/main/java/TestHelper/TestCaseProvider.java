@@ -103,7 +103,7 @@ public class TestCaseProvider {
         game.addCardToPlayer("threeCards", new BlackCard(2));
 
         connector.addCardToPlayer("fiveCards",new RegularCard(2,Color.GREEN));
-        connector.addCardToPlayer("fiveCards",new Counterattack());
+        connector.addCardToPlayer("fiveCards",new TROUBLEMAKER(Color.GREEN));
         connector.addCardToPlayer("fiveCards",new Fantastic());
         connector.addCardToPlayer("fiveCards",new RegularCard(7, Color.BLUE));
         connector.addCardToPlayer("fiveCards",new RegularCard(5, Color.PURPLE));

@@ -69,7 +69,6 @@ public class Game {
             this.players.put(name, new ArrayList<>());
         }
         this.movesPlayed = 0;
-        this.startOffset = new Random().nextInt(players.size());
         this.gameOver = false;
     }
 
