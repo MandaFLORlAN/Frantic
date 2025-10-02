@@ -35,14 +35,11 @@ public class Game {
     public Game(List<String> names, Connector connector, int startCards) {
         this.connector = connector;
         this.startCards = startCards;
-        this.gameState = new GameState();
         this.players = new HashMap<>();
-        this.playedCards = new ArrayList<>();
-        this.playedEvents = new ArrayList<>();
-        this.playersToSkip = new ArrayList<>();
         for (String name : names) {
             players.put(name, new ArrayList<>());
         }
+        resetGame();
     }
 
     public void startGame() throws InterruptedException {
@@ -69,7 +66,6 @@ public class Game {
         this.gameState = new GameState();
         this.playersToSkip = new ArrayList<>();
         for (String name : players.keySet()) {
-            this.players.get(name).clear();
             this.players.put(name, new ArrayList<>());
         }
         this.movesPlayed = 0;
