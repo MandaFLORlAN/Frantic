@@ -1,5 +1,6 @@
 package Connector;
 
+import Events.Event;
 import Events.SurpriseParty;
 import Game.Game;
 import Players.Player;
@@ -27,4 +28,7 @@ public class TestConnector extends ConsoleConnector {
         new SurpriseParty().executeEvent(this, executorName, this.game.getGameState());
     }
 
+    public void triggerEvent(String executorName, Event event) {
+        event.executeEvent(this, executorName, this.game.getGameState());
+    }
 }

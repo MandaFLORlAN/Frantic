@@ -1,4 +1,4 @@
-package CardsTest;
+package CardsTest.NormalAndCursesTests;
 
 import Cards.NormalAndCurses.BlackCard;
 import Cards.InterfacesGroundclass.Card;

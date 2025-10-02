@@ -144,7 +144,7 @@ public class Game {
         return true;
     }
 
-    private void addCardOnPile(Card card) {
+    public void addCardOnPile(Card card) {
         this.lastPlayedCard = card;
         this.playedCards.add(card);
         updateGamestate();

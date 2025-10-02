@@ -13,11 +13,13 @@ public class TestHelpingBot extends RandomBot {
         super(playerName, connector);
     }
 
-    public void play(Card card) {
+    public boolean play(Card card) {
         if(connector.wantsToPlay(this.getPlayerName(), card.getName())) {
             this.cards.remove(card);
             connector.executeSpecialFunction(this.playerName, card.toString());
+            return true;
         }
+        return false;
     }
 
     @Override
@@ -27,18 +29,18 @@ public class TestHelpingBot extends RandomBot {
 
     @Override
     public String wishColor() {
-        return "RED";
+        return "BLUE";
     }
 
     @Override
     public List<String> getTargets(String message, int numberOfTargets) {
         List<String> targets = new ArrayList<>();
         List<String> players = new ArrayList<>(this.gameState.getCards().keySet());
-        for (int i = 0; i< numberOfTargets; i++) {
+        int i = 0;
+        while (targets.size() < numberOfTargets) {
             String target = players.get(i%players.size());
-            if (Objects.equals(target, this.playerName)) i--;
-            else targets.add(target);
-            if (targets.size() >= numberOfTargets) break;
+            if (!Objects.equals(target, this.playerName)) targets.add(target);
+            i++;
         }
         return targets;
     }
