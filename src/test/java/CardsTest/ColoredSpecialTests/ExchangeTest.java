@@ -2,6 +2,7 @@ package CardsTest.ColoredSpecialTests;
 import Cards.ColloredSpecial.Exchange;
 import Cards.ColloredSpecial.TROUBLEMAKER;
 import Cards.NormalAndCurses.RegularCard;
+import Cards.Wishcards.Fantastic;
 import Connector.TestConnector;
 import Enums.Color;
 import Players.TestHelpingBot;
@@ -31,7 +32,7 @@ public class ExchangeTest {
 
         assertTrue(hasAll.getCards().contains(new RegularCard(1, Color.BLUE)));
         assertTrue(hasAll.getCards().contains(new RegularCard(2, Color.BLUE)));
-        assertTrue(threeCards.getCards().contains(new TROUBLEMAKER(Color.BLUE)));
+        assertTrue(threeCards.getCards().contains(new Fantastic()));
         assertTrue(threeCards.getCards().contains(new RegularCard(7, Color.RED)));
 
         hasAll.play(new Exchange(Color.RED));
@@ -39,7 +40,7 @@ public class ExchangeTest {
         assertEquals(90, hasAll.getCards().size());
         assertEquals(3, threeCards.getCards().size());
 
-        assertEquals(new TROUBLEMAKER(Color.BLUE), hasAll.getCards().get(89));
+        assertEquals(new Fantastic(), hasAll.getCards().get(89));
         assertEquals(new RegularCard(7, Color.RED), hasAll.getCards().get(88));
         assertEquals(new RegularCard(1,Color.BLUE), threeCards.getCards().get(1));
         assertEquals(new RegularCard(2, Color.BLUE), threeCards.getCards().get(2));

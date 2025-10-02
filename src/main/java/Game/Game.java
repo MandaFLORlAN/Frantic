@@ -88,7 +88,7 @@ public class Game {
         }
     }
 
-    private void checkGameOver() {
+    public void checkGameOver() {
         List<String> winners = new ArrayList<>();
         for (String playerName : players.keySet()) {
             if (players.get(playerName).isEmpty()) {

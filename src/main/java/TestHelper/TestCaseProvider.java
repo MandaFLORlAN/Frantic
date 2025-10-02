@@ -97,27 +97,43 @@ public class TestCaseProvider {
         }
         connector.addCardToPlayer("threeCards", new RegularCard(7, Color.RED));
         game.addCardToPlayer("threeCards", new RegularCard(7, Color.RED));
-        connector.addCardToPlayer("threeCards", new TROUBLEMAKER(Color.BLUE));
-        game.addCardToPlayer("threeCards", new TROUBLEMAKER(Color.BLUE));
-        connector.addCardToPlayer("threeCards", new BlackCard(2));
-        game.addCardToPlayer("threeCards", new BlackCard(2));
+        connector.addCardToPlayer("threeCards", new Fantastic());
+        game.addCardToPlayer("threeCards", new Fantastic());
+        connector.addCardToPlayer("threeCards", new Fantastic());
+        game.addCardToPlayer("threeCards", new Fantastic());
+
 
         connector.addCardToPlayer("fiveCards",new RegularCard(2,Color.GREEN));
+        game.addCardToPlayer("fiveCards",new RegularCard(2,Color.GREEN));
         connector.addCardToPlayer("fiveCards",new TROUBLEMAKER(Color.GREEN));
+        game.addCardToPlayer("fiveCards",new TROUBLEMAKER(Color.GREEN));
         connector.addCardToPlayer("fiveCards",new Fantastic());
+        game.addCardToPlayer("fiveCards",new Fantastic());
         connector.addCardToPlayer("fiveCards",new RegularCard(7, Color.BLUE));
+        game.addCardToPlayer("fiveCards",new RegularCard(7, Color.BLUE));
         connector.addCardToPlayer("fiveCards",new RegularCard(5, Color.PURPLE));
+        game.addCardToPlayer("fiveCards",new RegularCard(5, Color.PURPLE));
 
         connector.addCardToPlayer("tenCards", new FuckYou());
+        game.addCardToPlayer("tenCards", new FuckYou());
         connector.addCardToPlayer("tenCards", new RegularCard(1, Color.GREEN));
+        game.addCardToPlayer("tenCards", new RegularCard(1, Color.GREEN));
         connector.addCardToPlayer("tenCards", new RegularCard(2, Color.GREEN));
+        game.addCardToPlayer("tenCards", new RegularCard(2, Color.GREEN));
         connector.addCardToPlayer("tenCards", new RegularCard(3, Color.GREEN));
+        game.addCardToPlayer("tenCards", new RegularCard(3, Color.GREEN));
         connector.addCardToPlayer("tenCards", new RegularCard(4, Color.GREEN));
+        game.addCardToPlayer("tenCards", new RegularCard(4, Color.GREEN));
         connector.addCardToPlayer("tenCards", new RegularCard(5, Color.GREEN));
+        game.addCardToPlayer("tenCards", new RegularCard(5, Color.GREEN));
         connector.addCardToPlayer("tenCards", new NiceTry());
+        game.addCardToPlayer("tenCards", new NiceTry());
         connector.addCardToPlayer("tenCards", new Fantastic());
+        game.addCardToPlayer("tenCards", new Fantastic());
         connector.addCardToPlayer("tenCards", new FantasticFour());
+        game.addCardToPlayer("tenCards", new FantasticFour());
         connector.addCardToPlayer("tenCards", new Exchange(Color.YELLOW));
+        game.addCardToPlayer("tenCards", new Exchange(Color.YELLOW));
 
         game.addCardOnPile(new RegularCard(5, Color.RED));
         Map<String, Integer> cards = new HashMap<>();
