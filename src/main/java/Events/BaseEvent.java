@@ -1,5 +1,6 @@
 package Events;
 
+import Connector.Connector;
 import Game.GameState;
 
 import java.util.ArrayList;
@@ -37,6 +38,26 @@ public abstract class BaseEvent implements Event{
             }
         }
         return maxPlayers;
+    }
+
+    protected List<String> playersInOrders(Connector connecter, String startPlayer) {
+        List<String> players = connecter.getAllPlayerNames();
+        List<String> playersInOrders = new ArrayList<>();
+        int start = players.indexOf(startPlayer);
+        for (int i = start; i < players.size()+start; i++) {
+            playersInOrders.add(players.get(i % players.size()));
+        }
+        return playersInOrders;
+    }
+
+    protected List<String> getPlayersInOrder(List<String> players, List<String> order) {
+        List<String> playersInOrders = new ArrayList<>();
+        for (String player: order) {
+            if (players.contains(player)) {
+                playersInOrders.add(player);
+            }
+        }
+        return playersInOrders;
     }
 
     @Override

@@ -88,7 +88,7 @@ public class TestCaseProvider {
         players.put("hasAll", hasAll);
         players.put("fiveCards", fiveCards);
         players.put("tenCards", tenCards);
-        connector.setState(game, players);
+        connector.setState(game, players, playerNames);
 
         List<Card> allCardsOnce = CardDatabase.getAllCardsOnce();
         for (Card card : allCardsOnce) {

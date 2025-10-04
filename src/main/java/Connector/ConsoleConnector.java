@@ -19,19 +19,21 @@ import java.util.Map;
 public class ConsoleConnector implements Connector {
     protected Game game;
     protected Map<String, Player> players;
+    protected List<String> playOrder = new ArrayList<>();
 
     public ConsoleConnector() {
     }
 
     @Override
     public void startGame(List<Player> players) throws InterruptedException {
-        List<String> names = new ArrayList<>();
+        this.playOrder = new ArrayList<>();
         this.players = new HashMap<>();
         for (Player p : players) {
             this.players.put(p.getPlayerName(), p);
-            names.add(p.getPlayerName());
+            this.playOrder.add(p.getPlayerName());
+            this.playOrder.add(p.getPlayerName());
         }
-        this.game = new Game(names, this, FranticConfigs.NUMBER_OF_START_CARDS);
+        this.game = new Game(this.playOrder, this, FranticConfigs.NUMBER_OF_START_CARDS);
         for (Player player : players) {
             player.newRound();
         }
@@ -206,7 +208,7 @@ public class ConsoleConnector implements Connector {
 
     @Override
     public List<String> getAllPlayerNames() {
-        return this.players.keySet().stream().toList();
+        return this.playOrder;
     }
 
     @Override

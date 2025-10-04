@@ -5,6 +5,7 @@ import Events.SurpriseParty;
 import Game.Game;
 import Players.Player;
 
+import java.util.List;
 import java.util.Map;
 
 public class TestConnector extends ConsoleConnector {
@@ -18,9 +19,10 @@ public class TestConnector extends ConsoleConnector {
         return this.players;
     }
 
-    public void setState(Game game, Map<String, Player> players) {
+    public void setState(Game game, Map<String, Player> players, List<String> playOrder) {
         this.game = game;
         this.players = players;
+        this.playOrder = playOrder;
     }
 
     @Override
