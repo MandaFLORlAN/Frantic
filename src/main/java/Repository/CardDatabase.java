@@ -7,9 +7,7 @@ import Cards.NormalAndCurses.FuckYou;
 import Cards.NormalAndCurses.RegularCard;
 import Cards.Wishcards.*;
 import Enums.Color;
-import Events.Charity;
-import Events.Event;
-import Events.SurpriseParty;
+import Events.*;
 
 
 import java.util.*;
@@ -44,6 +42,13 @@ public class CardDatabase {
         List<Event> allEvents = new ArrayList<>();
         allEvents.add(new SurpriseParty());
         allEvents.add(new Charity());
+        allEvents.add(new RobinHood());
+        allEvents.add(new Expansion());
+        allEvents.add(new Recession());
+        allEvents.add(new Earthquake());
+        allEvents.add(new Communism());
+        allEvents.add(new MexicanStandoff());
+        allEvents.add(new Tornado());
         return allEvents;
     }
 

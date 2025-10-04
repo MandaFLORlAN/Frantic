@@ -10,7 +10,6 @@ import Cards.Wishcards.Fantastic;
 import Cards.Wishcards.NiceTry;
 import Connector.Connector;
 import Events.Event;
-import Players.Player;
 import Enums.Color;
 import Enums.FantasticOptions;
 import Repository.CardDatabase;
