@@ -210,6 +210,12 @@ public class ConsoleConnector implements Connector {
     }
 
     @Override
+    public List<Card> getAllCardsOfPlayer(String playerName) {
+        Player player = players.get(playerName);
+        return player.getCards();
+    }
+
+    @Override
     public void tellAllPlayers(String message) {
         for (Player player : players.values()) {
             player.updateGameActions(message);

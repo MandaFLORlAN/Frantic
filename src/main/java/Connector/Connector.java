@@ -37,4 +37,5 @@ public interface Connector {
     void niceTry(List<String> alemostWinners, String executor);
     //Methods for Events
     List<String> getAllPlayerNames();
+    List<Card> getAllCardsOfPlayer(String playerName);
 }
