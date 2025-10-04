@@ -38,4 +38,5 @@ public interface Connector {
     //Methods for Events
     List<String> getAllPlayerNames();
     List<Card> getAllCardsOfPlayer(String playerName);
+    void discardCards(String playerName, List<Card> cards);
 }
