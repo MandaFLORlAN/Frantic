@@ -1,8 +1,8 @@
 package Events.Basegame;
 
-import Cards.InterfacesGroundclass.Card;
 import Connector.Connector;
 import Events.BaseEvent;
+import Events.CardsToGiveAway;
 import Game.GameState;
 
 import java.util.ArrayList;
@@ -13,22 +13,21 @@ public class Earthquake extends BaseEvent {
     @Override
     public void executeEvent(Connector connector, String executor, GameState gameState) {
         List<String> players = connector.getAllPlayerNames();
-        List<cardsToPasOn> pases = new ArrayList<>();
+        List<CardsToGiveAway> pases = new ArrayList<>();
         for (int i = 0; i < players.size(); i++) {
-            pases.add(new cardsToPasOn(
+            pases.add(new CardsToGiveAway(
                     connector.getAllCardsOfPlayer(players.get(i)).stream().toList(),
                     players.get(i),
                     players.get((i + 1) % players.size())
             ));
         }
-        for (cardsToPasOn cardsToPasOn : pases) {
+        for (CardsToGiveAway cardsToGiveAway : pases) {
             connector.transferCardFromPlayerToPlayer(
-                    cardsToPasOn.cards,
-                    cardsToPasOn.giver,
-                    cardsToPasOn.reciever
+                    cardsToGiveAway.cards(),
+                    cardsToGiveAway.giver(),
+                    cardsToGiveAway.reciever()
             );
         }
     }
 
-    private record cardsToPasOn(List<Card> cards, String giver, String reciever) {}
 }
