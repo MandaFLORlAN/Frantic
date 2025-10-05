@@ -2,8 +2,7 @@ package EventTests;
 
 import Cards.InterfacesGroundclass.Card;
 import Connector.TestConnector;
-import Events.Communism;
-import Events.Tornado;
+import Events.Basegame.Tornado;
 import Players.Player;
 import Repository.CardDatabase;
 import TestHelper.TestCaseProvider;

@@ -1,7 +1,7 @@
 package Connector;
 
 import Events.Event;
-import Events.SurpriseParty;
+import Events.Basegame.SurpriseParty;
 import Game.Game;
 import Players.Player;
 

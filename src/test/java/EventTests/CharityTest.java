@@ -1,7 +1,7 @@
 package EventTests;
 
 import Connector.TestConnector;
-import Events.Charity;
+import Events.Basegame.Charity;
 import Players.TestHelpingBot;
 import Repository.CardDatabase;
 import TestHelper.TestCaseProvider;

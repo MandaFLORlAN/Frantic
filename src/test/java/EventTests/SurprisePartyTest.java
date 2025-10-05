@@ -1,7 +1,7 @@
 package EventTests;
 
 import Connector.TestConnector;
-import Events.SurpriseParty;
+import Events.Basegame.SurpriseParty;
 import Players.TestHelpingBot;
 import Repository.CardDatabase;
 import TestHelper.TestCaseProvider;

@@ -1,8 +1,9 @@
-package Events;
+package Events.Basegame;
 
 
 import Cards.InterfacesGroundclass.Card;
 import Connector.Connector;
+import Events.BaseEvent;
 import Game.GameState;
 
 import java.util.List;

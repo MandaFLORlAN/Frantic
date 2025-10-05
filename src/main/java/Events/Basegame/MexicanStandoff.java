@@ -1,6 +1,7 @@
-package Events;
+package Events.Basegame;
 
 import Connector.Connector;
+import Events.BaseEvent;
 import Game.GameState;
 
 public class MexicanStandoff extends BaseEvent {

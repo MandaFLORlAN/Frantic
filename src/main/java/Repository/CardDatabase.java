@@ -8,6 +8,7 @@ import Cards.NormalAndCurses.RegularCard;
 import Cards.Wishcards.*;
 import Enums.Color;
 import Events.*;
+import Events.Basegame.*;
 
 
 import java.util.*;

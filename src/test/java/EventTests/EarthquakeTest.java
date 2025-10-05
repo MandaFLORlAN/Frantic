@@ -1,7 +1,7 @@
 package EventTests;
 
 import Connector.TestConnector;
-import Events.Earthquake;
+import Events.Basegame.Earthquake;
 import Players.Player;
 import Repository.CardDatabase;
 import TestHelper.TestCaseProvider;

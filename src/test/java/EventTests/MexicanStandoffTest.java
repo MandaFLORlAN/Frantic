@@ -1,7 +1,7 @@
 package EventTests;
 
 import Connector.TestConnector;
-import Events.MexicanStandoff;
+import Events.Basegame.MexicanStandoff;
 import Players.Player;
 import TestHelper.TestCaseProvider;
 import org.junit.jupiter.api.Test;

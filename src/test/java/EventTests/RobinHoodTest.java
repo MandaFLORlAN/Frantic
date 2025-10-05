@@ -1,7 +1,7 @@
 package EventTests;
 
 import Connector.TestConnector;
-import Events.RobinHood;
+import Events.Basegame.RobinHood;
 import Players.Player;
 import Repository.CardDatabase;
 import TestHelper.TestCaseProvider;

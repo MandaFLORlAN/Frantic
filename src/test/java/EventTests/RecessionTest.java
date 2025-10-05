@@ -1,8 +1,7 @@
 package EventTests;
 
 import Connector.TestConnector;
-import Events.Expansion;
-import Events.Recession;
+import Events.Basegame.Recession;
 import Players.Player;
 import Repository.CardDatabase;
 import TestHelper.TestCaseProvider;
