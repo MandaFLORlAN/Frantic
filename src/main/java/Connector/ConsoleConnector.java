@@ -220,10 +220,19 @@ public class ConsoleConnector implements Connector {
     @Override
     public void discardCards(String playerName, List<Card> cards) {
         Player player = players.get(playerName);
-        for (Card card: cards) {
+        for (Card card : cards) {
             game.cardThrownIn(playerName, card);
             player.removeCard(card.getName());
         }
+    }
+
+    @Override
+    public List<Card> drawRandomCards(int numberOfCards) {
+        List<Card> cards = new ArrayList<>();
+        for (int i = 0; i < numberOfCards; i++) {
+            cards.add(game.drawCard());
+        }
+        return cards;
     }
 
     @Override

@@ -50,7 +50,7 @@ public abstract class BaseEvent implements Event{
         return playersInOrders;
     }
 
-    protected List<String> getPlayersInOrder(List<String> players, List<String> order) {
+    protected List<String> sortPlayerInOrder(List<String> players, List<String> order) {
         List<String> playersInOrders = new ArrayList<>();
         for (String player: order) {
             if (players.contains(player)) {
