@@ -124,8 +124,8 @@ public class TestCaseProvider {
         game.addCardToPlayer("tenCards", new RegularCard(3, Color.GREEN));
         connector.addCardToPlayer("tenCards", new RegularCard(4, Color.GREEN));
         game.addCardToPlayer("tenCards", new RegularCard(4, Color.GREEN));
-        connector.addCardToPlayer("tenCards", new RegularCard(5, Color.GREEN));
-        game.addCardToPlayer("tenCards", new RegularCard(5, Color.GREEN));
+        connector.addCardToPlayer("tenCards", new RegularCard(4, Color.RED));
+        game.addCardToPlayer("tenCards", new RegularCard(4, Color.RED));
         connector.addCardToPlayer("tenCards", new NiceTry());
         game.addCardToPlayer("tenCards", new NiceTry());
         connector.addCardToPlayer("tenCards", new Fantastic());
