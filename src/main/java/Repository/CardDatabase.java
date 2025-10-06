@@ -37,7 +37,8 @@ public class CardDatabase {
         }
         return allCardsOnce;
     }
-    public static int UNIQUE_CARDS = 91;
+
+    public static int UNIQUE_CARDS = getAllCardsOnce().size();
 
     public static List<Event> getAllEvents() {
         List<Event> allEvents = new ArrayList<>();
@@ -57,14 +58,9 @@ public class CardDatabase {
     }
 
     public static List<Card> getShuffledCards() { //Todo improvements try linked List
-        List<Card> shuffledCards = new ArrayList<>();
         List<Card> allCards = getAllCards();
-        Random rand = new Random();
-        while (allCards.size() > 1) {
-            shuffledCards.add(allCards.remove(rand.nextInt(allCards.size() - 1)));
-        }
-        shuffledCards.add(allCards.getFirst());
-        return shuffledCards;
+        Collections.shuffle(allCards);
+        return allCards;
     }
 
     public static List<Event> getShuffledEvents() {
@@ -83,7 +79,8 @@ public class CardDatabase {
         for (int r = 0; r < ratio("RegularCard"); r++) {
             for (Color color : Color.values()) {
                 for (int i = 1; i <= 10; i++) {
-                    regularCards.add(new RegularCard(i, color));
+                    regularCards.add(
+                            new RegularCard(i, color));
                 }
             }
         }
@@ -129,24 +126,19 @@ public class CardDatabase {
         List<Card> coloredSpecialCards = new ArrayList<>();
         for (Color color: Color.values()) {
             for (int i = 0; i< ratio("Gift"); i++) {
-                coloredSpecialCards.add(
-                        new Gift(color));
+                coloredSpecialCards.add(new Gift(color));
             }
             for (int i = 0; i< ratio("Exchange"); i++) {
-                coloredSpecialCards.add(
-                        new Exchange(color));
+                coloredSpecialCards.add(new Exchange(color));
             }
             for (int i = 0; i< ratio("SecondChance"); i++) {
-                coloredSpecialCards.add(
-                        new SecondChance(color));
+                coloredSpecialCards.add(new SecondChance(color));
             }
             for (int i = 0; i< ratio("Skip"); i++) {
-                coloredSpecialCards.add(
-                        new Skip(color));
+                coloredSpecialCards.add(new Skip(color));
             }
             for (int i = 0; i< ratio("TROUBLEMAKER"); i++) {
-                coloredSpecialCards.add
-                        (new TROUBLEMAKER(color));
+                coloredSpecialCards.add(new TROUBLEMAKER(color));
             }
         }
         return coloredSpecialCards;
