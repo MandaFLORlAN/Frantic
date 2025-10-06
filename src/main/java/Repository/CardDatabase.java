@@ -57,7 +57,7 @@ public class CardDatabase {
         return allEvents;
     }
 
-    public static List<Card> getShuffledCards() { //Todo improvements try linked List
+    public static List<Card> getShuffledCards() {
         List<Card> allCards = getAllCards();
         Collections.shuffle(allCards);
         return allCards;
@@ -79,8 +79,7 @@ public class CardDatabase {
         for (int r = 0; r < ratio("RegularCard"); r++) {
             for (Color color : Color.values()) {
                 for (int i = 1; i <= 10; i++) {
-                    regularCards.add(
-                            new RegularCard(i, color));
+                    regularCards.add(new RegularCard(i, color));
                 }
             }
         }
