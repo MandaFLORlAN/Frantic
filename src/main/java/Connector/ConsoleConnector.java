@@ -31,7 +31,6 @@ public class ConsoleConnector implements Connector {
         for (Player p : players) {
             this.players.put(p.getPlayerName(), p);
             this.playOrder.add(p.getPlayerName());
-            this.playOrder.add(p.getPlayerName());
         }
         this.game = new Game(this.playOrder, this, FranticConfigs.NUMBER_OF_START_CARDS);
         for (Player player : players) {

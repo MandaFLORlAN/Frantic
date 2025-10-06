@@ -1,11 +1,13 @@
 package Connector;
 
 import Cards.InterfacesGroundclass.Card;
+import Events.Event;
 import Players.Player;
 import Game.Game;
 import Repository.FranticConfigs;
 import Statistics.StatisticsHandler;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,20 +16,10 @@ import java.util.Map;
 public class SimmulationConnector extends ConsoleConnector {
     private StatisticsHandler statistics;
     public void startStatisticGame(List<Player> players, StatisticsHandler statistics) throws InterruptedException {
-        List<String> names = new ArrayList<>();
-        this.players = new HashMap<>();
-        for (Player p : players) {
-            this.players.put(p.getPlayerName(), p);
-            names.add(p.getPlayerName());
-        }
         this.statistics = statistics;
-        for (int i = 0; i < 10000; i++) {
-            if (i%100==0) System.out.println(i);
-            this.game = new Game(names, this, FranticConfigs.NUMBER_OF_START_CARDS);
-            for (Player player : players) {
-                player.newRound();
-            }
-            this.game.startGame();
+        for (int i = 0; i < 10_000; i++) {
+            if (i%1_000 == 0) System.out.println(i);
+            super.startGame(players);
         }
     }
 

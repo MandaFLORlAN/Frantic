@@ -50,6 +50,9 @@ public class CardDatabase {
         allEvents.add(new Communism());
         allEvents.add(new MexicanStandoff());
         allEvents.add(new Tornado());
+        allEvents.add(new MerryChristmas());
+        allEvents.add(new MatingSeason());
+        allEvents.add(new ThirdTimeLucky());
         return allEvents;
     }
 

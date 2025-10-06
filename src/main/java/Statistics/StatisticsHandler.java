@@ -37,8 +37,10 @@ public class StatisticsHandler {
     public void printStatistics() {
         Map<Player, Integer> players = new HashMap<>();
         int allMoves = 0;
+        int allWinners = 0;
         for (GameEndStats game : this.games) {
             allMoves += game.getNumberOfMoves();
+            allWinners += game.getWinners().size();
             for (Player winner: game.getWinners()){
                 if (!players.containsKey(winner)){
                     players.put(winner, 1);
@@ -48,9 +50,10 @@ public class StatisticsHandler {
             }
         }
         for (Player winner: players.keySet()) {
-            System.out.println(winner + ": " + players.get(winner));
+            System.out.println(winner + ": " + players.get(winner) +  ", " + ((double)players.get(winner)/allWinners)*100 + "%");
         }
         System.out.println("average moves:" + allMoves/this.games.size());
+        System.out.println("average winners:" + allWinners/(double)this.games.size());
         System.out.println("max end hand:" + this.maxEndCards);
     }
 }

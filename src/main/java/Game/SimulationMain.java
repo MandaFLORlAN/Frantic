@@ -1,8 +1,9 @@
 package Game;
 
 import Connector.SimmulationConnector;
-import Players.Player;
-import Players.RandomBot;
+import Players.*;
+
+import Players.LogicBots.LogicBot1RandomMove;
 import Statistics.StatisticsHandler;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class SimulationMain {
         players.add(new RandomBot("Player 0", connector));
         players.add(new RandomBot("Player 1", connector));
         players.add(new RandomBot("Player 2", connector));
-        players.add(new RandomBot("Player 3", connector));
+        players.add(new LogicBot1RandomMove("Logic Bot1RandomMove", connector));
         connector.startStatisticGame(players, statisticsHandler);
         statisticsHandler.printStatistics();
     }

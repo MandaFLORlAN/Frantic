@@ -55,19 +55,23 @@ public class RandomBot implements Player{
 
     @Override
     public void playMove() {
+        List<Card> playableCards = new ArrayList<>();
         for (Card card : cards) {
             if (card.isPlayable(this.gameState, this.playerName)) {
-                if (connector.wantsToPlay(this.playerName, card.toString())) {
-                    this.cards.remove(card);
-                    connector.executeSpecialFunction(this.playerName, card.toString());
-                    return;
-                } else {
-                    connector.wantsToPlay(this.playerName, null);
-                    return;
-                }
+                playableCards.add(card);
             }
         }
-        connector.wantsToPlay(this.playerName, null);
+        if (playableCards.isEmpty()) {
+            connector.wantsToPlay(this.playerName, null);
+            return;
+        }
+        Card card = playableCards.get(new Random().nextInt(playableCards.size()));
+        if (connector.wantsToPlay(this.playerName, card.toString())) {
+            this.cards.remove(card);
+            connector.executeSpecialFunction(this.playerName, card.toString());
+        } else {
+            connector.wantsToPlay(this.playerName, null);
+        }
     }
 
     @Override
@@ -99,12 +103,12 @@ public class RandomBot implements Player{
     public List<String> getTargets(String message, int numberOfTargets) {
         List<String> targets = new ArrayList<>();
         List<String> players = new ArrayList<>(this.gameState.getCards().keySet());
+        players.remove(this.playerName);
         Random r = new Random();
         for (int i = 0; i< numberOfTargets; i++) {
-            String target = players.get(r.nextInt(players.size()));
-            if (Objects.equals(target, this.playerName)) i--;
-            else targets.add(target);
+            targets.add(players.get(r.nextInt(players.size())));
         }
+        players.add(playerName);
         return targets;
     }
 
@@ -115,7 +119,7 @@ public class RandomBot implements Player{
         for (int i = 0; i <  numberOfCards; i++) {
             cardsToGiveAway.add(this.cards.remove(new Random().nextInt(this.cards.size())).toString());
         }
-        //cards will be taken in the transfer card method, they are remooved to not be picked twice
+        //cards will be taken in the transfer card method, they are removed to not be picked twice
         for (String card : cardsToGiveAway) {
             this.cards.add(Card.fromString(card));
         }

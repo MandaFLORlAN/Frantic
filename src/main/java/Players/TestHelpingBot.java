@@ -57,6 +57,9 @@ public class TestHelpingBot extends RandomBot {
 
     @Override
     public String drawRandomCard() {
+        if (this.cards.isEmpty()) {
+            return null;
+        }
         return this.cards.getFirst().toString();
     }
 
