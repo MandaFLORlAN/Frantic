@@ -56,7 +56,7 @@ public class CardDatabase {
         return allEvents;
     }
 
-    public static List<Card> getShuffledCards() {
+    public static List<Card> getShuffledCards() { //Todo improvements try linked List
         List<Card> shuffledCards = new ArrayList<>();
         List<Card> allCards = getAllCards();
         Random rand = new Random();
@@ -129,19 +129,24 @@ public class CardDatabase {
         List<Card> coloredSpecialCards = new ArrayList<>();
         for (Color color: Color.values()) {
             for (int i = 0; i< ratio("Gift"); i++) {
-                coloredSpecialCards.add(new Gift(color));
+                coloredSpecialCards.add(
+                        new Gift(color));
             }
             for (int i = 0; i< ratio("Exchange"); i++) {
-                coloredSpecialCards.add(new Exchange(color));
+                coloredSpecialCards.add(
+                        new Exchange(color));
             }
             for (int i = 0; i< ratio("SecondChance"); i++) {
-                coloredSpecialCards.add(new SecondChance(color));
+                coloredSpecialCards.add(
+                        new SecondChance(color));
             }
             for (int i = 0; i< ratio("Skip"); i++) {
-                coloredSpecialCards.add(new Skip(color));
+                coloredSpecialCards.add(
+                        new Skip(color));
             }
             for (int i = 0; i< ratio("TROUBLEMAKER"); i++) {
-                coloredSpecialCards.add(new TROUBLEMAKER(color));
+                coloredSpecialCards.add
+                        (new TROUBLEMAKER(color));
             }
         }
         return coloredSpecialCards;

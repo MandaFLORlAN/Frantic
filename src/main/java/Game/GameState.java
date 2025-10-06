@@ -63,13 +63,17 @@ public class GameState {
         GameState gameState = new GameState();
         try {
             String[] values = str.split(",\n");
+            for (int i = 0; i< values.length; i++){
+
+            }
             String colorName = values[0].split(": ")[1];
             if (Objects.equals(colorName, "null")) gameState.setPlayableColor(null);
             else gameState.setPlayableColor(Color.valueOf(colorName));
             gameState.setPlayableNumber(Integer.parseInt(values[1].split(": ")[1]));
             Map<String, Integer> cards = new HashMap<>();
             for (int i = 2; i < values.length - 1; i++) {
-                cards.put(values[i].split(": ")[0], Integer.parseInt(values[i].split(": ")[1]));
+                String[] splitted = values[i].split(": ");
+                cards.put(splitted[0], Integer.parseInt(splitted[1])); //Todo improvements
             }
             gameState.setCards(cards);
             gameState.setLastCardName(values[values.length - 1].split("; ")[1]);
