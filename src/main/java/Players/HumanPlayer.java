@@ -148,6 +148,35 @@ public class HumanPlayer extends RandomBot {
         return options[input].toString();
     }
 
+    @Override
+    public List<String> choseCards(List<String> cards, int numberOfCards) {
+        if (numberOfCards > cards.size()) {
+            numberOfCards = cards.size();
+        }
+        List<String> cardsToGiveAway = new ArrayList<>();
+        List<Integer> indexesToGive = new ArrayList<>();
+        for (int i = 0; i < cards.size(); i++) {
+            System.out.println(cards.get(i).toString() + ": " + i);
+        }
+        if (numberOfCards == 1) {
+            System.out.println("What card do you want to take?");
+        } else {
+            System.out.println("What card's do you want to take? (" + numberOfCards + ")");
+        }
+        while (indexesToGive.size() < numberOfCards) {
+            Integer input = getIntInput(cards.size());
+            if (indexesToGive.contains(input)) {
+                System.out.println("Already chosen that card, give another");
+            } else {
+                indexesToGive.add(input);
+            }
+        }
+        for (Integer index : indexesToGive) {
+            cardsToGiveAway.add(cards.get(index).toString());
+        }
+        return cardsToGiveAway;
+    }
+
     private void displayGamestate() {
         this.cards = sortCardsLikeMe(this.cards);
         for (String playerName : this.gameState.getCards().keySet()) {

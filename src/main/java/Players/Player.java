@@ -23,4 +23,5 @@ public interface Player {
     List<String> getCardsToGiveAway(int numberOfCards);
     String drawRandomCard();
     boolean wantToBlock(String attackCard);
+    List<String> choseCards(List<String> cards, int numberOfCards);
 }

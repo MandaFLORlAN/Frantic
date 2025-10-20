@@ -63,4 +63,14 @@ public class TestHelpingBot extends RandomBot {
         return this.cards.getFirst().toString();
     }
 
+    @Override
+    public List<String> choseCards(List<String> cards, int numberOfCards) {
+        List<String> chosenCards = new ArrayList<>();
+        if (this.cards.size()<numberOfCards) numberOfCards = this.cards.size();
+        for (int i = 0; i < numberOfCards; i++) {
+            chosenCards.add(cards.get(i));
+        }
+        return chosenCards;
+    }
+
 }

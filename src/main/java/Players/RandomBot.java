@@ -145,6 +145,16 @@ public class RandomBot implements Player{
     }
 
     @Override
+    public List<String> choseCards(List<String> cards, int numberOfCards) {
+        Random r = new Random();
+        List<String> chosenCards = new ArrayList<>();
+        for (int i  = 0; i < numberOfCards; i++) {
+            chosenCards.add(cards.get(r.nextInt(cards.size())));
+        }
+        return chosenCards;
+    }
+
+    @Override
     public void newRound() {
         this.cards.clear();
     }
