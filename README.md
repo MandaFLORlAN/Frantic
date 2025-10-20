@@ -21,7 +21,7 @@ Keeps a record of all players cards without ever directly talking to them.
 Is the interface of every input needed from a participant in the game.
 This can be a Bot (RandomBot) or a interface to get input from a person (humanPlayer)
 ### Connector
-Handels communication between the Player and the Game as well as special Cards.
+Handles communication between the Player and the Game as well as special Cards.
 Mainly serves so that if the interface changes to a possible grafical interface, the cards and Game remain the same.
 Due to the Idea to add a web version the Player may only communicate by Strings or booleans.
 ### Special Card
