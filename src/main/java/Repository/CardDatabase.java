@@ -57,6 +57,7 @@ public class CardDatabase {
         allEvents.add(new Market());
         allEvents.add(new Vandalism());
         allEvents.add(new FridayThe13());
+        allEvents.add(new TheAllSeeingEye());
         return allEvents;
     }
 
