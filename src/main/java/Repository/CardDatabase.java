@@ -55,6 +55,8 @@ public class CardDatabase {
         allEvents.add(new MatingSeason());
         allEvents.add(new ThirdTimeLucky());
         allEvents.add(new Market());
+        allEvents.add(new Vandalism());
+        allEvents.add(new FridayThe13());
         return allEvents;
     }
 
