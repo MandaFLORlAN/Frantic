@@ -3,7 +3,7 @@ package Game;
 import Connector.SimmulationConnector;
 import Players.*;
 
-import Players.LogicBots.LogicBot1RandomMove;
+import Players.LogicBots.*;
 import Statistics.StatisticsHandler;
 
 import java.util.ArrayList;
@@ -14,10 +14,11 @@ public class SimulationMain {
         List<Player> players = new ArrayList<>();
         SimmulationConnector connector = new SimmulationConnector();
         StatisticsHandler statisticsHandler = new StatisticsHandler();
-        players.add(new RandomBot("Player 0", connector));
-        players.add(new RandomBot("Player 1", connector));
-        players.add(new RandomBot("Player 2", connector));
-        players.add(new LogicBot1RandomMove("Logic Bot1RandomMove", connector));
+        players.add(new LogicBot1("LogicBot1", connector));
+        players.add(new LogicBot1RandomGiveAways("LogicBot1RandomGiveAways", connector));
+        players.add(new LogicBot1RandomMove("LogicBot1RandomMove", connector));
+        players.add(new LogicBot1RandomTargets("LogicBot1RandomTargets", connector));
+        players.add(new LogicBot1RandomWishes("LogicBot1RandomWishes", connector));
         connector.startStatisticGame(players, statisticsHandler);
         statisticsHandler.printStatistics();//53192 -> 37374 ->
     }
