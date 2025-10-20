@@ -23,11 +23,11 @@ public class Game {
     private List<Event> playedEvents;
     private Card lastPlayedCard;
     private GameState gameState;
-    private Connector connector;
-    private int startCards;
+    private final Connector connector;
+    private final int startCards;
     private int movesPlayed = 0;
     private boolean gameOver = false;
-    private Map<String, List<Card>> players;
+    private final Map<String, List<Card>> players;
     private int startOffset = 0;
     private List<String> playersToSkip = new ArrayList<>();
     private boolean TESTCASE = false;
@@ -53,7 +53,7 @@ public class Game {
         resetGame();
     }
 
-    public void startGame() throws InterruptedException {
+    public void startGame() {
         while (this.lastPlayedCard == null || this.lastPlayedCard instanceof BasicCurse || this.lastPlayedCard instanceof BasicWishcard) {
             resetGame();
             this.lastPlayedCard = drawCard();
@@ -65,7 +65,7 @@ public class Game {
                 this.players.get(p).add(card);
             }
         }
-        updateGamestate();
+        updateGameState();
         gameLoop();
     }
 
@@ -89,12 +89,12 @@ public class Game {
         this.gameOver = false;
     }
 
-    private void gameLoop() throws InterruptedException {
+    private void gameLoop() {
         while (!gameOver) {
             String nextPlayer = players.keySet().stream().toList().get((movesPlayed + startOffset) % players.size());
             if (playersToSkip.contains(nextPlayer)) {
                 playersToSkip.remove(nextPlayer);
-                connector.tellAllPlayers(nextPlayer + " has been skiped");
+                connector.tellAllPlayers(nextPlayer + " has been skipped");
                 startOffset++;
             } else {
                 connector.itsTurn(nextPlayer);
@@ -129,7 +129,7 @@ public class Game {
             Card newCard = drawCard();
             connector.addCardToPlayer(playerName, newCard);
             players.get(playerName).add(newCard);
-            updateGamestate();
+            updateGameState();
             return true;
         }
         List<Card> cards = players.get(playerName);
@@ -159,14 +159,14 @@ public class Game {
     public void addCardOnPile(Card card) {
         this.lastPlayedCard = card;
         this.playedCards.add(card);
-        updateGamestate();
+        updateGameState();
     }
 
     public void addCardBelowTopCard(Card card) {
         Card ram = this.playedCards.removeLast();
         this.playedCards.add(card);
         this.playedCards.add(ram);
-        updateGamestate();
+        updateGameState();
     }
 
     public void updateWish(FantasticOptions fantasticOptions) {
@@ -233,7 +233,7 @@ public class Game {
                     ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Purple");
                     break;
             }
-            updateGamestate();
+            updateGameState();
         }
     }
 
@@ -261,16 +261,16 @@ public class Game {
                     ((WishCard) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Purple");
                     break;
             }
-            updateGamestate();
+            updateGameState();
         }
     }
 
-    public void transferCardFromTo(Card card, String giverName, String recieverName) {
+    public void transferCardFromTo(Card card, String giverName, String receiverName) {
         this.players.get(giverName).remove(card);
-        this.players.get(recieverName).add(card);
+        this.players.get(receiverName).add(card);
     }
 
-    private void updateGamestate() {
+    private void updateGameState() {
         this.gameState.setPlayableColor(this.lastPlayedCard.getColor());
         this.gameState.setPlayableNumber(this.lastPlayedCard.getNumber());
         this.gameState.setLastCardName(this.lastPlayedCard.getName());
