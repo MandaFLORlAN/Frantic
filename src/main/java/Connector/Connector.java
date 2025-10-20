@@ -35,6 +35,7 @@ public interface Connector {
     void triggerEvent(String executor);
     boolean wantToBlock(String player, String attackCard);
     void niceTry(List<String> alemostWinners, String executor);
+    List<String> getChosenCardsFromPlayer(String player, List<Card> cards, int numberOfCards);
     //Methods for Events
     List<String> getAllPlayerNames();
     List<Card> getAllCardsOfPlayer(String playerName);

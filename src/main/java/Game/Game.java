@@ -30,10 +30,22 @@ public class Game {
     private Map<String, List<Card>> players;
     private int startOffset = 0;
     private List<String> playersToSkip = new ArrayList<>();
+    private boolean TESTCASE = false;
 
     public Game(List<String> names, Connector connector, int startCards) {
         this.connector = connector;
         this.startCards = startCards;
+        this.players = new HashMap<>();
+        for (String name : names) {
+            players.put(name, new ArrayList<>());
+        }
+        resetGame();
+    }
+
+    public Game(List<String> names, Connector connector) {
+        this.TESTCASE = true;
+        this.connector = connector;
+        this.startCards = 0;
         this.players = new HashMap<>();
         for (String name : names) {
             players.put(name, new ArrayList<>());
@@ -58,8 +70,14 @@ public class Game {
     }
 
     private void resetGame() {
-        this.unusedCards = CardDatabase.getShuffledCards();
-        this.unusedEvents = CardDatabase.getShuffledEvents();
+        if (TESTCASE) {
+            this.unusedCards = CardDatabase.getAllCards();
+            this.unusedEvents = CardDatabase.getAllEvents();
+        } else {
+            this.unusedCards = CardDatabase.getShuffledCards();
+            this.unusedEvents = CardDatabase.getShuffledEvents();
+        }
+
         this.playedCards = new ArrayList<>();
         this.playedEvents = new ArrayList<>();
         this.gameState = new GameState();
@@ -266,6 +284,8 @@ public class Game {
     public Card drawCard() {
         if (!unusedCards.isEmpty()) {
             unusedCards = CardDatabase.getShuffledCards();
+            if (TESTCASE) unusedCards = CardDatabase.getAllCards();
+            else unusedCards = CardDatabase.getShuffledCards();
         }
         return unusedCards.removeFirst();
     }

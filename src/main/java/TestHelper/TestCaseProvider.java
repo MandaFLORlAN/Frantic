@@ -82,7 +82,7 @@ public class TestCaseProvider {
         playerNames.add(fiveCards.getPlayerName());
         playerNames.add(tenCards.getPlayerName());
 
-        Game game = new Game(playerNames, connector, 0);
+        Game game = new Game(playerNames, connector);
         Map<String, Player> players = new HashMap<>();
         players.put("threeCards", threeCards);
         players.put("hasAll", hasAll);

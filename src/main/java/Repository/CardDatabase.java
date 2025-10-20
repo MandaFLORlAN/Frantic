@@ -54,6 +54,7 @@ public class CardDatabase {
         allEvents.add(new MerryChristmas());
         allEvents.add(new MatingSeason());
         allEvents.add(new ThirdTimeLucky());
+        allEvents.add(new Market());
         return allEvents;
     }
 

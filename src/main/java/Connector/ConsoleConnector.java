@@ -206,6 +206,12 @@ public class ConsoleConnector implements Connector {
     }
 
     @Override
+    public List<String> getChosenCardsFromPlayer(String player, List<Card> cards, int numberOfCards) {
+        List<String> cardsToChose = cards.stream().map(Card::getName).toList();
+        return players.get(player).choseCards(cardsToChose, numberOfCards);
+    }
+
+    @Override
     public List<String> getAllPlayerNames() {
         return this.playOrder;
     }
