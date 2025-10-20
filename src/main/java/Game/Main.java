@@ -12,7 +12,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         List<Player> players = new ArrayList<>();
-        Connector connector = new ConsoleConnector();
+        Connector connector = new BaseConnector();
         players.add(new RandomBot("Player 0", connector));
         players.add(new RandomBot("Player 1", connector));
         players.add(new RandomBot("Player 2", connector));

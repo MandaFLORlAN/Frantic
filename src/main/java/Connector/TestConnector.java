@@ -8,7 +8,7 @@ import Players.Player;
 import java.util.List;
 import java.util.Map;
 
-public class TestConnector extends ConsoleConnector {
+public class TestConnector extends BaseConnector {
     public TestConnector() {
     }
 

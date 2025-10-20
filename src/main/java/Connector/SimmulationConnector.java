@@ -1,19 +1,15 @@
 package Connector;
 
 import Cards.InterfacesGroundclass.Card;
-import Events.Event;
 import Players.Player;
-import Game.Game;
-import Repository.FranticConfigs;
 import Statistics.StatisticsHandler;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SimmulationConnector extends ConsoleConnector {
+public class SimmulationConnector extends BaseConnector {
     private StatisticsHandler statistics;
     public void startStatisticGame(List<Player> players, StatisticsHandler statistics) throws InterruptedException {
         this.statistics = statistics;

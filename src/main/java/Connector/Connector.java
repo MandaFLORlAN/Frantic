@@ -41,4 +41,5 @@ public interface Connector {
     List<Card> getAllCardsOfPlayer(String playerName);
     void discardCards(String playerName, List<Card> cards);
     List<Card> drawRandomCards(int numberOfCards);
+    Color getLastColor();
 }

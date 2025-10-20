@@ -113,7 +113,7 @@ public class Game {
             }
         }
         if (!winners.isEmpty()) {
-            for (String player: players.keySet()) {
+            for (String player : players.keySet()) {
                 if (players.get(player).contains(new NiceTry())) {
                     connector.niceTry(winners, player);
                     return;
@@ -149,8 +149,7 @@ public class Game {
         }
         if (card instanceof FuckYou) {
             addCardBelowTopCard(card);
-        }
-        else {
+        } else {
             addCardOnPile(card);
         }
         return true;
@@ -312,6 +311,16 @@ public class Game {
     public void cardThrownIn(String playerName, Card card) {
         this.players.get(playerName).remove(card);
         this.playedCards.add(card);
+    }
+
+    public Color getLastColor() {
+        int playedCardsSize = this.playedCards.size();
+        for (int i = 1; i <= playedCardsSize; i++) {
+            if (this.playedCards.get(playedCardsSize - i).getColor() != null) {
+                return  this.playedCards.get(playedCardsSize - i).getColor();
+            }
+        }
+        return null;
     }
 
     public int getStartOffset() {

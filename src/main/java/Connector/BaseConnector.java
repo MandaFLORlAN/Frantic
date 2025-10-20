@@ -16,12 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ConsoleConnector implements Connector {
+public class BaseConnector implements Connector {
     protected Game game;
     protected Map<String, Player> players;
     protected List<String> playOrder = new ArrayList<>();
 
-    public ConsoleConnector() {
+    public BaseConnector() {
     }
 
     @Override
@@ -238,6 +238,11 @@ public class ConsoleConnector implements Connector {
             cards.add(game.drawCard());
         }
         return cards;
+    }
+
+    @Override
+    public Color getLastColor() {
+        return this.game.getLastColor();
     }
 
     @Override
