@@ -282,8 +282,7 @@ public class Game {
     }
 
     public Card drawCard() {
-        if (!unusedCards.isEmpty()) {
-            unusedCards = CardDatabase.getShuffledCards();
+        if (unusedCards.isEmpty()) {
             if (TESTCASE) unusedCards = CardDatabase.getAllCards();
             else unusedCards = CardDatabase.getShuffledCards();
         }
