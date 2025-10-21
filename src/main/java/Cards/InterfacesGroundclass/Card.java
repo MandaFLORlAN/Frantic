@@ -35,6 +35,10 @@ public abstract class Card {
         return color;
     }
 
+    public int getValue() {
+        return value;
+    }
+
     public static Card fromString(String cardName) {
         if (cardName == null) return null;
         List<Card> allCards = CardDatabase.getAllCards();
