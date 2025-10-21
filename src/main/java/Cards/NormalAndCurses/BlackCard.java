@@ -7,7 +7,7 @@ import Game.GameState;
 
 public class BlackCard extends Card implements SpecialCard {
     public BlackCard(int number) {
-        super("Black" + ": " + number, number, null);
+        super("Black" + ": " + number, number, number, null);
     }
 
     @Override

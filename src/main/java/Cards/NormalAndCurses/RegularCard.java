@@ -7,7 +7,7 @@ import Game.GameState;
 public class RegularCard extends Card {
     public RegularCard(int number, Color color) {
         super(color.toString()+": "+ number
-            , number, color);
+            , number, number, color);
     }
     @Override
     public boolean isPlayable(GameState gs, String executor) {

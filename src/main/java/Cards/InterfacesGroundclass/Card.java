@@ -11,8 +11,9 @@ public abstract class Card {
     protected String name;
     protected int number;
     protected Color color;
+    protected int value;
 
-    public Card(String name, int number, Color color) {
+    public Card(String name, int number, int value, Color color) {
         this.name = name;
         this.number = number;
         this.color = color;

@@ -6,7 +6,7 @@ import Game.GameState;
 
 public class FuckYou extends BasicCurse {
     public FuckYou() {
-        super("Fuck You", 0, null);
+        super("Fuck You", 0, 42, null);
     }
 
     @Override

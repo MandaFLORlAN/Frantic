@@ -9,7 +9,7 @@ import java.util.List;
 public abstract class BasicAttackCard extends Card {
 
     public BasicAttackCard(String name, int number, Color color) {
-        super(name, number, color);
+        super(name, number, 7, color);
     }
 
     protected String getTarget(String executor, String message, Connector connector, SpecialCard attackingCard, GameState gs) {
