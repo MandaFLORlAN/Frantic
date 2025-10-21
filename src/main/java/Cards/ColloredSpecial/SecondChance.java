@@ -8,7 +8,7 @@ import Game.GameState;
 public class SecondChance extends Card {
 
     public SecondChance( Color color) {
-        super("2nd Chance: " + color, 0, color);
+        super("2nd Chance: " + color, 0, 7, color);
     }
 
     @Override

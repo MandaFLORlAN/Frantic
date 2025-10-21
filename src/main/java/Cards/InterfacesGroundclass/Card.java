@@ -16,6 +16,7 @@ public abstract class Card {
     public Card(String name, int number, int value, Color color) {
         this.name = name;
         this.number = number;
+        this.value = value;
         this.color = color;
     }
 
