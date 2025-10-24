@@ -9,6 +9,7 @@ import Cards.NormalAndCurses.FuckYou;
 import Cards.Wishcards.Fantastic;
 import Cards.Wishcards.NiceTry;
 import Connector.Connector;
+import Connector.PointBasedGame;
 import Events.Event;
 import Enums.Color;
 import Enums.FantasticOptions;
@@ -30,11 +31,13 @@ public class Game {
     private final Map<String, List<Card>> players;
     private int startOffset = 0;
     private List<String> playersToSkip = new ArrayList<>();
+    private final boolean pointBased;
     private boolean TESTCASE = false;
 
     public Game(List<String> names, Connector connector, int startCards) {
         this.connector = connector;
         this.startCards = startCards;
+        this.pointBased = connector instanceof PointBasedGame;
         this.players = new HashMap<>();
         for (String name : names) {
             players.put(name, new ArrayList<>());
@@ -46,6 +49,7 @@ public class Game {
         this.TESTCASE = true;
         this.connector = connector;
         this.startCards = 0;
+        this.pointBased = connector instanceof PointBasedGame;
         this.players = new HashMap<>();
         for (String name : names) {
             players.put(name, new ArrayList<>());
@@ -75,7 +79,11 @@ public class Game {
             this.unusedEvents = CardDatabase.getAllEvents();
         } else {
             this.unusedCards = CardDatabase.getShuffledCards();
-            this.unusedEvents = CardDatabase.getShuffledEvents();
+            if (pointBased) {
+                this.unusedEvents = CardDatabase.getShuffledEvents();
+            } else  {
+                this.unusedEvents = CardDatabase.getShuffledEventsNoPoints();
+            }
         }
 
         this.playedCards = new ArrayList<>();

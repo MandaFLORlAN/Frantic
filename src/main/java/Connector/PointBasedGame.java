@@ -1,7 +1,9 @@
 package Connector;
 
 import Cards.InterfacesGroundclass.Card;
+import Game.Game;
 import Players.Player;
+import Repository.FranticConfigs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +24,17 @@ public class PointBasedGame extends BaseConnector {
         for (Player player : players) {
             playerPoints.put(player, 0);
         }
-        super.startGame(players);
+        this.playOrder = new ArrayList<>();
+        this.players = new HashMap<>();
+        for (Player p : players) {
+            this.players.put(p.getPlayerName(), p);
+            this.playOrder.add(p.getPlayerName());
+        }
+        this.game = new Game(this.playOrder, this, FranticConfigs.NUMBER_OF_START_CARDS);
+        for (Player player : players) {
+            player.newRound();
+        }
+        this.game.startGame();
     }
 
     @Override
@@ -52,6 +64,11 @@ public class PointBasedGame extends BaseConnector {
         }
         if (gameOver) {
             super.winners(winners.stream().map(Player::getPlayerName).toList());
+        } else {
+            for (Player player : super.players.values()) {
+                player.newRound();
+            }
+            game.startGame();
         }
     }
 }

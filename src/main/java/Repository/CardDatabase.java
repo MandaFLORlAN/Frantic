@@ -78,6 +78,16 @@ public class CardDatabase {
         return shuffledEvents;
     }
 
+    public static List<Event> getShuffledEventsNoPoints() {
+        List<Event> shuffledEvents = getShuffledEvents();
+        for (Event event : shuffledEvents) {
+            if (event instanceof PointBasedEvent) {
+                shuffledEvents.remove(event);
+            }
+        }
+        return shuffledEvents;
+    }
+
     public static List<Card> createRegularCards() {
         List<Card> regularCards = new ArrayList<>(100);
         for (int r = 0; r < ratio("RegularCard"); r++) {
