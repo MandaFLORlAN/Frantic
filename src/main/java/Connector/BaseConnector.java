@@ -25,7 +25,7 @@ public class BaseConnector implements Connector {
     }
 
     @Override
-    public void startGame(List<Player> players) throws InterruptedException {
+    public void startGame(List<Player> players) {
         this.playOrder = new ArrayList<>();
         this.players = new HashMap<>();
         for (Player p : players) {

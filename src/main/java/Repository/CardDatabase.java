@@ -16,6 +16,8 @@ import java.util.*;
 import static Repository.FranticConfigs.ratio;
 
 public class CardDatabase {
+    public static int UNIQUE_CARDS = getAllCardsOnce().size();
+
     public static List<Card> getAllCards() {
         List<Card> allCards = new ArrayList<>();
         allCards.addAll(createRegularCards());
@@ -37,8 +39,6 @@ public class CardDatabase {
         }
         return allCardsOnce;
     }
-
-    public static int UNIQUE_CARDS = getAllCardsOnce().size();
 
     public static List<Event> getAllEvents() {
         List<Event> allEvents = new ArrayList<>();
@@ -79,7 +79,7 @@ public class CardDatabase {
     }
 
     public static List<Card> createRegularCards() {
-        List<Card> regularCards = new ArrayList<>();
+        List<Card> regularCards = new ArrayList<>(100);
         for (int r = 0; r < ratio("RegularCard"); r++) {
             for (Color color : Color.values()) {
                 for (int i = 1; i <= 10; i++) {
@@ -91,7 +91,7 @@ public class CardDatabase {
     }
 
     public static List<Card> createBlackCards() {
-        List<Card> blackCards = new ArrayList<>();
+        List<Card> blackCards = new ArrayList<>(10);
         for (int r = 0; r < ratio("BlackCard"); r++) {
             for (int i = 1; i <= 10; i++) {
                 blackCards.add(new BlackCard(i));
@@ -101,7 +101,7 @@ public class CardDatabase {
     }
 
     public static List<Card> createFantasticCards() {
-        List<Card> fantasticCards = new ArrayList<>();
+        List<Card> fantasticCards = new ArrayList<>(18);
         for (int r = 0; r < ratio("Fantastic"); r++) {
             fantasticCards.add(new Fantastic());
         }
@@ -112,7 +112,7 @@ public class CardDatabase {
     }
 
     public static List<Card> createColorefullSpecialCards() {
-        List<Card> coloredSpecialCards = new ArrayList<>();
+        List<Card> coloredSpecialCards = new ArrayList<>(10);
         for (int r = 0; r < ratio("Equality"); r++) {
             coloredSpecialCards.add(new Equality());
         }
@@ -126,7 +126,7 @@ public class CardDatabase {
     }
 
     public static List<Card> createColoredSpecialCards() {
-        List<Card> coloredSpecialCards = new ArrayList<>();
+        List<Card> coloredSpecialCards = new ArrayList<>(45);
         for (Color color: Color.values()) {
             for (int i = 0; i< ratio("Gift"); i++) {
                 coloredSpecialCards.add(new Gift(color));
@@ -148,7 +148,7 @@ public class CardDatabase {
     }
 
     public static List<Card> createCurses() {
-        List<Card> curses = new ArrayList<>();
+        List<Card> curses = new ArrayList<>(1);
         for (int r = 0; r < ratio("FuckYou"); r++) {
             curses.add(new FuckYou());
         }

@@ -1,9 +1,5 @@
 package Repository;
 
-import Cards.InterfacesGroundclass.Card;
-
-import java.util.List;
-
 public class FranticConfigs {
     public static int NUMBER_OF_START_CARDS = 9;
 
