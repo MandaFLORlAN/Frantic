@@ -9,7 +9,7 @@ import Cards.NormalAndCurses.FuckYou;
 import Cards.Wishcards.Fantastic;
 import Cards.Wishcards.NiceTry;
 import Connector.Connector;
-import Connector.PointBasedGame;
+import Connector.PointBasedConnector;
 import Events.Event;
 import Enums.Color;
 import Enums.FantasticOptions;
@@ -37,7 +37,7 @@ public class Game {
     public Game(List<String> names, Connector connector, int startCards) {
         this.connector = connector;
         this.startCards = startCards;
-        this.pointBased = connector instanceof PointBasedGame;
+        this.pointBased = connector instanceof PointBasedConnector;
         this.players = new HashMap<>();
         for (String name : names) {
             players.put(name, new ArrayList<>());
@@ -49,7 +49,7 @@ public class Game {
         this.TESTCASE = true;
         this.connector = connector;
         this.startCards = 0;
-        this.pointBased = connector instanceof PointBasedGame;
+        this.pointBased = connector instanceof PointBasedConnector;
         this.players = new HashMap<>();
         for (String name : names) {
             players.put(name, new ArrayList<>());

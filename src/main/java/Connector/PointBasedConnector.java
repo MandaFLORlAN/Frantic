@@ -10,12 +10,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PointBasedGame extends BaseConnector {
+public class PointBasedConnector extends BaseConnector {
     private Map<Player, Integer> playerPoints;
     private int losingPoints = 0;
 
-    public PointBasedGame(int losingPoints) {
+    public PointBasedConnector(int losingPoints) {
         this.losingPoints = losingPoints;
+    }
+
+    public void doomsDay() {
+        for (Player player : super.players.values()) {
+            playerPoints.put(player, playerPoints.get(player) + 50);
+            player.newRound();
+        }
+        game.startGame();
     }
 
     @Override
