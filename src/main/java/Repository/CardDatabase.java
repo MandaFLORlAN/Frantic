@@ -42,22 +42,34 @@ public class CardDatabase {
 
     public static List<Event> getAllEvents() {
         List<Event> allEvents = new ArrayList<>();
-        allEvents.add(new SurpriseParty());
-        allEvents.add(new Charity());
-        allEvents.add(new RobinHood());
-        allEvents.add(new Expansion());
-        allEvents.add(new Recession());
-        allEvents.add(new Earthquake());
-        allEvents.add(new Communism());
-        allEvents.add(new MexicanStandoff());
-        allEvents.add(new Tornado());
-        allEvents.add(new MerryChristmas());
-        allEvents.add(new MatingSeason());
-        allEvents.add(new ThirdTimeLucky());
-        allEvents.add(new Market());
-        allEvents.add(new Vandalism());
-        allEvents.add(new FridayThe13());
-        allEvents.add(new TheAllSeeingEye());
+        //allEvents.add(new SurpriseParty());
+        //allEvents.add(new Charity());
+        //allEvents.add(new RobinHood());
+        //allEvents.add(new Expansion());
+        //allEvents.add(new Recession());
+        //allEvents.add(new Earthquake());
+        //allEvents.add(new Communism());
+        //allEvents.add(new MexicanStandoff());
+        //allEvents.add(new Tornado());
+        //allEvents.add(new MerryChristmas());
+        //allEvents.add(new MatingSeason());
+        //allEvents.add(new ThirdTimeLucky());
+        //allEvents.add(new Market());
+        //allEvents.add(new Vandalism());
+        //allEvents.add(new FridayThe13());
+        //allEvents.add(new TheAllSeeingEye());
+        allEvents.add(new DoomsDay());
+        allEvents.add(new DoomsDay());
+        allEvents.add(new DoomsDay());
+        allEvents.add(new DoomsDay());
+        allEvents.add(new DoomsDay());
+        allEvents.add(new DoomsDay());
+        allEvents.add(new DoomsDay());
+        allEvents.add(new DoomsDay());
+        allEvents.add(new DoomsDay());
+        allEvents.add(new DoomsDay());
+        allEvents.add(new DoomsDay());
+        allEvents.add(new DoomsDay());
         return allEvents;
     }
 

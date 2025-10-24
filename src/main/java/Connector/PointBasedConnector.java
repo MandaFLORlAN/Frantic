@@ -21,9 +21,12 @@ public class PointBasedConnector extends BaseConnector {
     public void doomsDay() {
         for (Player player : super.players.values()) {
             playerPoints.put(player, playerPoints.get(player) + 50);
+            String name = player.getPlayerName();
+            for (Card card : player.getCards()) {//clears all the Cards -> game will say gameOver
+                game.cardThrownIn(name, card);
+            }
             player.newRound();
         }
-        game.startGame();
     }
 
     @Override
@@ -53,25 +56,25 @@ public class PointBasedConnector extends BaseConnector {
             for (Card card : player.getCards()) {
                 pointsThisRound += card.getValue();
             }
-            playerPoints.put(player, pointsThisRound);
+            playerPoints.put(player, playerPoints.get(player) + pointsThisRound);
         }
         boolean gameOver = false;
         int minimumPoints = Integer.MAX_VALUE;
-        List<Player> winners = new ArrayList<>();
+        List<Player> pointWinners = new ArrayList<>();
         for (Player player : this.playerPoints.keySet()) {
             if (playerPoints.get(player) < minimumPoints) {
                 minimumPoints = playerPoints.get(player);
-                winners.clear();
-                winners.add(player);
+                pointWinners.clear();
+                pointWinners.add(player);
             } else if (playerPoints.get(player) == minimumPoints) {
-                winners.add(player);
+                pointWinners.add(player);
             }
             if (playerPoints.get(player) >= this.losingPoints) {
                 gameOver = true;
             }
         }
         if (gameOver) {
-            super.winners(winners.stream().map(Player::getPlayerName).toList());
+            super.winners(pointWinners.stream().map(Player::getPlayerName).toList());
         } else {
             for (Player player : super.players.values()) {
                 player.newRound();

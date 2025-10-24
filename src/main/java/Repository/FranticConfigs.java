@@ -14,7 +14,7 @@ public class FranticConfigs {
             case "Exchange" -> 1;
             case "SecondChance" -> 2;
             case "Skip" -> 2;
-            case "TROUBLEMAKER" -> 2;
+            case "TROUBLEMAKER" -> 20;
             case "Counterattack" -> 5;
             case "FuckYou" -> 1;
             case "NiceTry" -> 11;
