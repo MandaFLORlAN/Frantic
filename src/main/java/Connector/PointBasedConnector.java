@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PointBasedConnector extends BaseConnector {
-    private Map<Player, Integer> playerPoints;
+    public Map<Player, Integer> playerPoints;
     private int losingPoints = 0;
 
     public PointBasedConnector(int losingPoints) {

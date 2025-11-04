@@ -8,8 +8,9 @@ import Players.Player;
 import java.util.List;
 import java.util.Map;
 
-public class TestConnector extends BaseConnector {
+public class TestConnector extends PointBasedConnector {
     public TestConnector() {
+        super(7567);
     }
 
     public Game getGame() {
