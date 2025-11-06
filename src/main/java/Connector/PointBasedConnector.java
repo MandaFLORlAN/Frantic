@@ -18,15 +18,9 @@ public class PointBasedConnector extends BaseConnector {
         this.losingPoints = losingPoints;
     }
 
-    public void doomsDay() {
-        for (Player player : super.players.values()) {
-            playerPoints.put(player, playerPoints.get(player) + 50);
-            String name = player.getPlayerName();
-            for (Card card : player.getCards()) {//clears all the Cards -> game will say gameOver
-                game.cardThrownIn(name, card);
-            }
-            player.newRound();
-        }
+    public void addPointsToPlayer(String playerName, int points) {
+        Player player = players.get(playerName);
+        playerPoints.put(player, playerPoints.get(player) + points);
     }
 
     @Override
