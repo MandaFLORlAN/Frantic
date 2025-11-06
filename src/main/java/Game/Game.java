@@ -18,21 +18,21 @@ import Repository.CardDatabase;
 import java.util.*;
 
 public class Game {
-    private List<Card> unusedCards;
-    private List<Event> unusedEvents;
-    private List<Card> playedCards;
-    private List<Event> playedEvents;
-    private Card lastPlayedCard;
-    private GameState gameState;
-    private final Connector connector;
-    private final int startCards;
-    private int movesPlayed = 0;
-    private boolean gameOver = false;
-    private final Map<String, List<Card>> players;
-    private int startOffset = 0;
-    private List<String> playersToSkip = new ArrayList<>();
-    private final boolean pointBased;
-    private boolean TESTCASE = false;
+    protected List<Card> unusedCards;
+    protected List<Event> unusedEvents;
+    protected List<Card> playedCards;
+    protected List<Event> playedEvents;
+    protected Card lastPlayedCard;
+    protected GameState gameState;
+    protected final Connector connector;
+    protected final int startCards;
+    protected int movesPlayed = 0;
+    protected boolean gameOver = false;
+    protected final Map<String, List<Card>> players;
+    protected int startOffset = 0;
+    protected List<String> playersToSkip = new ArrayList<>();
+    protected final boolean pointBased;
+    protected boolean TESTCASE = false;
 
     public Game(List<String> names, Connector connector, int startCards) {
         this.connector = connector;
