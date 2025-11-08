@@ -43,9 +43,11 @@ public class PointBasedConnector extends BaseConnector {
         );
     }
 
-    public void resetPlayers() {
-        for (Player player : players.values()) {
-            player.newRound();
-        }
+    public void finishLine() {
+        game.finishLine();
+    }
+
+    public void timeBomb() {
+        game.timeBomb();
     }
 }

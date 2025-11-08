@@ -107,7 +107,6 @@ public class Game {
             } else {
                 connector.itsTurn(nextPlayer);
                 movesPlayed++;
-                /*TimeUnit.SECONDS.sleep(1);*/
                 checkGameOver();
             }
         }

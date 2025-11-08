@@ -13,6 +13,8 @@ public class PointBasedGame extends Game {
     public Map<String, Integer> playerPoints;
     private int losingPoints = FranticConfigs.NUMBER_OF_POINTS_TO_LOSE;
     private PointBasedConnector pointBasedConnector;
+    private boolean countdown = false;
+    private int movesLeft = 0;
 
     public PointBasedGame(List<String> names, Connector connector, int startCards) {
         super(names, connector, startCards);
@@ -27,6 +29,10 @@ public class PointBasedGame extends Game {
         playerPoints.put(player, playerPoints.get(player) + points);
     }
 
+    public void removePointsFromPlayer(String player, int points) {
+        playerPoints.put(player, playerPoints.get(player) - points);
+    }
+
     @Override
     public void checkGameOver() {
         boolean onePlayerFinished = false;
@@ -38,23 +44,57 @@ public class PointBasedGame extends Game {
         }
         if (onePlayerFinished) {
             this.gameOver = true;
-            boolean oneOverPointLimit = false;
-            for (String player : players.keySet()) {
-                int points = playerPoints.get(player);
-                for (Card card : players.get(player)) {
-                    points += card.getValue();
-                }
-                if (points > losingPoints) {
-                    oneOverPointLimit = true;
-                }
-                playerPoints.put(player, points);
-            }
-            if (oneOverPointLimit) {
-                pointBasedConnector.pointWinners(playerPoints);
-            } else {
-                this.startGame();
-            }
+            if (addAllPointsInHand()) pointBasedConnector.pointWinners(playerPoints);
+            else this.startGame();
         }
     }
 
+    private boolean addAllPointsInHand() {
+        boolean oneOverPointLimit = false;
+        for (String player : players.keySet()) {
+            int points = playerPoints.get(player);
+            for (Card card : players.get(player)) {
+                points += card.getValue();
+            }
+            if (points > losingPoints) {
+                oneOverPointLimit = true;
+            }
+            playerPoints.put(player, points);
+        }
+        return oneOverPointLimit;
+    }
+
+    public void timeBomb() {
+        for (int i = 0; i < 3 * players.size(); i++) {
+            String nextPlayer = players.keySet().stream().toList().get((movesPlayed + startOffset) % players.size());
+            if (playersToSkip.contains(nextPlayer)) {
+                playersToSkip.remove(nextPlayer);
+                connector.tellAllPlayers(nextPlayer + " has been skipped");
+                startOffset++;
+            } else {
+                connector.itsTurn(nextPlayer);
+                movesPlayed++;
+                for (String player : players.keySet()) {
+                    if (players.get(player).isEmpty()) {
+                        removePointsFromPlayer(player, 20);
+                        for (String p : players.keySet()) {
+                            addPointsToPlayer(p, 10);
+                        }
+                        if (addAllPointsInHand()) pointBasedConnector.pointWinners(playerPoints);
+                        else this.startGame();
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < 2; i++) {
+            if (addAllPointsInHand()) pointBasedConnector.pointWinners(playerPoints);
+            else this.startGame();
+        }
+    }
+
+    public void finishLine() {
+        this.gameOver = true;
+        if (addAllPointsInHand()) pointBasedConnector.pointWinners(playerPoints);
+        else this.startGame();
+    }
 }
