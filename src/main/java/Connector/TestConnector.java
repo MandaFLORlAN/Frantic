@@ -8,14 +8,15 @@ import Players.Player;
 import java.util.List;
 import java.util.Map;
 
-public class TestConnector extends PointBasedConnector {
+public class TestConnector extends BaseConnector {
     public TestConnector() {
-        super(7567);
+        super();
     }
 
     public Game getGame() {
         return this.game;
     }
+
     public Map<String, Player> getPlayers() {
         return this.players;
     }

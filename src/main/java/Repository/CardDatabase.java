@@ -42,34 +42,34 @@ public class CardDatabase {
 
     public static List<Event> getAllEvents() {
         List<Event> allEvents = new ArrayList<>();
-        //allEvents.add(new SurpriseParty());
-        //allEvents.add(new Charity());
-        //allEvents.add(new RobinHood());
-        //allEvents.add(new Expansion());
-        //allEvents.add(new Recession());
-        //allEvents.add(new Earthquake());
-        //allEvents.add(new Communism());
-        //allEvents.add(new MexicanStandoff());
-        //allEvents.add(new Tornado());
-        //allEvents.add(new MerryChristmas());
-        //allEvents.add(new MatingSeason());
-        //allEvents.add(new ThirdTimeLucky());
-        //allEvents.add(new Market());
-        //allEvents.add(new Vandalism());
-        //allEvents.add(new FridayThe13());
-        //allEvents.add(new TheAllSeeingEye());
+ /*       allEvents.add(new SurpriseParty());
+        allEvents.add(new Charity());
+        allEvents.add(new RobinHood());
+        allEvents.add(new Expansion());
+        allEvents.add(new Recession());
+        allEvents.add(new Earthquake());
+        allEvents.add(new Communism());
+        allEvents.add(new MexicanStandoff());
+        allEvents.add(new Tornado());
+        allEvents.add(new MerryChristmas());
+        allEvents.add(new MatingSeason());
+        allEvents.add(new ThirdTimeLucky());
+        allEvents.add(new Market());
+        allEvents.add(new Vandalism());
+        allEvents.add(new FridayThe13());
+        allEvents.add(new TheAllSeeingEye());*/
         allEvents.add(new DoomsDay());
+        allEvents.add(new TimeBomb());
+        allEvents.add(new FinishLine());
         allEvents.add(new DoomsDay());
+        allEvents.add(new TimeBomb());
+        allEvents.add(new FinishLine());
         allEvents.add(new DoomsDay());
+        allEvents.add(new TimeBomb());
+        allEvents.add(new FinishLine());
         allEvents.add(new DoomsDay());
-        allEvents.add(new DoomsDay());
-        allEvents.add(new DoomsDay());
-        allEvents.add(new DoomsDay());
-        allEvents.add(new DoomsDay());
-        allEvents.add(new DoomsDay());
-        allEvents.add(new DoomsDay());
-        allEvents.add(new DoomsDay());
-        allEvents.add(new DoomsDay());
+        allEvents.add(new TimeBomb());
+        allEvents.add(new FinishLine());
         return allEvents;
     }
 
@@ -92,10 +92,14 @@ public class CardDatabase {
 
     public static List<Event> getShuffledEventsNoPoints() {
         List<Event> shuffledEvents = getShuffledEvents();
+        List<Event> eventsToRemove = new ArrayList<>();
         for (Event event : shuffledEvents) {
             if (event instanceof PointBasedEvent) {
-                shuffledEvents.remove(event);
+                eventsToRemove.add(event);
             }
+        }
+        for (Event event : eventsToRemove) {
+            shuffledEvents.remove(event);
         }
         return shuffledEvents;
     }

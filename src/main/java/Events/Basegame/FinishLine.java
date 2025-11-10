@@ -2,10 +2,10 @@ package Events.Basegame;
 
 import Connector.Connector;
 import Connector.PointBasedConnector;
-import Events.BaseEvent;
+import Events.PointBasedEvent;
 import Game.GameState;
 
-public class FinishLine extends BaseEvent {
+public class FinishLine extends PointBasedEvent {
 
     @Override
     public void executeEvent(Connector connector, String executor, GameState gameState) {

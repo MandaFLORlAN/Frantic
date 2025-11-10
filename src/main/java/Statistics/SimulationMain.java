@@ -1,16 +1,15 @@
-package Game;
+package Statistics;
 
 import Connector.SimmulationConnector;
 import Players.*;
 
 import Players.LogicBots.*;
-import Statistics.StatisticsHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SimulationMain {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         List<Player> players = new ArrayList<>();
         SimmulationConnector connector = new SimmulationConnector();
         StatisticsHandler statisticsHandler = new StatisticsHandler();

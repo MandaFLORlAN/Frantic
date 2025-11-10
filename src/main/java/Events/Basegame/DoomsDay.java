@@ -10,7 +10,7 @@ public class DoomsDay extends PointBasedEvent {
     public void executeEvent(Connector connector, String executor, GameState gameState) {
         if (connector instanceof PointBasedConnector pointConnector) {
             for (String playerName : connector.getAllPlayerNames()) {
-                pointConnector.discardCards(playerName, connector.getAllCardsOfPlayer(playerName));
+                pointConnector.discardCards(playerName, connector.getAllCardsOfPlayer(playerName).stream().toList());
                 pointConnector.addPointsToPlayer(playerName, 50);
             }
         }

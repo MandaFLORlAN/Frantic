@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class SimmulationConnector extends BaseConnector {
     private StatisticsHandler statistics;
-    public void startStatisticGame(List<Player> players, StatisticsHandler statistics) throws InterruptedException {
+    public void startStatisticGame(List<Player> players, StatisticsHandler statistics) {
         this.statistics = statistics;
         for (int i = 0; i < 10_000; i++) {
             if (i%1_000 == 0) System.out.println(i);

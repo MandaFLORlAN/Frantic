@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class PointBasedConnector extends BaseConnector {
 
-    private PointBasedGame game;
+    public PointBasedGame game;
 
     public void addPointsToPlayer(String playerName, int points) {
         if (game instanceof PointBasedGame pointBasedGame) {

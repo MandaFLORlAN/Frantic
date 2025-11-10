@@ -10,11 +10,12 @@ import Cards.Wishcards.FantasticFour;
 import Cards.Wishcards.NiceTry;
 import Connector.TestConnector;
 import Enums.Color;
-import Game.Game;
+import Game.PointBasedGame;
 import Game.GameState;
 import Players.Player;
 import Players.TestHelpingBot;
 import Repository.CardDatabase;
+import Repository.FranticConfigs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,7 +81,7 @@ public class TestCaseProvider {
         playerNames.add(fiveCards.getPlayerName());
         playerNames.add(tenCards.getPlayerName());
 
-        Game game = new Game(playerNames, connector);
+        PointBasedGame game = new PointBasedGame(playerNames, connector, FranticConfigs.NUMBER_OF_START_CARDS);
         Map<String, Player> players = new HashMap<>();
         players.put("threeCards", threeCards);
         players.put("hasAll", hasAll);
