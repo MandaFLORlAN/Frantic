@@ -13,8 +13,6 @@ public class PointBasedGame extends Game {
     public Map<String, Integer> playerPoints;
     private int losingPoints = FranticConfigs.NUMBER_OF_POINTS_TO_LOSE;
     private PointBasedConnector pointBasedConnector;
-    private boolean countdown = false;
-    private int movesLeft = 0;
 
     public PointBasedGame(List<String> names, Connector connector, int startCards) {
         super(names, connector, startCards);
@@ -81,14 +79,14 @@ public class PointBasedGame extends Game {
                             addPointsToPlayer(p, 10);
                         }
                         if (addAllPointsInHand()) pointBasedConnector.pointWinners(playerPoints);
-                        else this.startGame();
+                        else super.resetGame();
                     }
                 }
             }
         }
         for (int i = 0; i < 2; i++) {
             if (addAllPointsInHand()) pointBasedConnector.pointWinners(playerPoints);
-            else this.startGame();
+            else this.resetGame();
         }
     }
 

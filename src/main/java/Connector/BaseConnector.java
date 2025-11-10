@@ -34,7 +34,7 @@ public class BaseConnector implements Connector {
         }
         this.game = new Game(this.playOrder, this, FranticConfigs.NUMBER_OF_START_CARDS);
         for (Player player : players) {
-            player.newRound();
+            player.clearCards();
         }
         this.game.startGame();
     }
@@ -243,6 +243,13 @@ public class BaseConnector implements Connector {
     @Override
     public Color getLastColor() {
         return this.game.getLastColor();
+    }
+
+    @Override
+    public void clearPlayerCards() {
+        for (Player player : players.values()) {
+            player.clearCards();
+        }
     }
 
     @Override

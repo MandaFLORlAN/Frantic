@@ -155,7 +155,7 @@ public class RandomBot implements Player{
     }
 
     @Override
-    public void newRound() {
+    public void clearCards() {
         this.cards.clear();
     }
 

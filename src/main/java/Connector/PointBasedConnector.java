@@ -4,7 +4,6 @@ import Game.PointBasedGame;
 import Players.Player;
 import Repository.FranticConfigs;
 
-import javax.print.DocFlavor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +30,7 @@ public class PointBasedConnector extends BaseConnector {
         super.game = new PointBasedGame(this.playOrder, this, FranticConfigs.NUMBER_OF_START_CARDS);
         this.game = (PointBasedGame) super.game;
         for (Player player : players) {
-            player.newRound();
+            player.clearCards();
         }
         this.game.startGame();
     }

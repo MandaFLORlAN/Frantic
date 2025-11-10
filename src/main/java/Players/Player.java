@@ -12,7 +12,7 @@ public interface Player {
     void addCard(String cardName, String message);
     void removeCard(String cardName);
     void playMove();
-    void newRound();
+    void clearCards();
     String getPlayerName();
     List<Card> getCards();
     //for special Cards

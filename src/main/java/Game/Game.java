@@ -58,6 +58,7 @@ public class Game {
     }
 
     public void startGame() {
+        resetGame();
         while (this.lastPlayedCard == null || this.lastPlayedCard instanceof BasicCurse || this.lastPlayedCard instanceof BasicWishcard) {
             resetGame();
             this.lastPlayedCard = drawCard();
@@ -73,7 +74,7 @@ public class Game {
         gameLoop();
     }
 
-    private void resetGame() {
+    protected void resetGame() {
         if (TESTCASE) {
             this.unusedCards = CardDatabase.getAllCards();
             this.unusedEvents = CardDatabase.getAllEvents();
@@ -85,7 +86,6 @@ public class Game {
                 this.unusedEvents = CardDatabase.getShuffledEventsNoPoints();
             }
         }
-
         this.playedCards = new ArrayList<>();
         this.playedEvents = new ArrayList<>();
         this.gameState = new GameState();
