@@ -1,9 +1,11 @@
 package Game;
 
+import Cards.InterfacesGroundclass.Card;
 import Connector.*;
 import Players.HumanPlayer;
 import Players.Player;
 import Players.RandomBot;
+import Repository.CardDatabase;
 
 
 import java.util.ArrayList;

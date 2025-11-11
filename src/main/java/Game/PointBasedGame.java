@@ -43,7 +43,8 @@ public class PointBasedGame extends Game {
         if (onePlayerFinished) {
             this.gameOver = true;
             if (addAllPointsInHand()) pointBasedConnector.pointWinners(playerPoints);
-            else this.startGame();
+            else
+                this.resetGame();
         }
     }
 

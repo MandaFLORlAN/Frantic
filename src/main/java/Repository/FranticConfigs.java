@@ -2,7 +2,7 @@ package Repository;
 
 public class FranticConfigs {
     public static int NUMBER_OF_START_CARDS = 9;
-    public static int NUMBER_OF_POINTS_TO_LOSE = 200;
+    public static int NUMBER_OF_POINTS_TO_LOSE = 100_000;
 
     public static int ratio(String cardType) {
         return switch (cardType) {
@@ -15,7 +15,7 @@ public class FranticConfigs {
             case "Exchange" -> 1;
             case "SecondChance" -> 2;
             case "Skip" -> 2;
-            case "TROUBLEMAKER" -> 20;
+            case "TROUBLEMAKER" -> 2;
             case "Counterattack" -> 5;
             case "FuckYou" -> 1;
             case "NiceTry" -> 11;

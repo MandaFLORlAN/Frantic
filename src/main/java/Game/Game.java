@@ -61,14 +61,7 @@ public class Game {
         resetGame();
         while (this.lastPlayedCard == null || this.lastPlayedCard instanceof BasicCurse || this.lastPlayedCard instanceof BasicWishcard) {
             resetGame();
-            this.lastPlayedCard = drawCard();
-        }
-        for (int i = 0; i < startCards; i++) {
-            for (String p : players.keySet()) {
-                Card card = drawCard();
-                connector.addCardToPlayer(p, card);
-                this.players.get(p).add(card);
-            }
+
         }
         updateGameState();
         gameLoop();
@@ -90,10 +83,20 @@ public class Game {
         this.playedEvents = new ArrayList<>();
         this.gameState = new GameState();
         this.playersToSkip = new ArrayList<>();
+        Card firstCard = drawCard();
+        this.playedCards.add(firstCard);
+        this.lastPlayedCard = firstCard;
         for (String name : players.keySet()) {
             this.players.put(name, new ArrayList<>());
         }
-        this.movesPlayed = 0;
+        this.connector.clearPlayerCards();
+        for (int i = 0; i < startCards; i++) {
+            for (String p : players.keySet()) {
+                Card card = drawCard();
+                connector.addCardToPlayer(p, card);
+                this.players.get(p).add(card);
+            }
+        }
         this.gameOver = false;
     }
 
@@ -103,7 +106,7 @@ public class Game {
             if (playersToSkip.contains(nextPlayer)) {
                 playersToSkip.remove(nextPlayer);
                 connector.tellAllPlayers(nextPlayer + " has been skipped");
-                startOffset++;
+                startOffset = (startOffset + 1) % players.size();
             } else {
                 connector.itsTurn(nextPlayer);
                 movesPlayed++;
@@ -146,7 +149,7 @@ public class Game {
                 cardExists = true;
                 cards.remove(c);
                 if (card instanceof SecondChance) {
-                    this.startOffset--;
+                    this.startOffset = (startOffset - 1) % players.size();
                 }
                 break;
             }
