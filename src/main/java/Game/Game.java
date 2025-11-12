@@ -61,7 +61,6 @@ public class Game {
         resetGame();
         while (this.lastPlayedCard == null || this.lastPlayedCard instanceof BasicCurse || this.lastPlayedCard instanceof BasicWishcard) {
             resetGame();
-
         }
         updateGameState();
         gameLoop();

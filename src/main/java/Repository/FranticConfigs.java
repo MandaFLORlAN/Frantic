@@ -2,7 +2,7 @@ package Repository;
 
 public class FranticConfigs {
     public static int NUMBER_OF_START_CARDS = 9;
-    public static int NUMBER_OF_POINTS_TO_LOSE = 100_000;
+    public static int NUMBER_OF_POINTS_TO_LOSE = 200;
 
     public static int ratio(String cardType) {
         return switch (cardType) {

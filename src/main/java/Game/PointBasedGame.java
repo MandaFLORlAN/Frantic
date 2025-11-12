@@ -33,6 +33,7 @@ public class PointBasedGame extends Game {
 
     @Override
     public void checkGameOver() {
+        if (this.gameOver) return;
         boolean onePlayerFinished = false;
         for (String player : players.keySet()) {
             if (players.get(player).isEmpty()) {
@@ -79,21 +80,29 @@ public class PointBasedGame extends Game {
                         for (String p : players.keySet()) {
                             addPointsToPlayer(p, 10);
                         }
-                        if (addAllPointsInHand()) pointBasedConnector.pointWinners(playerPoints);
-                        else super.resetGame();
+                        if (addAllPointsInHand()) {
+                            pointBasedConnector.pointWinners(playerPoints);
+                        } else {
+                            super.resetGame();
+                        }
+                        return;
                     }
                 }
             }
         }
         for (int i = 0; i < 2; i++) {
-            if (addAllPointsInHand()) pointBasedConnector.pointWinners(playerPoints);
-            else this.resetGame();
+            if (addAllPointsInHand()) {
+                this.gameOver = true;
+                pointBasedConnector.pointWinners(playerPoints);
+                return;
+            }
         }
+        this.resetGame();
     }
 
     public void finishLine() {
         this.gameOver = true;
         if (addAllPointsInHand()) pointBasedConnector.pointWinners(playerPoints);
-        else this.startGame();
+        else this.resetGame();
     }
 }
