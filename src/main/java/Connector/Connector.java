@@ -9,7 +9,7 @@ import Game.GameState;
 import java.util.List;
 
 public interface Connector {
-    void startGame(List<Player> players) throws InterruptedException;
+    void startGame(List<Player> players);
 
     //Methods used by Game
     boolean addCardToPlayer(String playerName, Card card);
