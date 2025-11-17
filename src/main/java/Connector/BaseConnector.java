@@ -249,6 +249,7 @@ public class BaseConnector implements Connector {
 
     @Override
     public void clearPlayerCards() {
+        if (players == null) return;
         for (Player player : players.values()) {
             player.clearCards();
         }
