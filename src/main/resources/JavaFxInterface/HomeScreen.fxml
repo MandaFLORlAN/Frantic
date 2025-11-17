@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="JavaFxInterface.HomeScreenController"
+      prefHeight="400.0" prefWidth="600.0">
+    <Label styleClass="welcome">Welcome to Frantic</Label>
+    <VBox fx:id="selectedBots">
+        <Label>Here are all the bots you have chosen</Label>
+        <Button onAction="#onAddLogicBot1">add LogicBot1</Button>
+        <Button onAction="#onAddLogicBot1">add LogicBot1RandomGiveAway</Button>
+        <Button onAction="#onAddLogicBot1">add LogicBot1RandomMove</Button>
+        <Button onAction="#onAddLogicBot1">add LogicBot1RandomTargets</Button>
+        <Button onAction="#onAddLogicBot1">add LogicBot1RandomWishes</Button>
+    </VBox>
+
+
+</VBox>
