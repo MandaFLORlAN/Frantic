@@ -9,7 +9,7 @@
       fx:controller="JavaFxInterface.HomeScreenController"
       prefHeight="400.0" prefWidth="600.0">
     <Label styleClass="welcome">Welcome to Frantic</Label>
-    <VBox fx:id="selectedBots">
+    <VBox fx:id="selectedBots" alignment="CENTER">
         <Label>Here are all the bots you have chosen</Label>
         <Button onAction="#onAddLogicBot1">add LogicBot1</Button>
         <Button onAction="#onAddLogicBot1">add LogicBot1RandomGiveAway</Button>
@@ -17,6 +17,5 @@
         <Button onAction="#onAddLogicBot1">add LogicBot1RandomTargets</Button>
         <Button onAction="#onAddLogicBot1">add LogicBot1RandomWishes</Button>
     </VBox>
-
 
 </VBox>
