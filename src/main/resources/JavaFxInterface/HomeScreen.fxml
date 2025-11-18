@@ -9,10 +9,10 @@
       fx:controller="JavaFxInterface.HomeScreenController"
       prefHeight="400.0" prefWidth="600.0">
     <Label styleClass="welcome">Welcome to Frantic</Label>
-    <VBox fx:id="selectedBots" alignment="CENTER">
+    <VBox fx:id="selectedBots">
         <Label>Here are all the bots you have chosen</Label>
         <VBox fx:id="botlist"></VBox>
         <Button onAction="#onAddLogicBot1">add LogicBot1</Button>
     </VBox>
-    <Button alignment="BASELINE_CENTER" onAction="#onStartGame">Start Game</Button>
+    <Button onAction="#onStartGame" alignment="BOTTOM_RIGHT">Start Game</Button>
 </VBox>
