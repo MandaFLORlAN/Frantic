@@ -11,11 +11,8 @@
     <Label styleClass="welcome">Welcome to Frantic</Label>
     <VBox fx:id="selectedBots" alignment="CENTER">
         <Label>Here are all the bots you have chosen</Label>
+        <VBox fx:id="botlist"></VBox>
         <Button onAction="#onAddLogicBot1">add LogicBot1</Button>
-        <Button onAction="#onAddLogicBot1">add LogicBot1RandomGiveAway</Button>
-        <Button onAction="#onAddLogicBot1">add LogicBot1RandomMove</Button>
-        <Button onAction="#onAddLogicBot1">add LogicBot1RandomTargets</Button>
-        <Button onAction="#onAddLogicBot1">add LogicBot1RandomWishes</Button>
     </VBox>
-
+    <Button alignment="BASELINE_CENTER" onAction="#onStartGame">Start Game</Button>
 </VBox>
