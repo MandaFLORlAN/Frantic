@@ -1,9 +1,5 @@
 package JavaFxInterface;
 
-import Connector.Connector;
-import Connector.BaseConnector;
-import Players.LogicBots.LogicBot1;
-import Players.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -20,21 +16,20 @@ public class HomeScreenController {
     @FXML
     private VBox botlist;
 
-    private List<Player> players = new ArrayList<>();
-    private Connector connector = new BaseConnector();
+    private List<String> players = new ArrayList<>();
 
     public void onAddLogicBot1() {
-        players.add(new LogicBot1(getRandomName(), connector));
+        players.add("LogicBot1: " + getRandomName());
         loadPlayers();
     }
 
     private void loadPlayers() {
         botlist.getChildren().clear();
         for (int i = 0; i < players.size(); i++) {
-            Player player = players.get(i);
+            String player = players.get(i);
             HBox line = new HBox();
             line.idProperty().set("botLine:" + i);
-            line.getChildren().add(new Label(player.getClass().getSimpleName() + ": " + player.getPlayerName()));
+            line.getChildren().add(new Label(player));
             Button deleteButton = new Button("delete");
             deleteButton.setUserData(i);
             deleteButton.setOnAction(this::deleteLine);
@@ -54,7 +49,7 @@ public class HomeScreenController {
     }
 
     public void onStartGame() {
-        System.out.println("starting game");
+        System.out.println("Starting game");
     }
 
     private String getRandomName() {
@@ -65,8 +60,8 @@ public class HomeScreenController {
         while (!isUnique) {
             name = words[rand.nextInt(words.length)] + " " + words[rand.nextInt(words.length)];
             isUnique = true;
-            for (Player player : players) {
-                if (player.getPlayerName().equals(name)) {
+            for (String player : players) {
+                if (player.equals(name)) {
                     isUnique = false;
                     break;
                 }
