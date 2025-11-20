@@ -1,9 +1,7 @@
 package Connector;
 
-import Cards.ColloredSpecial.TROUBLEMAKER;
 import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.SpecialCard;
-import Cards.NormalAndCurses.BlackCard;
 import Cards.Wishcards.Counterattack;
 import Cards.Wishcards.NiceTry;
 import Events.Event;
