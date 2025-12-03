@@ -1,8 +1,6 @@
 package Players;
 
-import Cards.NormalAndCurses.BlackCard;
 import Cards.InterfacesGroundclass.Card;
-import Cards.InterfacesGroundclass.SpecialCard;
 import Connector.Connector;
 import Enums.Color;
 import Enums.FantasticOptions;
