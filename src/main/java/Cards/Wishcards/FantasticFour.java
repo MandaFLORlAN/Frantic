@@ -1,5 +1,6 @@
 package Cards.Wishcards;
 
+import Cards.InterfacesGroundclass.Card;
 import Connector.Connector;
 import Game.GameState;
 
@@ -29,5 +30,10 @@ public class FantasticFour extends Fantastic {
             connector.makePlayerDraw(target, " Fantastic Four by " + executorName, attackMap.get(target));
         }
         super.executeSpecialFunction(executorName, connector, gs);
+    }
+
+    @Override
+    public Card getCard() {
+        return new FantasticFour();
     }
 }

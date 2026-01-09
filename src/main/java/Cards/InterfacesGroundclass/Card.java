@@ -42,15 +42,15 @@ public abstract class Card {
 
     public static Card fromString(String cardName) {
         if (cardName == null) return null;
-        List<Card> allCards = CardDatabase.getAllCards();
+        List<Card> allCards = CardDatabase.ALL_CARDS_IMMUTABLE;
         for (Card card : allCards) {
             if (card.getName().equals(cardName)) {
                 return card;
             }
-            if (card instanceof WishCard) {
+            if (card instanceof WishCard wishCard) {
                 String subname = cardName.split(": ")[0];
                 boolean ram = Objects.equals(card.getName(), subname);
-                if (ram) return card;
+                if (ram) return wishCard.getCard();
             }
         }
         System.out.println("Card not found for:" + cardName);

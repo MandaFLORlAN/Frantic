@@ -182,63 +182,48 @@ public class Game {
             switch (fantasticOptions) {
                 case ONE:
                     ((Fantastic) this.lastPlayedCard).setNumber(1);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 1");
                     break;
                 case TWO:
                     ((Fantastic) this.lastPlayedCard).setNumber(2);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 2");
                     break;
                 case THREE:
                     ((Fantastic) this.lastPlayedCard).setNumber(3);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 3");
                     break;
                 case FOUR:
                     ((Fantastic) this.lastPlayedCard).setNumber(4);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 4");
                     break;
                 case FIVE:
                     ((Fantastic) this.lastPlayedCard).setNumber(5);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 5");
                     break;
                 case SIX:
                     ((Fantastic) this.lastPlayedCard).setNumber(6);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 6");
                     break;
                 case SEVEN:
                     ((Fantastic) this.lastPlayedCard).setNumber(7);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 7");
                     break;
                 case EIGHT:
                     ((Fantastic) this.lastPlayedCard).setNumber(8);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 8");
                     break;
                 case NINE:
                     ((Fantastic) this.lastPlayedCard).setNumber(9);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 9");
                     break;
                 case TEN:
                     ((Fantastic) this.lastPlayedCard).setNumber(10);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": 10");
                     break;
                 case BLUE:
                     ((Fantastic) this.lastPlayedCard).setColor(Color.BLUE);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Blue");
                     break;
                 case RED:
                     ((Fantastic) this.lastPlayedCard).setColor(Color.RED);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Red");
                     break;
                 case GREEN:
                     ((Fantastic) this.lastPlayedCard).setColor(Color.GREEN);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Green");
                     break;
                 case YELLOW:
                     ((Fantastic) this.lastPlayedCard).setColor(Color.YELLOW);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Yellow");
                     break;
                 case PURPLE:
                     ((Fantastic) this.lastPlayedCard).setColor(Color.PURPLE);
-                    ((Fantastic) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Purple");
                     break;
             }
             updateGameState();
@@ -250,23 +235,18 @@ public class Game {
             switch (color) {
                 case BLUE:
                     ((WishCard) this.lastPlayedCard).setColor(Color.BLUE);
-                    ((WishCard) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Blue");
                     break;
                 case RED:
                     ((WishCard) this.lastPlayedCard).setColor(Color.RED);
-                    ((WishCard) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Red");
                     break;
                 case GREEN:
                     ((WishCard) this.lastPlayedCard).setColor(Color.GREEN);
-                    ((WishCard) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Green");
                     break;
                 case YELLOW:
                     ((WishCard) this.lastPlayedCard).setColor(Color.YELLOW);
-                    ((WishCard) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Yellow");
                     break;
                 case PURPLE:
                     ((WishCard) this.lastPlayedCard).setColor(Color.PURPLE);
-                    ((WishCard) this.lastPlayedCard).setName(this.lastPlayedCard.getName() + ": Purple");
                     break;
             }
             updateGameState();

@@ -19,6 +19,6 @@ public class SimulationMain {
         players.add(new LogicBot1RandomTargets("LogicBot1RandomTargets", connector));
         players.add(new LogicBot1RandomWishes("LogicBot1RandomWishes", connector));
         connector.startStatisticGame(players, statisticsHandler);
-        statisticsHandler.printStatistics();//53192 -> 37374 ->
+        statisticsHandler.printStatistics();//134,516 ->
     }
 }
