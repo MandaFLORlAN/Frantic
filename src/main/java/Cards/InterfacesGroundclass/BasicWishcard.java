@@ -21,7 +21,7 @@ public abstract class BasicWishcard extends BasicAttackCard implements WishCard,
     @Override
     public void setColor(Color color) {
         this.color = color;
-        this.name += color.toString() ;
+        this.name += ": " + color.toString();
     }
 
     @Override

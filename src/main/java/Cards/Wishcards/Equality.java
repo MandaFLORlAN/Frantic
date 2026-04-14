@@ -24,7 +24,7 @@ public class Equality extends BasicWishcard {
     }
 
     @Override
-    public Card getCard() {
+    public Card copyCard() {
         return new Equality();
     }
 }

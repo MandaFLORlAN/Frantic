@@ -21,4 +21,8 @@ public class Gift extends BaseColoredSpecial {
         connector.transferCardFromPlayerToPlayer(cardsToGive, executorName, target);
     }
 
+    @Override
+    public Card copyCard() {
+        return new Gift(this.color);
+    }
 }

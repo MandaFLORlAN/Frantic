@@ -21,4 +21,9 @@ public class Exchange extends BaseColoredSpecial {
         connector.transferCardFromPlayerToPlayer(cardsToDraw, target, executorName);
         connector.transferCardFromPlayerToPlayer(cardsToGive, executorName, target);
     }
+
+    @Override
+    public Card copyCard() {
+        return new Exchange(this.color);
+    }
 }

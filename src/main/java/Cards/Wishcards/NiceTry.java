@@ -17,7 +17,7 @@ public class NiceTry extends BasicWishcard {
     }
 
     @Override
-    public Card getCard() {
+    public Card copyCard() {
         return new NiceTry();
     }
 }

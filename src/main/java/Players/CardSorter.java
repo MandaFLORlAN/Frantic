@@ -122,6 +122,9 @@ public class CardSorter {
         }
         groupedCards.put(null, new ArrayList<>());
         for (Card card : cards) {
+            if (card == null) {
+                continue;
+            }
             groupedCards.get(card.getColor()).add(card);
         }
         return groupedCards;

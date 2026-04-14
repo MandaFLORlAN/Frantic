@@ -46,9 +46,7 @@ public class RandomBot implements Player{
 
     @Override
     public void removeCard(String cardName) {
-        if (this.cards.contains(Card.fromString(cardName))) {
-            this.cards.remove(Card.fromString(cardName));
-        } else {
+        if (!this.cards.remove(Card.fromString(cardName))) {
             System.out.println("Card not found: " + cardName);
         }
     }

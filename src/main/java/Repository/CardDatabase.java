@@ -17,7 +17,7 @@ import static Repository.FranticConfigs.ratio;
 
 public class CardDatabase {
     public static int UNIQUE_CARDS = getAllCardsOnce().size();
-    public static List<Card> ALL_CARDS_IMMUTABLE = Collections.unmodifiableList(getAllCards());
+    public static List<Card> ALL_CARDS_ONCE_IMMUTABLE = Collections.unmodifiableList(getAllCardsOnce());
 
     public static List<Card> getAllCards() {
         List<Card> allCards = new ArrayList<>();

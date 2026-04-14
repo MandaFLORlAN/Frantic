@@ -4,8 +4,10 @@ import Enums.Color;
 import Game.GameState;
 import Repository.CardDatabase;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public abstract class Card {
     protected String name;
@@ -44,15 +46,17 @@ public abstract class Card {
 
     public static Card fromString(String cardName) {
         if (cardName == null) return null;
-        List<Card> allCards = CardDatabase.ALL_CARDS_IMMUTABLE;
+        List<Card> allCards = CardDatabase.ALL_CARDS_ONCE_IMMUTABLE;
         for (Card card : allCards) {
             if (card.getName().equals(cardName)) {
-                return card;
+                return card.copyCard();
             }
             if (card instanceof WishCard wishCard) {
                 String subname = cardName.split(": ")[0];
                 boolean ram = Objects.equals(card.getName(), subname);
-                if (ram) return wishCard.getCard();
+                if (ram) {
+                    return card.copyCard();
+                }
             }
         }
         System.out.println("Card not found for:" + cardName);

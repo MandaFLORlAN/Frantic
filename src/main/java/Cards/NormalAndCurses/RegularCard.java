@@ -16,4 +16,9 @@ public class RegularCard extends Card {
         return false;
     }
 
+    @Override
+    public Card copyCard() {
+        return new RegularCard(this.number, this.color);
+    }
+
 }

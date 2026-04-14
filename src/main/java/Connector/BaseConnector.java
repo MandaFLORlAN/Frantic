@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class BaseConnector implements Connector {
     protected Game game;
-    protected Map<String, Player> players;
+    protected Map<String, Player> players = new HashMap<>();;
     protected List<String> playOrder = new ArrayList<>();
 
     public BaseConnector() {

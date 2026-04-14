@@ -23,11 +23,11 @@ public class Fantastic extends BasicWishcard {
 
     public void setNumber(int number) {
         this.number = number;
-        this.name += number;
+        this.name += ": " + number;
     }
 
     @Override
-    public Card getCard() {
+    public Card copyCard() {
         return new Fantastic();
     }
 }

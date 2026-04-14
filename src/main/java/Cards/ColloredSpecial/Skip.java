@@ -1,5 +1,6 @@
 package Cards.ColloredSpecial;
 
+import Cards.InterfacesGroundclass.Card;
 import Connector.Connector;
 import Enums.Color;
 import Game.GameState;
@@ -15,5 +16,10 @@ public class Skip extends BaseColoredSpecial{
         String target = super.getTarget(executorName, "Skip", connector, this, gs);
         if (target == null) return;
         connector.addPlayerToSkip(target);
+    }
+
+    @Override
+    public Card copyCard() {
+        return new Skip(this.color);
     }
 }

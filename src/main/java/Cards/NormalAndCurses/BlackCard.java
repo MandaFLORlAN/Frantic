@@ -16,6 +16,11 @@ public class BlackCard extends Card implements SpecialCard {
     }
 
     @Override
+    public Card copyCard() {
+        return new BlackCard(this.getNumber());
+    }
+
+    @Override
     public void executeSpecialFunction(String executorName, Connector connector, GameState gs) {
         connector.triggerEvent(executorName);
     }

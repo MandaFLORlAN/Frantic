@@ -14,4 +14,9 @@ public class FuckYou extends BasicCurse {
         return gs.getCards().get(executor).equals(10);
     }
 
+    @Override
+    public Card copyCard() {
+        return new FuckYou();
+    }
+
 }
