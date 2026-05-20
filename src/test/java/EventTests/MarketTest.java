@@ -23,9 +23,9 @@ public class MarketTest {
 
         connector.triggerEvent("threeCards", new Market());
 
-        assertTrue(threeCards.getCards().contains(new RegularCard(1, Color.BLUE)));
-        assertTrue(hasAll.getCards().contains(new RegularCard(2,Color.BLUE)));
-        assertTrue(fiveCards.getCards().contains(new RegularCard(3,Color.BLUE)));
-        assertTrue(tenCards.getCards().contains(new RegularCard(4,Color.BLUE)));
+        assertTrue(threeCards.getCards().contains(new RegularCard(2, Color.BLUE)));
+        assertTrue(hasAll.getCards().contains(new RegularCard(3,Color.BLUE)));
+        assertTrue(fiveCards.getCards().contains(new RegularCard(4,Color.BLUE)));
+        assertTrue(tenCards.getCards().contains(new RegularCard(5,Color.BLUE)));
     }
 }
