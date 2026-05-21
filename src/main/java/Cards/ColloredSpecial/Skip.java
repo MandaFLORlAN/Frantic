@@ -18,8 +18,4 @@ public class Skip extends BaseColoredSpecial{
         connector.addPlayerToSkip(target);
     }
 
-    @Override
-    public Card copyCard() {
-        return new Skip(this.color);
-    }
 }

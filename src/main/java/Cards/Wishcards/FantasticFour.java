@@ -31,9 +31,5 @@ public class FantasticFour extends Fantastic {
         }
         super.executeSpecialFunction(executorName, connector, gs);
     }
-    @Override
-    public Card copyCard() {
-        return new FantasticFour();
-    }
 
 }

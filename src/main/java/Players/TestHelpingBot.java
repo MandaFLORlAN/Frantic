@@ -14,9 +14,9 @@ public class TestHelpingBot extends RandomBot {
     }
 
     public boolean play(Card card) {
-        if(connector.wantsToPlay(this.getPlayerName(), card.getName())) {
+        if(connector.wantsToPlay(this.getPlayerName(), card)) {
             this.cards.remove(card);
-            connector.executeSpecialFunction(this.playerName, card.toString());
+            connector.executeSpecialFunction(this.playerName, card);
             return true;
         }
         return false;
@@ -46,26 +46,26 @@ public class TestHelpingBot extends RandomBot {
     }
 
     @Override
-    public List<String> getCardsToGiveAway(int numberOfCards) {
-        List<String> cardsToGiveAway = new ArrayList<>();
+    public List<Card> getCardsToGiveAway(int numberOfCards) {
+        List<Card> cardsToGiveAway = new ArrayList<>();
         if (this.cards.size()<numberOfCards) numberOfCards = this.cards.size();
         for (int i = 0; i < numberOfCards; i++) {
-            cardsToGiveAway.add(this.cards.get(i).toString());
+            cardsToGiveAway.add(this.cards.get(i));
         }
         return cardsToGiveAway;
     }
 
     @Override
-    public String drawRandomCard() {
+    public Card drawRandomCard() {
         if (this.cards.isEmpty()) {
             return null;
         }
-        return this.cards.getFirst().toString();
+        return this.cards.getFirst();
     }
 
     @Override
-    public List<String> choseCards(List<String> cards, int numberOfCards) {
-        List<String> chosenCards = new ArrayList<>();
+    public List<Card> choseCards(List<Card> cards, int numberOfCards) {
+        List<Card> chosenCards = new ArrayList<>();
         if (this.cards.size()<numberOfCards) numberOfCards = this.cards.size();
         for (int i = 0; i < numberOfCards; i++) {
             chosenCards.add(cards.get(i));

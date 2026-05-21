@@ -13,15 +13,15 @@ public class LogicBot1RandomGiveAways extends LogicBot1{
     }
 
     @Override
-    public List<String> getCardsToGiveAway(int numberOfCards) {
-        List<String> cardsToGiveAway = new ArrayList<>();
+    public List<Card> getCardsToGiveAway(int numberOfCards) {
+        List<Card> cardsToGiveAway = new ArrayList<>();
         if (this.cards.size()<numberOfCards) numberOfCards = this.cards.size();
         for (int i = 0; i <  numberOfCards; i++) {
-            cardsToGiveAway.add(this.cards.remove(new Random().nextInt(this.cards.size())).toString());
+            cardsToGiveAway.add(this.cards.remove(new Random().nextInt(this.cards.size())));
         }
         //cards will be taken in the transfer card method, they are removed to not be picked twice
-        for (String card : cardsToGiveAway) {
-            this.cards.add(Card.fromString(card));
+        for (Card card : cardsToGiveAway) {
+            this.cards.add(card);
         }
         return cardsToGiveAway;
     }

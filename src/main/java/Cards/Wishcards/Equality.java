@@ -23,8 +23,4 @@ public class Equality extends BasicWishcard {
         super.ExecuteWish(executorName, connector);
     }
 
-    @Override
-    public Card copyCard() {
-        return new Equality();
-    }
 }

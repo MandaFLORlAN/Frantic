@@ -17,8 +17,4 @@ public class Counterattack extends BasicWishcard {
         connector.wishUpdate(executorName, connector.getPlayerColorWish(executorName));
     }
 
-    @Override
-    public Card copyCard() {
-        return new Counterattack();
-    }
 }

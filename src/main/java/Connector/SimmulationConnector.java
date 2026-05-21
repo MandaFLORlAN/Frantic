@@ -6,7 +6,6 @@ import Statistics.StatisticsHandler;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.Period;
 import java.util.*;
 
 public class SimmulationConnector extends BaseConnector {
@@ -14,15 +13,19 @@ public class SimmulationConnector extends BaseConnector {
     private String logs;
     public void startStatisticGame(List<Player> players, StatisticsHandler statistics) {
         this.statistics = statistics;
+        LocalDateTime startTimestamp = LocalDateTime.now();
         LocalDateTime lastTimestamp = LocalDateTime.now();
         LocalDateTime now;
-        for (int i = 0; i < 100_000; i++) {
+        for (int i = 0; i <= 100_000; i++) {
 
-            if (i%100 == 0) {
+            if (i%1000== 0) {
                 System.out.println(i);
+                System.out.println("Players: " + players.size());
                 now = LocalDateTime.now();
-                Duration duration = Duration.between(lastTimestamp, now);
-                System.out.println(duration.getSeconds() + "," + duration.getNano());
+                Duration duration = Duration.between(startTimestamp, now);
+                Duration duration2 = Duration.between(lastTimestamp, now);
+                System.out.println("Since start: " + duration.getSeconds() + "," + duration.getNano());
+                System.out.println("Since last: " + duration2.getSeconds() + "," + duration2.getNano());
                 lastTimestamp = LocalDateTime.now();
             }
             super.startGame(players);
@@ -43,7 +46,7 @@ public class SimmulationConnector extends BaseConnector {
     }
 
     @Override
-    public boolean wantsToPlay(String playerName, String cardName) {
+    public boolean wantsToPlay(String playerName, Card cardName) {
         this.statistics.addMove();
         return super.wantsToPlay(playerName, cardName);
     }
@@ -53,6 +56,6 @@ public class SimmulationConnector extends BaseConnector {
         for (Player player : players.values()) {
             player.updateGameActions(message);
         }
-        logs += message + "\n";
+        /*logs += message + "\n";*/
     }
 }

@@ -13,7 +13,7 @@ public class Market extends BaseEvent {
         List<String> players = super.playersInOrders(connector, executor);
         List<Card> cardsToSale = connector.drawRandomCards(players.size());
         for (String player : players) {
-            Card card = Card.fromString(connector.getChosenCardsFromPlayer(player,cardsToSale,1).getFirst());
+            Card card = connector.getChosenCardsFromPlayer(player,cardsToSale,1).getFirst();
             connector.addCardToPlayer(player, card);
             cardsToSale.remove(card);
         }

@@ -15,15 +15,9 @@ public class JavaFxPlayer implements Player {
     protected GameState gameState;
 
 
-
-    public JavaFxPlayer(String playerName, Connector connector) {
-        this.playerName = playerName;
-        this.connector = connector;
-    }
-
     @Override
-    public void updateGamestate(String gameState) {
-        this.gameState = GameState.fromString(gameState);
+    public void updateGamestate(GameState gameState) {
+
     }
 
     @Override
@@ -32,17 +26,17 @@ public class JavaFxPlayer implements Player {
     }
 
     @Override
-    public void addCard(String cardName) {
+    public void addCard(Card card) {
 
     }
 
     @Override
-    public void addCard(String cardName, String message) {
+    public void addCard(Card card, String message) {
 
     }
 
     @Override
-    public void removeCard(String cardName) {
+    public void removeCard(Card cardName) {
 
     }
 
@@ -87,13 +81,13 @@ public class JavaFxPlayer implements Player {
     }
 
     @Override
-    public List<String> getCardsToGiveAway(int numberOfCards) {
+    public List<Card> getCardsToGiveAway(int numberOfCards) {
         return List.of();
     }
 
     @Override
-    public String drawRandomCard() {
-        return "";
+    public Card drawRandomCard() {
+        return null;
     }
 
     @Override
@@ -102,7 +96,7 @@ public class JavaFxPlayer implements Player {
     }
 
     @Override
-    public List<String> choseCards(List<String> cards, int numberOfCards) {
+    public List<Card> choseCards(List<Card> cards, int numberOfCards) {
         return List.of();
     }
 }

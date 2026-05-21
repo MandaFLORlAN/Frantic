@@ -15,8 +15,4 @@ public class TROUBLEMAKER extends BaseColoredSpecial{
         connector.triggerEvent(executorName);
     }
 
-    @Override
-    public Card copyCard() {
-        return new TROUBLEMAKER(this.color);
-    }
 }

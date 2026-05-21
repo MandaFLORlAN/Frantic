@@ -25,9 +25,9 @@ public class LogicBot1RandomMove extends LogicBot1 {
             return;
         }
         Card card = playableCards.get(new Random().nextInt(playableCards.size()));
-        if (connector.wantsToPlay(this.playerName, card.toString())) {
+        if (connector.wantsToPlay(this.playerName, card)) {
             this.cards.remove(card);
-            connector.executeSpecialFunction(this.playerName, card.toString());
+            connector.executeSpecialFunction(this.playerName, card);
         } else {
             connector.wantsToPlay(this.playerName, null);
         }

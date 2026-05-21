@@ -16,8 +16,4 @@ public class NiceTry extends BasicWishcard {
         connector.wishUpdate(executorName, connector.getPlayerColorWish(executorName));
     }
 
-    @Override
-    public Card copyCard() {
-        return new NiceTry();
-    }
 }

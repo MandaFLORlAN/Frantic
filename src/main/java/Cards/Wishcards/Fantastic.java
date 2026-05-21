@@ -26,8 +26,4 @@ public class Fantastic extends BasicWishcard {
         this.name += ": " + number;
     }
 
-    @Override
-    public Card copyCard() {
-        return new Fantastic();
-    }
 }

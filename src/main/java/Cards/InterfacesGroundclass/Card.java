@@ -44,24 +44,6 @@ public abstract class Card {
         return value;
     }
 
-    public static Card fromString(String cardName) {
-        if (cardName == null) return null;
-        List<Card> allCards = CardDatabase.ALL_CARDS_ONCE_IMMUTABLE;
-        for (Card card : allCards) {
-            if (card.getName().equals(cardName)) {
-                return card.copyCard();
-            }
-            if (card instanceof WishCard wishCard) {
-                String subname = cardName.split(": ")[0];
-                boolean ram = Objects.equals(card.getName(), subname);
-                if (ram) {
-                    return card.copyCard();
-                }
-            }
-        }
-        System.out.println("Card not found for:" + cardName);
-        return allCards.getFirst();
-    }
 
     @Override
     public boolean equals(Object obj) {

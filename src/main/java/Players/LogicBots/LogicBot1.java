@@ -27,10 +27,10 @@ public class LogicBot1 extends RandomBot {
         this.cards = sortCardsLikeMe(this.cards);
         for (Card card : cards) {
             if (card.isPlayable(this.gameState, this.playerName)) {
-                if (connector.wantsToPlay(this.playerName, card.toString())) {
+                if (connector.wantsToPlay(this.playerName, card)) {
                     this.cards.remove(card);
                     this.cardInPlay = card;
-                    connector.executeSpecialFunction(this.playerName, card.toString());
+                    connector.executeSpecialFunction(this.playerName, card);
                     return;
                 } else {
                     connector.wantsToPlay(this.playerName, null);
@@ -99,11 +99,11 @@ public class LogicBot1 extends RandomBot {
     }
 
     @Override
-    public List<String> getCardsToGiveAway(int numberOfCards) {
+    public List<Card> getCardsToGiveAway(int numberOfCards) {
         if (this.cards.size()<numberOfCards) numberOfCards = this.cards.size();
-        List<String> cardsToGiveAway = new ArrayList<>();
+        List<Card> cardsToGiveAway = new ArrayList<>();
         for (int i=0; i<numberOfCards; i++) {
-            cardsToGiveAway.add(this.cards.get(i).toString());
+            cardsToGiveAway.add(this.cards.get(i));
         }
         return cardsToGiveAway;
     }
