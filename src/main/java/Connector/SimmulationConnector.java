@@ -16,11 +16,10 @@ public class SimmulationConnector extends BaseConnector {
         LocalDateTime startTimestamp = LocalDateTime.now();
         LocalDateTime lastTimestamp = LocalDateTime.now();
         LocalDateTime now;
-        for (int i = 0; i <= 100_000; i++) {
+        for (int i = 0; i <= 1_000_000; i++) {
 
-            if (i%1000== 0) {
+            if (i%10_000== 0) {
                 System.out.println(i);
-                System.out.println("Players: " + players.size());
                 now = LocalDateTime.now();
                 Duration duration = Duration.between(startTimestamp, now);
                 Duration duration2 = Duration.between(lastTimestamp, now);

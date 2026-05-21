@@ -14,10 +14,12 @@ public class SimulationMain {
         SimmulationConnector connector = new SimmulationConnector();
         StatisticsHandler statisticsHandler = new StatisticsHandler();
         players.add(new LogicBot1("LogicBot1", connector));
-        players.add(new LogicBot1RandomGiveAways("LogicBot1RandomGiveAways", connector));
-        players.add(new LogicBot1RandomMove("LogicBot1RandomMove", connector));
-        players.add(new LogicBot1RandomTargets("LogicBot1RandomTargets", connector));
-        players.add(new LogicBot1RandomWishes("LogicBot1RandomWishes", connector));
+        players.add(new LogicBot1("LogicBot2", connector));
+        players.add(new LogicBot1("LogicBot3", connector));
+        players.add(new DummyBot("DummyBot1", connector));
+        players.add(new DummyBot("DummyBot2", connector));
+
+
         connector.startStatisticGame(players, statisticsHandler);
         statisticsHandler.printStatistics();//134,516 ->
     }

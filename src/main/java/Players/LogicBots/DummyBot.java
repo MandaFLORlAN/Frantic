@@ -4,6 +4,7 @@ import Cards.InterfacesGroundclass.Card;
 import Cards.NormalAndCurses.BlackCard;
 import Connector.Connector;
 import Enums.Color;
+
 import Enums.FantasticOptions;
 import Players.RandomBot;
 
@@ -14,16 +15,17 @@ import java.util.Map;
 import static Players.CardSorter.groupByColor;
 import static Players.CardSorter.sortCardsLikeMe;
 
-public class LogicBot1 extends RandomBot {
+public class DummyBot extends LogicBot1 {
 
-    public LogicBot1(String playerName, Connector connector) {
+    public DummyBot(String playerName, Connector connector) {
         super(playerName, connector);
     }
 
     @Override
     public void playMove() {
         this.cards = sortCardsLikeMe(this.cards);
-        for (Card card : cards) {
+        for (int i = 1; i <= this.cards.size(); i++) {
+            Card card = this.cards.get(cards.size() - i);
             if (card.isPlayable(this.gameState, this.playerName)) {
                 if (connector.wantsToPlay(this.playerName, card)) {
                     this.cards.remove(card);
@@ -56,18 +58,18 @@ public class LogicBot1 extends RandomBot {
     @Override
     public String wishColor() {
         Map<Color, List<Card>> groupedCards = groupByColor(this.cards);
-        int max = 0;
-        Color maxColor = null;
+        int min = this.cards.size();
+        Color minColor = null;
         for (Color c : groupedCards.keySet()) {
-            if (groupedCards.get(c).size() > max) {
-                max = groupedCards.get(c).size();
-                maxColor = c;
+            if (groupedCards.get(c).size() < min) {
+                min = groupedCards.get(c).size();
+                minColor = c;
             }
         }
-        if (maxColor == null) {
+        if (minColor == null) {
             return super.wishColor();
         }
-        return maxColor.toString();
+        return minColor.toString();
     }
 
     @Override
@@ -78,17 +80,17 @@ public class LogicBot1 extends RandomBot {
             players.add(playerName);
             return super.getTargets(message, numberOfTargets);
         } else {
-            int minCards = Integer.MAX_VALUE;
-            String minPlayer = "";
+            int maxCards = 0;
+            String maxPlayer = "";
             for (String player : players) {
-                if (gameState.getCards().get(player) < minCards) {
-                    minCards = gameState.getCards().get(player);
-                    minPlayer = player;
+                if (gameState.getCards().get(player) > maxCards) {
+                    maxCards = gameState.getCards().get(player);
+                    maxPlayer = player;
                 }
             }
             List<String> targets = new ArrayList<>();
             for (int i=0; i<numberOfTargets; i++) {
-                targets.add(minPlayer);//TODO make more precise to attack multiple persons with low cards
+                targets.add(maxPlayer);//TODO make more precise to attack multiple persons with low cards
             }
             players.add(playerName);
             return targets;
@@ -100,7 +102,7 @@ public class LogicBot1 extends RandomBot {
         if (this.cards.size()<numberOfCards) numberOfCards = this.cards.size();
         List<Card> cardsToGiveAway = new ArrayList<>();
         for (int i=0; i<numberOfCards; i++) {
-            cardsToGiveAway.add(this.cards.get(i));
+            cardsToGiveAway.add(this.cards.get(this.cards.size() - i - 1));
         }
         return cardsToGiveAway;
     }
