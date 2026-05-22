@@ -99,10 +99,5 @@ public class JavaFxPlayer implements Player {
     public List<Card> choseCards(List<Card> cards, int numberOfCards) {
         return List.of();
     }
-}
 
-/*
-try{
-Thread.sleep(500);
-}catch(InterruptedException e){}
-*/
+}

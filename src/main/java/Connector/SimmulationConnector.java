@@ -28,6 +28,7 @@ public class SimmulationConnector extends BaseConnector {
                 lastTimestamp = LocalDateTime.now();
             }
             super.startGame(players);
+            logs = "";
         }
     }
 

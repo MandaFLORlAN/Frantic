@@ -3,7 +3,7 @@ package Statistics;
 import Connector.SimmulationConnector;
 import Players.*;
 
-import Players.LogicBots.*;
+import Players.Bots.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class SimulationMain {
         StatisticsHandler statisticsHandler = new StatisticsHandler();
         players.add(new LogicBot1("LogicBot1", connector));
         players.add(new LogicBot1("LogicBot2", connector));
-        players.add(new LogicBot1("LogicBot3", connector));
+        players.add(new AmandaBot("AmandaBot", connector));
         players.add(new DummyBot("DummyBot1", connector));
         players.add(new DummyBot("DummyBot2", connector));
 

@@ -1,7 +1,7 @@
 package Statistics;
 
 import Connector.PointBasedConnector;
-import Players.LogicBots.*;
+import Players.Bots.*;
 import Players.Player;
 
 import java.util.ArrayList;

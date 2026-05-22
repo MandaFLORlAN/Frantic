@@ -20,7 +20,10 @@ public class SurpriseParty extends BaseEvent {
             giveAwayTriples.add(new CardsToGiveAway(cards, player, target));
         }
         for (CardsToGiveAway triples : giveAwayTriples) {
+            try {
             connector.transferCardFromPlayerToPlayer(triples.cards(), triples.giver(), triples.reciever());
-        }
+        }catch (Exception e) {
+                System.out.println("Breackpoint");
+            }        }
     }
 }

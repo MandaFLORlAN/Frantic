@@ -1,4 +1,4 @@
-package Players.LogicBots;
+package Players.Bots;
 
 import Cards.InterfacesGroundclass.Card;
 import Cards.NormalAndCurses.BlackCard;

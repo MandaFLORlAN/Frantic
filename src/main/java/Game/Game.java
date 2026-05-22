@@ -67,6 +67,7 @@ public class Game {
     }
 
     protected void resetGame() {
+        startOffset = this.players.size();
         if (TESTCASE) {
             this.unusedCards = CardDatabase.getAllCards();
             this.unusedEvents = CardDatabase.getAllEvents();

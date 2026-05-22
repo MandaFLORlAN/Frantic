@@ -1,4 +1,4 @@
-package Players.LogicBots;
+package Players.Bots;
 
 import Cards.InterfacesGroundclass.Card;
 import Cards.NormalAndCurses.BlackCard;
@@ -6,7 +6,6 @@ import Connector.Connector;
 import Enums.Color;
 
 import Enums.FantasticOptions;
-import Players.RandomBot;
 
 import java.util.ArrayList;
 import java.util.List;
