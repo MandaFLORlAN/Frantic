@@ -10,6 +10,7 @@ import Cards.NormalAndCurses.RegularCard;
 import Cards.Wishcards.Counterattack;
 import Cards.Wishcards.NiceTry;
 import Enums.Color;
+import GeneticAlgorythem.CardGenetic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -128,5 +129,18 @@ public class CardSorter {
             groupedCards.get(card.getColor()).add(card);
         }
         return groupedCards;
+    }
+
+    public static List<Card> sortCardsByGenes(List<Card> cards, CardGenetic cardGenetic) {
+        List<Card> returnList = new ArrayList<>();
+        List<String> order = cardGenetic.getOrder();
+        for (String cardName : order) {
+            for (Card card : cards) {
+                if (card.getName().equals(cardName)) {
+                    returnList.add(card);
+                }
+            }
+        }
+        return returnList;
     }
 }

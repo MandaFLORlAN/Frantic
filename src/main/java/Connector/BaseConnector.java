@@ -11,10 +11,7 @@ import Enums.FantasticOptions;
 import Game.*;
 import Repository.FranticConfigs;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BaseConnector implements Connector {
     protected Game game;
@@ -32,6 +29,7 @@ public class BaseConnector implements Connector {
             this.players.put(p.getPlayerName(), p);
             this.playOrder.add(p.getPlayerName());
         }
+        Collections.shuffle(this.playOrder);
         this.game = new Game(this.playOrder, this, FranticConfigs.NUMBER_OF_START_CARDS);
         for (Player player : players) {
             player.clearCards();
@@ -194,7 +192,6 @@ public class BaseConnector implements Connector {
 
     @Override
     public void niceTry(List<String> alemostWinners, String executor) {
-        this.players.get(executor).removeCard(new NiceTry());
         this.game.cardThrownIn(executor, new NiceTry());
         new NiceTry().executeSpecialFunction(executor, this, this.game.getGameState());
         for (String alemostWinner : alemostWinners) {

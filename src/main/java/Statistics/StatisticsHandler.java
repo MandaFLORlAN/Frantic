@@ -50,7 +50,7 @@ public class StatisticsHandler {
             }
         }
         for (Player winner: players.keySet()) {
-            System.out.println(winner + ": " + players.get(winner) +  ", " + ((double)players.get(winner)/allWinners)*100 + "%");
+            System.out.println(winner + ": " + players.get(winner) +  ", " + ((double)players.get(winner)/allWinners) * 100 + "%");
         }
         System.out.println("average moves:" + allMoves/this.games.size());
         System.out.println("average winners:" + allWinners/(double)this.games.size());

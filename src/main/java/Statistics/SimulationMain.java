@@ -1,6 +1,8 @@
 package Statistics;
 
 import Connector.SimmulationConnector;
+import GeneticAlgorythem.CardGenetic;
+import GeneticAlgorythem.GeneticBot;
 import Players.*;
 
 import Players.Bots.*;
@@ -13,11 +15,16 @@ public class SimulationMain {
         List<Player> players = new ArrayList<>();
         SimmulationConnector connector = new SimmulationConnector();
         StatisticsHandler statisticsHandler = new StatisticsHandler();
-        players.add(new LogicBot1("LogicBot1", connector));
-        players.add(new LogicBot1("LogicBot2", connector));
-        players.add(new AmandaBot("AmandaBot", connector));
-        players.add(new DummyBot("DummyBot1", connector));
-        players.add(new DummyBot("DummyBot2", connector));
+        players.add(new GeneticBot("Gen1", connector, CardGenetic.getRandomeCardGenetic()));
+        players.add(new GeneticBot("Gen2", connector, CardGenetic.getRandomeCardGenetic()));
+        players.add(new GeneticBot("Gen3", connector, CardGenetic.getRandomeCardGenetic()));
+        players.add(new GeneticBot("Gen4", connector, CardGenetic.getRandomeCardGenetic()));
+        players.add(new GeneticBot("Gen5", connector, CardGenetic.getRandomeCardGenetic()));
+        players.add(new GeneticBot("Gen6", connector, CardGenetic.getRandomeCardGenetic()));
+        players.add(new GeneticBot("Gen7", connector, CardGenetic.getRandomeCardGenetic()));
+        players.add(new GeneticBot("Gen8", connector, CardGenetic.getRandomeCardGenetic()));
+        players.add(new GeneticBot("Gen9", connector, CardGenetic.getRandomeCardGenetic()));
+        players.add(new GeneticBot("Gen0", connector, CardGenetic.getRandomeCardGenetic()));
 
 
         connector.startStatisticGame(players, statisticsHandler);
