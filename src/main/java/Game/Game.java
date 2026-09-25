@@ -179,52 +179,51 @@ public class Game {
     }
 
     public void updateWish(FantasticOptions fantasticOptions) {
-        if (this.lastPlayedCard instanceof Fantastic) {
             switch (fantasticOptions) {
                 case ONE:
-                    ((Fantastic) this.lastPlayedCard).setNumber(1);
+                    this.gameState.setPlayableNumber(1);
                     break;
                 case TWO:
-                    ((Fantastic) this.lastPlayedCard).setNumber(2);
+                    this.gameState.setPlayableNumber(2);
                     break;
                 case THREE:
-                    ((Fantastic) this.lastPlayedCard).setNumber(3);
+                    this.gameState.setPlayableNumber(3);
                     break;
                 case FOUR:
-                    ((Fantastic) this.lastPlayedCard).setNumber(4);
+                    this.gameState.setPlayableNumber(4);
                     break;
                 case FIVE:
-                    ((Fantastic) this.lastPlayedCard).setNumber(5);
+                    this.gameState.setPlayableNumber(5);
                     break;
                 case SIX:
-                    ((Fantastic) this.lastPlayedCard).setNumber(6);
+                    this.gameState.setPlayableNumber(6);
                     break;
                 case SEVEN:
-                    ((Fantastic) this.lastPlayedCard).setNumber(7);
+                    this.gameState.setPlayableNumber(7);
                     break;
                 case EIGHT:
-                    ((Fantastic) this.lastPlayedCard).setNumber(8);
+                    this.gameState.setPlayableNumber(8);
                     break;
                 case NINE:
-                    ((Fantastic) this.lastPlayedCard).setNumber(9);
+                    this.gameState.setPlayableNumber(9);
                     break;
                 case TEN:
-                    ((Fantastic) this.lastPlayedCard).setNumber(10);
+                    this.gameState.setPlayableNumber(10);
                     break;
                 case BLUE:
-                    ((Fantastic) this.lastPlayedCard).setColor(Color.BLUE);
+                    this.gameState.setPlayableColor(Color.BLUE);
                     break;
                 case RED:
-                    ((Fantastic) this.lastPlayedCard).setColor(Color.RED);
+                    this.gameState.setPlayableColor(Color.RED);
                     break;
                 case GREEN:
-                    ((Fantastic) this.lastPlayedCard).setColor(Color.GREEN);
+                    this.gameState.setPlayableColor(Color.GREEN);
                     break;
                 case YELLOW:
-                    ((Fantastic) this.lastPlayedCard).setColor(Color.YELLOW);
+                    this.gameState.setPlayableColor(Color.YELLOW);
                     break;
                 case PURPLE:
-                    ((Fantastic) this.lastPlayedCard).setColor(Color.PURPLE);
+                    this.gameState.setPlayableColor(Color.PURPLE);
                     break;
             }
             updateGameState();

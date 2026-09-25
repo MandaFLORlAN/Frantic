@@ -19,12 +19,6 @@ public abstract class BasicWishcard extends BasicAttackCard implements WishCard,
     }
 
     @Override
-    public void setColor(Color color) {
-        this.color = color;
-        this.name += ": " + color.toString() ;
-    }
-
-    @Override
     public boolean isPlayable(GameState gs, String executor) {
         return true;
     }

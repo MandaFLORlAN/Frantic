@@ -22,11 +22,11 @@ public class CardDatabase {
     public static List<Card> getAllCards() {
         List<Card> allCards = new ArrayList<>();
         allCards.addAll(createRegularCards());
-        allCards.addAll(createBlackCards());
+/*        allCards.addAll(createBlackCards());
         allCards.addAll(createFantasticCards());
         allCards.addAll(createColorefullSpecialCards());
         allCards.addAll(createColoredSpecialCards());
-        allCards.addAll(createCurses());
+        allCards.addAll(createCurses());*/
         return allCards;
     }
 
