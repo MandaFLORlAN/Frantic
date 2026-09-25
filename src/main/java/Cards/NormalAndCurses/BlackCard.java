@@ -15,6 +15,7 @@ public class BlackCard extends Card implements SpecialCard {
         return gs.getPlayableNumber() == this.getNumber();
     }
 
+
     @Override
     public void executeSpecialFunction(String executorName, Connector connector, GameState gs) {
         connector.triggerEvent(executorName);

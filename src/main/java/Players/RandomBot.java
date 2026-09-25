@@ -1,6 +1,7 @@
 package Players;
 
 import Cards.InterfacesGroundclass.Card;
+import Cards.InterfacesGroundclass.WishCard;
 import Cards.Wishcards.Counterattack;
 import Connector.Connector;
 import Enums.Color;
@@ -25,8 +26,8 @@ public class RandomBot implements Player{
     }
 
     @Override
-    public void updateGamestate(String gameState) {
-        this.gameState = GameState.fromString(gameState);
+    public void updateGamestate(GameState gameState) {
+        this.gameState = gameState;
     }
 
     @Override
@@ -35,21 +36,19 @@ public class RandomBot implements Player{
     }
 
     @Override
-    public void addCard(String cardName) {
-        this.cards.add(Card.fromString(cardName));
+    public void addCard(Card card) {
+        this.cards.add(card);
     }
 
     @Override
-    public void addCard(String cardName, String message) {
-        this.addCard(cardName);
+    public void addCard(Card card, String message) {
+        this.addCard(card);
     }
 
     @Override
-    public void removeCard(String cardName) {
-        if (this.cards.contains(Card.fromString(cardName))) {
-            this.cards.remove(Card.fromString(cardName));
-        } else {
-            System.out.println("Card not found: " + cardName);
+    public void removeCard(Card card) {
+        if (!this.cards.remove(card)) {
+            System.out.println("Card not found: " + card.getName());
         }
     }
 
@@ -66,9 +65,9 @@ public class RandomBot implements Player{
             return;
         }
         Card card = playableCards.get(new Random().nextInt(playableCards.size()));
-        if (connector.wantsToPlay(this.playerName, card.toString())) {
+        if (connector.wantsToPlay(this.playerName, card)) {
             this.cards.remove(card);
-            connector.executeSpecialFunction(this.playerName, card.toString());
+            connector.executeSpecialFunction(this.playerName, card);
         } else {
             connector.wantsToPlay(this.playerName, null);
         }
@@ -113,25 +112,25 @@ public class RandomBot implements Player{
     }
 
     @Override
-    public List<String> getCardsToGiveAway(int numberOfCards) {
-        List<String> cardsToGiveAway = new ArrayList<>();
+    public List<Card> getCardsToGiveAway(int numberOfCards) {
+        List<Card> cardsToGiveAway = new ArrayList<>();
         if (this.cards.size()<numberOfCards) numberOfCards = this.cards.size();
         for (int i = 0; i <  numberOfCards; i++) {
-            cardsToGiveAway.add(this.cards.remove(new Random().nextInt(this.cards.size())).toString());
+            cardsToGiveAway.add(this.cards.remove(new Random().nextInt(this.cards.size())));
         }
         //cards will be taken in the transfer card method, they are removed to not be picked twice
-        for (String card : cardsToGiveAway) {
-            this.cards.add(Card.fromString(card));
+        for (Card card : cardsToGiveAway) {
+            this.cards.add(card);
         }
         return cardsToGiveAway;
     }
 
     @Override
-    public String drawRandomCard() {
+    public Card drawRandomCard() {
         if (this.cards.isEmpty()) {
             return null;
         }
-        return this.cards.get(new Random().nextInt(this.cards.size())).toString();
+        return this.cards.get(new Random().nextInt(this.cards.size()));
     }
 
     @Override
@@ -145,9 +144,9 @@ public class RandomBot implements Player{
     }
 
     @Override
-    public List<String> choseCards(List<String> cards, int numberOfCards) {
+    public List<Card> choseCards(List<Card> cards, int numberOfCards) {
         Random r = new Random();
-        List<String> chosenCards = new ArrayList<>();
+        List<Card> chosenCards = new ArrayList<>();
         for (int i  = 0; i < numberOfCards; i++) {
             chosenCards.add(cards.get(r.nextInt(cards.size())));
         }

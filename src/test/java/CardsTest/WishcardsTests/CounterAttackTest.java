@@ -28,7 +28,7 @@ public class CounterAttackTest {
         assertEquals(Color.BLUE, connector.getGame().getGameState().getPlayableColor());
         assertFalse(hasAll.getCards().contains(new Counterattack()));
 
-        hasAll.addCard("Counterattack");
+        hasAll.addCard(new Counterattack());
         assertTrue(hasAll.getCards().contains(new Counterattack()));
         assertTrue(hasAll.wantToBlock("Gift"));
         assertFalse(hasAll.getCards().contains(new Counterattack()));

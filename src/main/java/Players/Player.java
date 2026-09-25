@@ -1,16 +1,17 @@
 package Players;
 
 import Cards.InterfacesGroundclass.Card;
+import Game.GameState;
 
 import java.util.List;
 
 public interface Player {
     //basic Gameloop
-    void updateGamestate(String gameState);
+    void updateGamestate(GameState gameState);
     void updateGameActions(String Message);
-    void addCard(String cardName);
-    void addCard(String cardName, String message);
-    void removeCard(String cardName);
+    void addCard(Card card);
+    void addCard(Card card, String message);
+    void removeCard(Card cardName);
     void playMove();
     void clearCards();
     String getPlayerName();
@@ -20,8 +21,8 @@ public interface Player {
     String fantasticWish();
     String wishColor();
     List<String> getTargets(String message, int numberOfTargets);
-    List<String> getCardsToGiveAway(int numberOfCards);
-    String drawRandomCard();
+    List<Card> getCardsToGiveAway(int numberOfCards);
+    Card drawRandomCard();
     boolean wantToBlock(String attackCard);
-    List<String> choseCards(List<String> cards, int numberOfCards);
+    List<Card> choseCards(List<Card> cards, int numberOfCards);
 }

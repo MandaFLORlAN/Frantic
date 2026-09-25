@@ -1,8 +1,6 @@
 package Players;
 
-import Cards.NormalAndCurses.BlackCard;
 import Cards.InterfacesGroundclass.Card;
-import Cards.InterfacesGroundclass.SpecialCard;
 import Connector.Connector;
 import Enums.Color;
 import Enums.FantasticOptions;
@@ -35,9 +33,9 @@ public class HumanPlayer extends RandomBot {
             connector.wantsToPlay(this.playerName, null);
         } else {
             Card card = playableCards.get(move);
-            if (connector.wantsToPlay(this.playerName, card.toString())) {
+            if (connector.wantsToPlay(this.playerName, card)) {
                 this.cards.remove(card);
-                connector.executeSpecialFunction(this.playerName, card.toString());
+                connector.executeSpecialFunction(this.playerName, card);
             }
         }
     }
@@ -62,11 +60,11 @@ public class HumanPlayer extends RandomBot {
     }
 
     @Override
-    public List<String> getCardsToGiveAway(int numberOfCards) {
+    public List<Card> getCardsToGiveAway(int numberOfCards) {
         if (numberOfCards > this.cards.size()) {
             numberOfCards = this.cards.size();
         }
-        List<String> cardsToGiveAway = new ArrayList<>();
+        List<Card> cardsToGiveAway = new ArrayList<>();
         List<Integer> indexesToGive = new ArrayList<>();
         for (int i = 0; i < this.cards.size(); i++) {
             System.out.println(cards.get(i).toString() + ": " + i);
@@ -85,7 +83,7 @@ public class HumanPlayer extends RandomBot {
             }
         }
         for (Integer index : indexesToGive) {
-            cardsToGiveAway.add(cards.get(index).toString());
+            cardsToGiveAway.add(cards.get(index));
         }
         return cardsToGiveAway;
     }
@@ -121,9 +119,9 @@ public class HumanPlayer extends RandomBot {
     }
 
     @Override
-    public void addCard(String cardName, String message) {
+    public void addCard(Card card, String message) {
         System.out.println(message);
-        super.addCard(cardName);
+        super.addCard(card);
     }
 
     @Override
@@ -149,11 +147,11 @@ public class HumanPlayer extends RandomBot {
     }
 
     @Override
-    public List<String> choseCards(List<String> cards, int numberOfCards) {
+    public List<Card> choseCards(List<Card> cards, int numberOfCards) {
         if (numberOfCards > cards.size()) {
             numberOfCards = cards.size();
         }
-        List<String> cardsToGiveAway = new ArrayList<>();
+        List<Card> cardsToGiveAway = new ArrayList<>();
         List<Integer> indexesToGive = new ArrayList<>();
         for (int i = 0; i < cards.size(); i++) {
             System.out.println(cards.get(i).toString() + ": " + i);
@@ -172,7 +170,7 @@ public class HumanPlayer extends RandomBot {
             }
         }
         for (Integer index : indexesToGive) {
-            cardsToGiveAway.add(cards.get(index).toString());
+            cardsToGiveAway.add(cards.get(index));
         }
         return cardsToGiveAway;
     }

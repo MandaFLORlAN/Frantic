@@ -1,5 +1,6 @@
 package Cards.Wishcards;
 
+import Cards.InterfacesGroundclass.Card;
 import Connector.Connector;
 import Game.GameState;
 
@@ -30,4 +31,5 @@ public class FantasticFour extends Fantastic {
         }
         super.executeSpecialFunction(executorName, connector, gs);
     }
+
 }

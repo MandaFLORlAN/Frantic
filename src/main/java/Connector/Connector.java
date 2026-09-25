@@ -18,8 +18,8 @@ public interface Connector {
     void updateGamestate(GameState gameState);
     void tellAllPlayers(String message);
     //Methods used by Player
-    boolean wantsToPlay(String playerName, String cardName);
-    void executeSpecialFunction(String playerName, String cardName);
+    boolean wantsToPlay(String playerName, Card card);
+    void executeSpecialFunction(String playerName, Card card);
     //Methods used by SpecialCards
     Color getPlayerColorWish(String playerName);
     void wishUpdate(String executorName, Color color);
@@ -35,7 +35,7 @@ public interface Connector {
     void triggerEvent(String executor);
     boolean wantToBlock(String player, String attackCard);
     void niceTry(List<String> alemostWinners, String executor);
-    List<String> getChosenCardsFromPlayer(String player, List<Card> cards, int numberOfCards);
+    List<Card> getChosenCardsFromPlayer(String player, List<Card> cards, int numberOfCards);
     //Methods for Events
     List<String> getAllPlayerNames();
     List<Card> getAllCardsOfPlayer(String playerName);

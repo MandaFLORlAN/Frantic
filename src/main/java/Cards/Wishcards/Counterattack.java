@@ -1,6 +1,7 @@
 package Cards.Wishcards;
 
 import Cards.InterfacesGroundclass.BasicWishcard;
+import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.SpecialCard;
 import Connector.Connector;
 import Game.GameState;
@@ -15,4 +16,5 @@ public class Counterattack extends BasicWishcard {
     public void executeSpecialFunction(String executorName, Connector connector, GameState gs) {
         connector.wishUpdate(executorName, connector.getPlayerColorWish(executorName));
     }
+
 }

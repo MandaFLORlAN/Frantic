@@ -1,6 +1,7 @@
 package Cards.Wishcards;
 
 import Cards.InterfacesGroundclass.BasicWishcard;
+import Cards.InterfacesGroundclass.Card;
 import Cards.InterfacesGroundclass.SpecialCard;
 import Connector.Connector;
 import Game.GameState;

@@ -1,4 +1,4 @@
-package Players.LogicBots;
+package Players.Bots;
 
 import Connector.Connector;
 import Enums.Color;

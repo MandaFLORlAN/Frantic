@@ -4,19 +4,33 @@ import Cards.InterfacesGroundclass.Card;
 import Players.Player;
 import Statistics.StatisticsHandler;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class SimmulationConnector extends BaseConnector {
     private StatisticsHandler statistics;
+    private String logs = "";
     public void startStatisticGame(List<Player> players, StatisticsHandler statistics) {
         this.statistics = statistics;
-        for (int i = 0; i < 10_000; i++) {
-            if (i%1_000 == 0) System.out.println(i);
+        LocalDateTime startTimestamp = LocalDateTime.now();
+        LocalDateTime lastTimestamp = LocalDateTime.now();
+        LocalDateTime now;
+        for (int i = 0; i <= 1000_000; i++) {
+
+            if (i%100_000== 0) {
+                System.out.println(i);
+                now = LocalDateTime.now();
+                Duration duration = Duration.between(startTimestamp, now);
+                Duration duration2 = Duration.between(lastTimestamp, now);
+                System.out.println("Since start: " + duration.getSeconds() + "," + duration.getNano());
+                System.out.println("Since last: " + duration2.getSeconds() + "," + duration2.getNano());
+                lastTimestamp = LocalDateTime.now();
+            }
             super.startGame(players);
+            /*logs = "";*/
         }
+        System.out.println(logs);
     }
 
     @Override
@@ -33,8 +47,16 @@ public class SimmulationConnector extends BaseConnector {
     }
 
     @Override
-    public boolean wantsToPlay(String playerName, String cardName) {
+    public boolean wantsToPlay(String playerName, Card cardName) {
         this.statistics.addMove();
         return super.wantsToPlay(playerName, cardName);
+    }
+
+    @Override
+    public void tellAllPlayers(String message) {
+        for (Player player : players.values()) {
+            player.updateGameActions(message);
+        }
+        /*logs += message + "\n";*/
     }
 }

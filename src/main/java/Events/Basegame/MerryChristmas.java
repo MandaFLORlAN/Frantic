@@ -6,43 +6,29 @@ import Events.BaseEvent;
 import Events.CardsToGiveAway;
 import Game.GameState;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MerryChristmas extends BaseEvent {
 
     @Override
     public void executeEvent(Connector connector, String executor, GameState gameState) {
-        List<CardsToGiveAway> cardsToGiveAway = new ArrayList<>();
-        for (String playerName : connector.getAllPlayerNames()) {
-            List<String> targets = connector.getPlayerTargets(playerName,
-                    "Merry christmas",
-                    gameState.getCards().get(playerName));
-            Map<String, List<Card>> cardsToTarget = new HashMap<>();
-            List<Card> cardsOfPlayer = connector.getAllCardsOfPlayer(playerName);
-            for (int i = 0; i < targets.size(); i++) {
-                String target = targets.get(i);
-                if (!cardsToTarget.containsKey(target)) {
-                    cardsToTarget.put(target, new ArrayList<>());
+            List<String> players = connector.getAllPlayerNames();
+            List<CardsToGiveAway> cardTransactions = new ArrayList<>();
+            for (String player : players) {
+                List<Card> cardsOfPlayer = connector.getAllCardsOfPlayer(player);
+                List<String> targets = connector.getPlayerTargets(player,
+                        "Merry christmas", cardsOfPlayer.size());
+                for (int i = 0; i < targets.size(); i++) {
+                    cardTransactions.add(new CardsToGiveAway(Collections.singletonList(cardsOfPlayer.get(i)),player, targets.get(i)));
                 }
-                cardsToTarget.get(target).add(cardsOfPlayer.get(i));
             }
-            for (String target : cardsToTarget.keySet()) {
-                cardsToGiveAway.add(new CardsToGiveAway(
-                        cardsToTarget.get(target),
-                        playerName,
-                        target
-                ));
+            for (CardsToGiveAway cardFromTo : cardTransactions) {
+                connector.transferCardFromPlayerToPlayer(
+                        cardFromTo.cards(),
+                        cardFromTo.giver(),
+                        cardFromTo.reciever()
+                );
             }
-        }
-        for (CardsToGiveAway cards : cardsToGiveAway) {
-            connector.transferCardFromPlayerToPlayer(
-                    cards.cards(),
-                    cards.giver(),
-                    cards.reciever()
-            );
-        }
     }
+
 }

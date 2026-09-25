@@ -1,16 +1,15 @@
-package Statistics;
+package GeneticAlgorythem;
 
 import Connector.SimmulationConnector;
-import GeneticAlgorythem.CardGenetic;
-import GeneticAlgorythem.GeneticBot;
-import Players.*;
-
-import Players.Bots.*;
+import Players.Bots.LogicBot1;
+import Players.Player;
+import Players.RandomBot;
+import Statistics.StatisticsHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimulationMain {
+public class GeneticMain {
     public static void main(String[] args) {
         List<Player> players = new ArrayList<>();
         SimmulationConnector connector = new SimmulationConnector();
@@ -23,11 +22,14 @@ public class SimulationMain {
         players.add(new GeneticBot("Gen6", connector, CardGenetic.getRandomeCardGenetic()));
         players.add(new GeneticBot("Gen7", connector, CardGenetic.getRandomeCardGenetic()));
         players.add(new GeneticBot("Gen8", connector, CardGenetic.getRandomeCardGenetic()));
-        players.add(new GeneticBot("Gen9", connector, CardGenetic.getRandomeCardGenetic()));
-        players.add(new GeneticBot("Gen0", connector, CardGenetic.getRandomeCardGenetic()));
+        players.add(new RandomBot("Gen9", connector));
+        players.add(new LogicBot1("Logic Bot", connector));
 
 
         connector.startStatisticGame(players, statisticsHandler);
         statisticsHandler.printStatistics();//134,516 ->
+        for (Player player : statisticsHandler.getRanking()) {
+            System.out.println(player.getPlayerName());
+        }
     }
 }
