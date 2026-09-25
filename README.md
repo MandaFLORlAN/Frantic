@@ -26,3 +26,11 @@ Handles communication between the Player and the Game as well as special Cards.
 Mainly serves so that if the interface changes to a possible graphical interface, 
 the cards and Game remain the same.
 Due to the Idea to add a web version the Player may only communicate by Strings or booleans.
+
+
+### TODOLIST
+-rework responsibilities so that game controlls game and connector just connects player to game,
+cards event, directly in game
+-add manager class to extract functuality from connector
+-implement genetic learning
+-add additional cards
