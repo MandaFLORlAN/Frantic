@@ -45,14 +45,14 @@ public class BaseConnector implements Connector {
 
     @Override
     public void itsTurn(String playerName) {
-        tellAllPlayers("its " + playerName + "'s turn");
+        /*tellAllPlayers("its " + playerName + "'s turn");*/
         this.players.get(playerName).playMove();
     }
 
     @Override
     public void winners(List<String> winnerNames) {
         for (String winnerName : winnerNames) {
-            tellAllPlayers(winnerName + " has won!");
+            /*tellAllPlayers(winnerName + " has won!");*/
         }
     }
 
@@ -68,9 +68,9 @@ public class BaseConnector implements Connector {
         boolean canPlay = this.game.canPlay(playerName, card);
         if (canPlay) {
             if (card == null) {
-                tellAllPlayers(playerName + " draws a card");
+                /*tellAllPlayers(playerName + " draws a card");*/
             } else {
-                tellAllPlayers(playerName + " played " + card);
+                /*tellAllPlayers(playerName + " played " + card);*/
             }
         }
         return canPlay;
@@ -91,7 +91,7 @@ public class BaseConnector implements Connector {
     @Override
     public void wishUpdate(String executorName, Color color) {
         game.updateWish(color);
-        tellAllPlayers("Wished for " + color.name());
+        /*tellAllPlayers("Wished for " + color.name());*/
     }
 
     @Override
@@ -102,7 +102,7 @@ public class BaseConnector implements Connector {
     @Override
     public void wishUpdate(String executorName, FantasticOptions fantasticOptions) {
         game.updateWish(fantasticOptions);
-        tellAllPlayers("Wished for " + fantasticOptions.name());
+        /*tellAllPlayers("Wished for " + fantasticOptions.name());*/
     }
 
     @Override
@@ -155,7 +155,9 @@ public class BaseConnector implements Connector {
 
     @Override
     public void transferCardFromPlayerToPlayer(List<Card> cards, String giverName, String recieverName) {
+/*
         tellAllPlayers(giverName + " transferred " + cards.size() + " cards to " + recieverName);
+*/
         for (Card card : cards) {
             this.players.get(giverName).removeCard(card);
             this.players.get(recieverName).addCard(card, "You got " + card.getName() + " from " + giverName);
@@ -176,7 +178,7 @@ public class BaseConnector implements Connector {
     @Override
     public void triggerEvent(String executor) {
         Event event = game.getNextEvent();
-        tellAllPlayers("Event triggered: " + event);
+        /*tellAllPlayers("Event triggered: " + event);*/
         event.executeEvent(this, executor, this.game.getGameState());
     }
 
@@ -185,7 +187,7 @@ public class BaseConnector implements Connector {
         boolean wantsToBlock = players.get(player).wantToBlock(attackCard);
         if (wantsToBlock) {
             this.game.cardThrownIn(player, new Counterattack());
-            tellAllPlayers(attackCard + " was blocked by " + player);
+            /*tellAllPlayers(attackCard + " was blocked by " + player);*/
         }
         return wantsToBlock;
     }
@@ -197,7 +199,7 @@ public class BaseConnector implements Connector {
         for (String alemostWinner : alemostWinners) {
             makePlayerDraw(alemostWinner, "Nice Try", 3);
         }
-        tellAllPlayers(executor + " played Nice Try!");
+        /*tellAllPlayers(executor + " played Nice Try!");*/
     }
 
     @Override

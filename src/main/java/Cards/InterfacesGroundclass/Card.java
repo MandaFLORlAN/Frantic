@@ -26,8 +26,6 @@ public abstract class Card {
         return false;
     }
 
-    /*public abstract Card copyCard();*/
-
     public String getName() {
         return name;
     }

@@ -1,6 +1,7 @@
 package Players;
 
 import Cards.InterfacesGroundclass.Card;
+import Cards.InterfacesGroundclass.WishCard;
 import Cards.Wishcards.Counterattack;
 import Connector.Connector;
 import Enums.Color;

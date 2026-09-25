@@ -23,10 +23,10 @@ public class StatisticsHandler {
         this.currentGameMoves++;
     }
 
-    public void endGame(List<Player> winners, Map<String,List<Card>> remainingCards ) {
+    public void endGame(List<Player> winners, Map<String, List<Card>> remainingCards) {
         GameEndStats endStats = new GameEndStats(winners, this.currentGameMoves, null);
         this.currentGameMoves = 0;
-        for(List<Card> cards : remainingCards.values()){
+        for (List<Card> cards : remainingCards.values()) {
             if (cards.size() > maxEndCards) {
                 maxEndCards = cards.size();
             }
@@ -41,19 +41,38 @@ public class StatisticsHandler {
         for (GameEndStats game : this.games) {
             allMoves += game.getNumberOfMoves();
             allWinners += game.getWinners().size();
-            for (Player winner: game.getWinners()){
-                if (!players.containsKey(winner)){
+            for (Player winner : game.getWinners()) {
+                if (!players.containsKey(winner)) {
                     players.put(winner, 1);
-                }else {
+                } else {
                     players.put(winner, players.get(winner) + 1);
                 }
             }
         }
-        for (Player winner: players.keySet()) {
-            System.out.println(winner + ": " + players.get(winner) +  ", " + ((double)players.get(winner)/allWinners) * 100 + "%");
+        for (Player winner : players.keySet()) {
+            System.out.println(winner + ": " + players.get(winner) + ", " + ((double) players.get(winner) / allWinners) * 100 + "%");
         }
-        System.out.println("average moves:" + allMoves/this.games.size());
-        System.out.println("average winners:" + allWinners/(double)this.games.size());
+        System.out.println("average moves:" + allMoves / this.games.size());
+        System.out.println("average winners:" + allWinners / (double) this.games.size());
         System.out.println("max end hand:" + this.maxEndCards);
+    }
+
+    public List<Player> getRanking() {
+        List<Player> ranking = new ArrayList<>();
+        Map<Player, Integer> winsPerPlayer = new HashMap<>();
+        for (GameEndStats game : this.games) {
+            for (Player winner : game.getWinners()) {
+                if (!winsPerPlayer.containsKey(winner)) {
+                    winsPerPlayer.put(winner, 1);
+                } else {
+                    winsPerPlayer.put(winner, winsPerPlayer.get(winner) + 1);
+                }
+            }
+        }
+        winsPerPlayer.entrySet()
+                .stream().sorted((e1, e2)
+                        -> e2.getValue().compareTo(e1.getValue()))
+                .forEach(e -> ranking.add(e.getKey()));
+        return ranking;
     }
 }

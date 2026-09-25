@@ -69,7 +69,7 @@ public class PointBasedGame extends Game {
             String nextPlayer = players.keySet().stream().toList().get((movesPlayed + startOffset) % players.size());
             if (playersToSkip.contains(nextPlayer)) {
                 playersToSkip.remove(nextPlayer);
-                connector.tellAllPlayers(nextPlayer + " has been skipped");
+                /*connector.tellAllPlayers(nextPlayer + " has been skipped");*/
                 startOffset++;
             } else {
                 connector.itsTurn(nextPlayer);

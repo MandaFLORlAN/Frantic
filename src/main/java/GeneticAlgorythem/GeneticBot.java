@@ -4,6 +4,8 @@ import Cards.InterfacesGroundclass.Card;
 import Connector.Connector;
 import Players.Bots.LogicBot1;
 
+import java.util.List;
+
 import static Players.CardSorter.sortCardsByGenes;
 
 
@@ -36,7 +38,21 @@ public class GeneticBot extends LogicBot1 {
 
     @Override
     public void addCard(Card card) {
-        this.cards.add(card);
+/*        float newValue = 0;
+        try {
+            newValue = cardGenetic.getGenes().get(card.getName());
+        } catch (NullPointerException e) {
+            System.out.println("Break");
+        }
+
+        *//*
+        for (int i = 0; i < this.cards.size(); i++) {
+            if (newValue > cardGenetic.getGenes().get(cards.get(i).getName())) {
+                this.cards.add(i, card);
+                return;
+            }
+        }*/
         this.cards = sortCardsByGenes(this.cards, this.cardGenetic);
+        this.cards.add(card);
     }
 }
